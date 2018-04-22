@@ -269,14 +269,223 @@ var jokes = [
 
 	'- Vengo del urólogo<br />' +
 	'- ¿Y qué te ha dicho?<br />' +
-	'- Que soy jilipollas. Que los hurones se llevan al veterinario',
+	'- Que soy gilipollas. Que los hurones se llevan al veterinario',
 
 	'- Quiero despertar contigo el resto de mi vida<br />' +
 	'- Me levanto a las 5 de la mañana<br />' +
 	'- Pues va a ser que no',
 
 	'- ¿Tú crees que soy feo?<br />' +
-	'- Hombre, fuiste al puticlub y a todas les dolía la cabeza. Raro es'
+	'- Hombre, fuiste al puticlub y a todas les dolía la cabeza. Raro es',
+	
+	'- Alcánzame el eso que dejé allá adentro de aquello<br />' +
+	'- ¿El qué?<br />' +
+	'- Madre mía Paco, pareces tonto',
+	
+	'- En una escala del 1 al 10, ¿cómo valoraria su capacidad de comprensión?<br />' +
+	'- Muy buena',
+	
+	'- No hay ni un pelo en tu camisa!<br />' +
+	'- ¿Y...?<br />' +
+	'- ¿Quien es esa puta calva?',
+	
+	'- Mi coche hace un ruido espantoso<br />' +
+	'- ¿Ha probado usted a quitar el CD de Pablo Alborán?',
+	
+	'- ¿Tiene tarjetas de San Valentín que digan: "Para mi único y verdadero amor"?<br />' +
+	'- Claro que tenemos!<br />' +
+	'- Pués deme ocho por favor',
+	
+	'- ¿A partir de cuántas cervezas se puede considerar que tienes un problema?<br />' +
+	'- Cuando no queda ninguna más',
+	
+	'Mi hijo es un sol; sale y se pone',
+	
+	'- El problema de la sociedad de hoy es la falta de empatía, de respeto, de sentido del humor. La intolerancia<br />' +
+	'- ¿A la lactosa?<br />' +
+	'- A tu puta madre',
+	
+	'Si fuera joyero,<br />' +
+	'te regalaria una joya.<br />' +
+	'Como soy pollero,<br />' +
+	'no te cobro las patatas',
+	
+	'Cada vez que mi madre viene a casa y pregunta "¿Esto para qué es?" desde otra habitación, me da un microinfarto',
+	
+	'- Para continuar con la ceremonia, leed vuestros votos<br />' +
+	'- Yo pensaba que era secreto<br />' +
+	'- Es tu boda<br />' +
+	'- Bueno... vale. Que bochorno. Voto no',
+	
+	'- Hoy he dejado el trabajo. No podia seguir trabajando para ese hombre despues de lo que me dijo<br />' +
+	'- ¿Que te dijo?<br />' +
+	'- Estas despedido',
+	
+	'- Yo una Cruzcampo<br />' +
+	'- Yo una Heineken<br />' +
+	'- Bueno, pues un agua para mí también',
+	
+	'- Yo quiero un Bitter Kas<br />' +
+	'- Yo una cerveza sin alcohol<br />' +
+	'- ¿Y usted?<br />' +
+	'- Amigos normales',
+	
+	'- La morsa brama de placer mojándose en las gélidas aguas árticas<br />' +
+	'- ¡Pepe, que le abras el agua caliente a mi madre!<br />' +
+	'- Su cría se rebela',
+	
+	'- Un pájaro enjaulado no es un pájaro feliz...<br />' +
+	'- Que te lo guardes, Paco',
+	
+	'- Dejaremos de tener sexo en 2030, según un estudio<br />' +
+	'- Yo he dejado de follar ya para que no me pille el toro',
+	
+	'Otro día más sin utilizar el mínimo común múltiplo ni el máximo común divisor',
+	
+	'La mejor viagra es cambiar de cabra',
+	
+	'ÚLTIMA HORA: Pide una pizza familiar y la devuelve porque no la conoce de nada',
+	
+	'- ¿Sabes el porcentaje de españoles que son bebedores empedernidos de cerveza?<br />' +
+	'- No se, ¿un tercio?<br />' +
+	'- Venga va, uno fresquito',
+	
+	'El día menos pensado dices "pues yo prefiero salir a mediodía y tomar unos vinitos por el centro".' +
+	'PUM, eres más viejo que una montaña.',
+
+	'- El límite es el cielo<br />' +
+	'- No, el límite es 0,25. Baje del coche por favor',
+	
+	'- ¿Qué hacen esos condones rotos en el jardín?<br />' +
+	'- ¡QUE DEJES DE LLAMAR ASÍ A LOS NIÑOS, JOSÉ!',
+	
+	'He visto El Silencio de los Corderos y no se oye ni uno en toda la película. Buen trabajo',
+	
+	'Estoy flipando. Han detenido al mecánico de mi barrio por tráfico de drogas.' +
+	'Soy cliente suyo de toda la vida y nunca me había dicho que fuera mecánico',
+	
+	'Me he tirado un pedo en el autobús y se han girado 4 personas. Ha sido como participar en La Voz',
+	
+	'- Papá<br />' +
+	'- Dime, hijo<br />' +
+	'- ¿Qué es dudar?<br />' +
+	'- A ver, tú a quién quieres más ¿a papá o a mamá?<br />' +
+	'- A mamá<br />' +
+	'- Pues que te lo explique ella, gilipollas',
+	
+	'- Pero ¿qué le ha hecho a su suegra?<br />' +
+	'- Lo que me dijo, doctor<br />' +
+	'- Le dije dar dos tranquilizantes, DAR-DOS, separado',
+	
+	'- Llevo un mes sin sexo por tener la muñeca rota<br />' +
+	'- ¿La izquierda o la derecha?<br />' +
+	'- La hinchable',
+	
+	'- Doctor, ¿qué me recomienda contra el dolor menstrual?<br />' +
+	'- Sexo anal<br />' +
+	'- Usted ha hablado con mi marido ¿verdad?<br />' +
+	'- ¿Qué Paco ni que Paco?',
+	
+	'- ¿Cuánto tiempo hace que no follas?<br />' +
+	'- ¿Que hora es?<br />' +
+	'- Las 11:46<br />' +
+	'- Nueve años',
+	
+	'- Señor, no queda viagra de 50mg. Le vamos a dar de 100mg para que la parta en dos<br />' +
+	'- ¡¿A mi esposa?!<br />' +
+	'- No, coño! La pastilla!',
+	
+	'- Vengo a matricularme a Ciencias Políticas<br />' +
+	'- Muy bien. Coja este sobre...<br />' +
+	'- ¡Ostias! ¿Ya?<br />' +
+	'- Es la matricula inútil',
+	
+	'- Mi mujer siempre anda por casa como vino al mundo<br />' +
+	'- ¿Desnuda?<br />' +
+	'- No, gritando',
+	
+	'Fui a poner una denuncia. Primero me dan un boli que no escribe y luego uno que si.' +
+	'Que cabrones. El viejo truco boli malo boli bueno',
+	
+	'Cómo conquistar a un hombre en diez pasos:<br />' +
+	'Desnúdate, da diez pasos hacia donde él esté y chúpasela como si no hubiera un mañana',
+	
+	'- Y tú ¿a qué te dedicas?<br />' +
+	'- Soy bromista<br />' +
+	'- ¿Te dedicas al humor?<br />' +
+	'- No, produzco bromo elemental a partir de bromuro potásico<br />' +
+	'- Ah, perdón<br />' +
+	'- Es broma',
+	
+	'- ¿Te has cagado en el ascensor?<br />' +
+	'- He escuchado "Planta uno" y me he liado',
+	
+	'- Tranquilo Santi, solo es un pequeño corte con el bisturí, no estés nervioso<br />' +
+	'- Oiga doctor, yo me llamo Jorge<br />' +
+	'- Ya lo sé, Santi soy yo',
+	
+	'- Paco, ¿te estás follando a la vecina del 5º?<br />' +
+	'- Es la del 2º<br />' +
+	'- ¿Que más da?<br />' +
+	'- Pues que no te fijas en los detalles Puri, y esas cosas duelen',
+	
+	'Lo que en realidad buscan todos los hombres es una felación estable',
+	
+	'- Tengo que hacer una redacción de diez páginas sobre mi vida sexual<br />' +
+	'- ¿Como lo llevas?<br />' +
+	'- Mal... Voy a tener que meter mucha paja',
+	
+	'- Soy super saludable<br />' +
+	'- ¿Comes sano y haces ejercicio?<br />' +
+	'- No, mucha gente me saluda',
+	
+	'- ¿Cómo prepara el brocoli?<br />' +
+	'- Lo tiro, y preparo un par de huevos fritos con chorizo<br />' +
+	'- ¡Contratado!',
+	
+	'- Eres un poco corto<br />' +
+	'- ¿Un poco qué? Cambio',
+	
+	'- ¡Ayer casi hago un trío! Se acercó una chica y me dijo: "Yo y mi amiga queremos follar contigo"<br />' +
+	'- ¿Y tú que dijiste?<br />' +
+	'- Será "Mi amiga y yo"',
+	
+	'- ¿Qué haces para estar tan delgada?<br />' +
+	'- Follar mucho<br />' +
+	'- Pues tu marido está bien gordo<br />' +
+	'- Dicen que va a llover',
+	
+	'"Si después de besarla no tienes que acomodarte el rabo, no es la indicada"<br /><br />José de Espronceda',
+	
+	'Mi mayor rebeldía es colocar la compra en la cinta de la caja de tal forma que' +
+	'cuando me preguntan hasta dónde pueda responder: "Hasta los huevos"',
+	
+	'- Me encanta su reloj espía, señor Bond<br />' +
+	'- En su pantalla puedo ver usted no lleva bragas<br />' +
+	'- ¡No es cierto! Si que llevo<br />' +
+	'- Es que va una hora adelantado',
+	
+	'- Control de alcoholemia. Sople<br />'+
+	'- Eso es una polla<br />' +
+	'- Ya. Pero así no dará positivo<br />' +
+	'- Pues también es verdad',
+	
+	'He probado lo de usar el chocolate como sustitutivo del sexo, pero los Toblerones se me parten al metermelos por el culo',
+	
+	'- Que metal mas raro<br />' +
+	'- Es estaño<br />' +
+	'- ¿A que si?',
+	
+	'Explota una fábrica de pelucas en Murcia. La policia está peninando la zona',
+	
+	'Muere un hombre al estrellarse con un espejo. Se veía venir',
+	
+	'Una mujer cae al vacío mientras tendía la ropa. Se le fue la pinza',
+	
+	'Encontrar a tu media naranja es lo de menos. Lo importante es encontrar quien te la pele',
+	
+	'- Tu follas poco, ¿no?<br />' +
+	'- Ojalá'
 ];
 
 function JokeService() {
