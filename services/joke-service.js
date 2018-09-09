@@ -123,7 +123,7 @@ var jokes = [
 	'- Soy un noble caballero y sé cuando he de manchar con sangre mi espada<br />' +
 	'- Manolo, déjate de gilipolleces, que con la regla no follo',
 
-	'- Qué cabrón mi vecino. ¿Pues no se pone a llamar a mi puerta como un loco a las 4 de la mañana? Casi se me cae el taladro del susto',
+	'Qué cabrón mi vecino. ¿Pues no se pone a llamar a mi puerta como un loco a las 4 de la mañana? Casi se me cae el taladro del susto',
 
 	'- ¿Te parece bonito?<br />' +
 	'- Sí<br />' +
@@ -163,13 +163,6 @@ var jokes = [
 	'- ¡Papá, papá, Jaimito la tiene com un cacahuete!<br />' +
 	'- ¿De pequeña?<br />' +
 	'- No, de salada',
-
-	'Una niña sin brazos se para en una tienda de helados. El vendedor le pregunta:<br />' +
-	'- ¿De qué lo quieres, bonita?<br />' +
-	'- Pónmelo de lo que tu quieras, igualmente caerá al suelo',
-
-	'¿Cuántos negros hacen falta para lavar 1000 platos?<br />' +
-	'Ninguno, es un trabajo de mujeres',
 
 	'El humor negro es como las piernas; hay quién tiene y quién no',
 
@@ -337,8 +330,8 @@ var jokes = [
 	'- Un pájaro enjaulado no es un pájaro feliz...<br />' +
 	'- Que te lo guardes, Paco',
 	
-	'- Dejaremos de tener sexo en 2030, según un estudio<br />' +
-	'- Yo he dejado de follar ya para que no me pille el toro',
+	'Según un estudio, dejaremos de tener sexo en 2030.' +
+	'Yo he dejado de follar ya para que no me pille el toro',
 	
 	'Otro día más sin utilizar el mínimo común múltiplo ni el máximo común divisor',
 	
@@ -485,7 +478,35 @@ var jokes = [
 	'Encontrar a tu media naranja es lo de menos. Lo importante es encontrar quien te la pele',
 	
 	'- Tu follas poco, ¿no?<br />' +
-	'- Ojalá'
+	'- Ojalá',
+
+	'Ayer me enganché con un libro bueno, pero bueno BUENO, de los que marcan. Absorto estuve' +
+	'hasta las 4 de la madrugada, ahí, coloreando',
+
+	'Yo a veces le devuelvo a mi madre tuppers de mi suegra, para que vea que tiene competencia' +
+	'y no se relaje',
+
+	'- Camarero, un risotto<br />' +
+	'- JOJOJO<br />' +
+	'- Muchas gracias',
+
+	'- Mañana tengo un examen de próstata y no he estudiado nada<br />' +
+	'- Échale un ojo al índice aunque sea, es lo que suele entrar',
+
+	'Tengo menos ganas de currar que el que le puso el nombre a "Panrico"',
+
+	'- Te quiero mucho Soplaculo<br />' +
+	'- Abuelaaaa! Me llamo Silvano!',
+
+	'Lo más jodido de trabajar en equipo es convencer al resto de que no tienen ni puta idea',
+
+	'- Mi novia ya no quiere hablar conmigo ni por teléfono<br />' +
+	'- ¿Y te cuelga?<br />' +
+	'- Hasta la rodilla, pero no es momento de presumir',
+
+	'- Gracias a la bascula en el baño puedo saber cuanto pesa lo que cago<br />' +
+	'- Claro, te pesas antes y despues<br />' +
+	'- Ah! De esa forma es mejor'
 ];
 
 function JokeService() {
