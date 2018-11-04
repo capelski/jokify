@@ -1,4 +1,4 @@
-var jokes = [
+const jokes = [
 
 	'Como maldice un pollo a otro pollo? Caldito seas!',
 
@@ -506,29 +506,32 @@ var jokes = [
 
 	'- Gracias a la bascula en el baño puedo saber cuanto pesa lo que cago<br />' +
 	'- Claro, te pesas antes y despues<br />' +
-	'- Ah! De esa forma es mejor'
+	'- Ah! De esa forma es mejor',
+
+	'- ¿Cómo se dice, fuera o fuese?<br />' +
+	'- Da igual<br />' +
+	'- Pues ponte bien el bañador que tienes un huevo fuese',
+
+	'- Le he implantado un diente postizo<br />' +
+	'- ¿Me lo puedo cepillar, doctor?<br />' +
+	'- Por supuesto. Salgo a las ocho'
 ];
 
-function JokeService() {
-
-	function getRandomJoke(excludedIndexes) {
-		var randomNumber = Math.round(Math.random() * Number.MAX_SAFE_INTEGER);
-		var index = randomNumber % jokes.length;
-		
-		if (excludedIndexes.length === jokes.length) {
-			excludedIndexes.length = 0;
-		}
-		while(excludedIndexes.indexOf(index) > -1) {
-			index = ++index % jokes.length;
-		}
-		
-		excludedIndexes.push(index);
-		return jokes[index];
+const getRandomJoke = excludedIndexes => {
+	var randomNumber = Math.round(Math.random() * Number.MAX_SAFE_INTEGER);
+	var index = randomNumber % jokes.length;
+	
+	if (excludedIndexes.length === jokes.length) {
+		excludedIndexes.length = 0;
 	}
+	while(excludedIndexes.indexOf(index) > -1) {
+		index = ++index % jokes.length;
+	}
+	
+	excludedIndexes.push(index);
+	return jokes[index];
+};
 
-	return {
-		getRandomJoke
-	};
-}
-
-module.exports = JokeService();
+module.exports = {
+	getRandomJoke
+};
