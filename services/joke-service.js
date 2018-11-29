@@ -514,7 +514,11 @@ const jokes = [
 
 	'- Le he implantado un diente postizo<br />' +
 	'- ¿Me lo puedo cepillar, doctor?<br />' +
-	'- Por supuesto. Salgo a las ocho'
+	'- Por supuesto. Salgo a las ocho',
+
+	'- Cago cada mañana a las 8, doctor<br />' +
+	'- ¿Y cual es el problema?<br />' +
+	'- Que me despierto a las 9',
 ];
 
 const getRandomJoke = excludedIndexes => {
