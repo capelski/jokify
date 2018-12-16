@@ -519,6 +519,9 @@ const jokes = [
 	'- Cago cada mañana a las 8, doctor<br />' +
 	'- ¿Y cual es el problema?<br />' +
 	'- Que me despierto a las 9',
+
+	'- Papa, papa, tengo paperas<br />' +
+	'- Pues cuando tengas pa putas me avisas<br />'
 ];
 
 const getRandomJoke = excludedIndexes => {
