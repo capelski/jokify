@@ -104,6 +104,8 @@ $jokeSpacing: 15px;
     display: flex;
     align-items: center;
     font-size: 25px;
+    max-width: 760px;
+    margin: auto;
 }
 
 @include fall-from-top();
