@@ -90,7 +90,7 @@ $accelerationConstant: -9.81 * 4;
 
   @for $i from 0 through $framesNumber {
     #{$i * $frameWeight}% {
-      top: (-1 * (100 - (log($i + 1) / $maxValue) * 100))+%;
+      top: #{(-1 * (100 - (log($i + 1) / $maxValue) * 100))+'%'};
     }
   }
 }
