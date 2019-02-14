@@ -521,7 +521,9 @@ const jokes = [
 	'- Que me despierto a las 9',
 
 	'- Papa, papa, tengo paperas<br />' +
-	'- Pues cuando tengas pa putas me avisas<br />'
+	'- Pues cuando tengas pa putas me avisas<br />',
+
+	'¿Que son tres burros debajo del mar? Un triburrón'
 ];
 
 const getRandomJoke = excludedIndexes => {
