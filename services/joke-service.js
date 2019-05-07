@@ -538,6 +538,8 @@ const jokes = [
 	'- ¡Cinco pollas me caben!'
 ];
 
+const getFilteredJokes = (text) => jokes.filter(joke => joke.indexOf(text) > -1);
+
 const getRandomJoke = excludedIndexes => {
 	var randomNumber = Math.round(Math.random() * Number.MAX_SAFE_INTEGER);
 	var index = randomNumber % jokes.length;
@@ -554,5 +556,6 @@ const getRandomJoke = excludedIndexes => {
 };
 
 module.exports = {
+	getFilteredJokes,
 	getRandomJoke
 };
