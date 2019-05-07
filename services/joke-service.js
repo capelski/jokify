@@ -523,7 +523,19 @@ const jokes = [
 	'- Papa, papa, tengo paperas<br />' +
 	'- Pues cuando tengas pa putas me avisas<br />',
 
-	'¿Que son tres burros debajo del mar? Un triburrón'
+	'¿Que son tres burros debajo del mar? Un triburrón',
+
+	'- ¡Ayúdeme! He perdido a mi hija<br />' +
+	'- ¿Como se llama?<br />' +
+	'- Esperanza<br />' +
+	'- Eso es imposible! La esperanza es lo último que se pierde',
+
+	'- Soy rockero<br />' +
+	'- ¿Y tienes una banda?<br />' +
+	'- No, junto piedras y las vendo',
+
+	'- Que boca mas grande tienes abuelita<br />' +
+	'- ¡Cinco pollas me caben!'
 ];
 
 const getRandomJoke = excludedIndexes => {
