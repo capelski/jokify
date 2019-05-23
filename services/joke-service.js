@@ -535,7 +535,12 @@ const jokes = [
 	'- No, junto piedras y las vendo',
 
 	'- Que boca mas grande tienes abuelita<br />' +
-	'- ¡Cinco pollas me caben!'
+	'- ¡Cinco pollas me caben!',
+
+	'- ¿Tu no eras alérgico a los frutos secos?<br/>' +
+	'- Si, ¿porque?<br/>' +
+	'- Porque la tia con la que te liaste anoche tenia nuez<br/>' +
+	'- ¡Ahora entiendo porque me pica el culo!'
 ];
 
 const getFilteredJokes = (text) => jokes.filter(joke => joke.indexOf(text) > -1);
