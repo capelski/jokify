@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function getNextJoke() {
         $.ajax({
             method: 'get',
-            url: '/random?$modena=jokify'
+            url: '/api/random?$modena=jokify'
         })
         .then((randomJoke) => {
             nextJoke = randomJoke;
