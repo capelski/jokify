@@ -540,10 +540,13 @@ const jokes = [
 	'- ¿Tu no eras alérgico a los frutos secos?<br/>' +
 	'- Si, ¿porque?<br/>' +
 	'- Porque la tia con la que te liaste anoche tenia nuez<br/>' +
-	'- ¡Ahora entiendo porque me pica el culo!'
+	'- ¡Ahora entiendo porque me pica el culo!',
+
+	'Una cereza se mira al espejo y se pregunta \'¿Seré esa?\''
 ];
 
-const getFilteredJokes = (text) => jokes.filter(joke => joke.indexOf(text) > -1);
+const getFilteredJokes = text =>
+	jokes.filter(joke => text && joke.toLowerCase().indexOf(text.toLowerCase()) > -1);
 
 const getRandomJoke = excludedIndexes => {
 	var randomNumber = Math.round(Math.random() * Number.MAX_SAFE_INTEGER);

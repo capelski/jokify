@@ -12,13 +12,12 @@
     </head>
 
     <body>
-        <div id="viewport" class="fixed-viewport">
-            <div id="joke" class="joke">
-                <%- joke %>
-            </div>
+        <div id="viewport" class="fixed-viewport filter">
+            <input type="text" class="filter-input" id="filter" />
+            <div id="jokes" class="joke"></div>
 
-            <button type="button" class="jokifier" id="jokify">
-                <span>Jokify</span>
+            <button type="button" class="jokifier" id="searcher">
+                <span>Search</span>
             </button>
 
             <% for (var i = 1; i <= 50; ++i) { %>
@@ -28,6 +27,6 @@
 
         <script type="text/javascript" src="/plugins/jquery-2.1.1/jquery-2.1.1.min.js?$modena=jokify"></script>
         <script type="text/javascript" src="/js/common.js?$modena=jokify"></script>
-        <script type="text/javascript" src="/js/jokify.js?$modena=jokify"></script>
+        <script type="text/javascript" src="/js/filter.js?$modena=jokify"></script>
     </body>
 </html>
