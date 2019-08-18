@@ -542,7 +542,20 @@ const jokes = [
 	'- Porque la tia con la que te liaste anoche tenia nuez<br/>' +
 	'- ¡Ahora entiendo porque me pica el culo!',
 
-	'Una cereza se mira al espejo y se pregunta \'¿Seré esa?\''
+	'Una cereza se mira al espejo y se pregunta \'¿Seré esa?\'',
+
+	'Me dice el otro dia un tipo por la calle \'¡Quiero un hijo tuyo!\' Le traje al mayor, que es el que come más',
+
+	'- ¿Sabe cómo se dice memoria en inglés?<br />' +
+	'- Por supuesto. Memory<br />' +
+	'- ¿Podria usarlo en una frase?<br />' +
+	'- Claro! Ayer caí por la ventana y memory',
+
+	'- ¿Qué es un tomate vestido con capa y antifaz?<br />' +
+	'- Ni idea<br />' +
+	'- El capitán tomate. Ahora, ¿qué es un cocodrilo vestido con capa y antifaz?<br />' +
+	'- El capitán cocodrilo<br />' +
+	'- No, es un cocodrilo disfrazado de capitán tomate'
 ];
 
 const getFilteredJokes = text =>
