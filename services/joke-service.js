@@ -169,9 +169,6 @@ const jokes = [
 	'¿Qué es peor que encontrarse una cucaracha en el plato?<br />' +
 	'Encontrarse media',
 
-	'¿Qué no se come de un vegetal?<br />' +
-	'La silla de ruedas',
-
 	'- Cariño, ¿me pasas el bebé?<br />' +
 	'- Ahora, cuando llore<br />' +
 	'- ¿Cuando llore? ¿Porque?<br />' +
@@ -555,7 +552,28 @@ const jokes = [
 	'- Ni idea<br />' +
 	'- El capitán tomate. Ahora, ¿qué es un cocodrilo vestido con capa y antifaz?<br />' +
 	'- El capitán cocodrilo<br />' +
-	'- No, es un cocodrilo disfrazado de capitán tomate'
+	'- No, es un cocodrilo disfrazado de capitán tomate',
+
+	'- Cariño, cuéntale a mi madre lo que te hice ayer<br />' +
+	'- ¿Lo de la espectacular mamada sin manos?<br />' +
+	'- No! El arroz con leche, gilipollas',
+
+	'- Dice que sabe de historia del arte<br />' +
+	'- Soy un experto<br />' +
+	'- ¿Qué opina del Renacimiento?<br />' +
+	'- Que es imposible. Si te mueres, te mueres',
+
+	'- Estas obsesionado con las especias<br />' +
+	'- No digas tonerías, Romero<br />' +
+	'- Ramiro<br />' +
+	'- Eso',
+
+	'- No sé si es buena idea hacerlo en la cama de tus padres<br />' +
+	'- ¿Por qué?<br />' +
+	'- Porque los vamos a despertar',
+
+	'- Empezemos con la entrevista. ¿Tiene usted experiencia?<br />' +
+	'- Por supuesto. Con esta ya van 20'
 ];
 
 const getFilteredJokes = text =>
