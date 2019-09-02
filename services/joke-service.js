@@ -573,7 +573,21 @@ const jokes = [
 	'- Porque los vamos a despertar',
 
 	'- Empezemos con la entrevista. ¿Tiene usted experiencia?<br />' +
-	'- Por supuesto. Con esta ya van 20'
+	'- Por supuesto. Con esta ya van 20',
+
+	'- ¿Sabe cómo se dice fiesta en inglés?<br />' +
+	'- Por supuesto. Party<br />' +
+	'- ¿Podria usarlo en una frase?<br />' +
+	'- Claro! Ayer me party los dientes con la bicicleta',
+
+	'- Mama, ¿porqué me llamo Claudio?<br />' +
+	'- Por qué yo me llamo Claudia<br />' +
+	'- Pues menos mal que no te llamas Ana',
+
+	'- ¿Tienes WiFi?<br />' +
+	'- Si<br />' +
+	'- Y ¿cuál es la clave?<br />' +
+	'- Tener dinero y pagarlo'
 ];
 
 const getFilteredJokes = text =>

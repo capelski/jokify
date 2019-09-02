@@ -49,7 +49,7 @@ module.exports = (environmentConfig = {}) => {
         saveUninitialized: true
 	}));
 	app.get('/', jokesController.indexView);
-	app.get('/filter', jokesController.filterView);
+	app.get('/search', jokesController.searchView);
 	app.get('/api/filter', jokesController.filteredJokes);
 	app.get('/api/random', jokesController.randomJoke);
 	return app;

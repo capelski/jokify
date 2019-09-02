@@ -9,7 +9,7 @@ const filteredJokes = (req, res, next) => {
 	res.json(jokes);
 };
 
-const filterView = (req, res, next) => res.render('filter');
+const searchView = (req, res, next) => res.render('search');
 
 const indexView = (req, res, next) => {
 	req.session.excludedIndexes = req.session.excludedIndexes || [];
@@ -27,7 +27,7 @@ const randomJoke = (req, res, next) => {
 
 module.exports = {
 	filteredJokes,
-	filterView,
+	searchView,
 	indexView,
 	randomJoke
 };
