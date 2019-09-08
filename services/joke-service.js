@@ -587,7 +587,13 @@ const jokes = [
 	'- ¿Tienes WiFi?<br />' +
 	'- Si<br />' +
 	'- Y ¿cuál es la clave?<br />' +
-	'- Tener dinero y pagarlo'
+	'- Tener dinero y pagarlo',
+
+	'- Papá, ¿qué es depilar?<br />' +
+	'- No sé, hace tiempo que no la veo',
+
+	'- Madre mía, como tienes las vacas en el establo, mezcladas de cualquier manera<br />' +
+	'- Sí, están un poco desordeñadas'
 ];
 
 const getFilteredJokes = text =>
