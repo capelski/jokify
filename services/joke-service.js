@@ -235,7 +235,7 @@ const jokes = [
 	'- Hóstia qué movida...',
 
 	'- Manolo, ¿cuál es la postura que más has usado para practicar sexo?<br />' +
-	'- De rodillas y pidiéndolo por favor<br />',
+	'- De rodillas y pidiéndolo por favor',
 
 	'- Hola. Soy el vecino de arriba<br />' +
 	'- Hola. ¿Qué querías?<br />' +
@@ -327,8 +327,7 @@ const jokes = [
 	'- Un pájaro enjaulado no es un pájaro feliz...<br />' +
 	'- Que te lo guardes, Paco',
 	
-	'Según un estudio, dejaremos de tener sexo en 2030.' +
-	'Yo he dejado de follar ya para que no me pille el toro',
+	'Según un estudio, dejaremos de tener sexo en 2030. Yo he dejado de follar ya para que no me pille el toro',
 	
 	'Otro día más sin utilizar el mínimo común múltiplo ni el máximo común divisor',
 	
@@ -340,8 +339,7 @@ const jokes = [
 	'- No se, ¿un tercio?<br />' +
 	'- Venga va, uno fresquito',
 	
-	'El día menos pensado dices "pues yo prefiero salir a mediodía y tomar unos vinitos por el centro".' +
-	'PUM, eres más viejo que una montaña.',
+	'El día menos pensado dices "pues yo prefiero salir a mediodía y tomar unos vinitos por el centro". PUM, eres más viejo que una montaña.',
 
 	'- El límite es el cielo<br />' +
 	'- No, el límite es 0,25. Baje del coche por favor',
@@ -351,8 +349,7 @@ const jokes = [
 	
 	'He visto El Silencio de los Corderos y no se oye ni uno en toda la película. Buen trabajo',
 	
-	'Estoy flipando. Han detenido al mecánico de mi barrio por tráfico de drogas.' +
-	'Soy cliente suyo de toda la vida y nunca me había dicho que fuera mecánico',
+	'Estoy flipando. Han detenido al mecánico de mi barrio por tráfico de drogas. Soy cliente suyo de toda la vida y nunca me había dicho que fuera mecánico',
 	
 	'Me he tirado un pedo en el autobús y se han girado 4 personas. Ha sido como participar en La Voz',
 	
@@ -394,8 +391,7 @@ const jokes = [
 	'- ¿Desnuda?<br />' +
 	'- No, gritando',
 	
-	'Fui a poner una denuncia. Primero me dan un boli que no escribe y luego uno que si.' +
-	'Que cabrones. El viejo truco boli malo boli bueno',
+	'Fui a poner una denuncia. Primero me dan un boli que no escribe y luego uno que si. Que cabrones. El viejo truco boli malo boli bueno',
 	
 	'Cómo conquistar a un hombre en diez pasos:<br />' +
 	'Desnúdate, da diez pasos hacia donde él esté y chúpasela como si no hubiera un mañana',
@@ -447,8 +443,7 @@ const jokes = [
 	
 	'"Si después de besarla no tienes que acomodarte el rabo, no es la indicada"<br /><br />José de Espronceda',
 	
-	'Mi mayor rebeldía es colocar la compra en la cinta de la caja de tal forma que' +
-	'cuando me preguntan hasta dónde pueda responder: "Hasta los huevos"',
+	'Mi mayor rebeldía es colocar la compra en la cinta de la caja de tal forma que cuando me preguntan hasta dónde pueda responder: "Hasta los huevos"',
 	
 	'- Me encanta su reloj espía, señor Bond<br />' +
 	'- En su pantalla puedo ver usted no lleva bragas<br />' +
@@ -477,11 +472,9 @@ const jokes = [
 	'- Tu follas poco, ¿no?<br />' +
 	'- Ojalá',
 
-	'Ayer me enganché con un libro bueno, pero bueno BUENO, de los que marcan. Absorto estuve' +
-	'hasta las 4 de la madrugada, ahí, coloreando',
+	'Ayer me enganché con un libro bueno, pero bueno BUENO, de los que marcan. Absorto estuve hasta las 4 de la madrugada, ahí, coloreando',
 
-	'Yo a veces le devuelvo a mi madre tuppers de mi suegra, para que vea que tiene competencia' +
-	'y no se relaje',
+	'Yo a veces le devuelvo a mi madre tuppers de mi suegra, para que vea que tiene competencia y no se relaje',
 
 	'- Camarero, un risotto<br />' +
 	'- JOJOJO<br />' +
@@ -593,7 +586,15 @@ const jokes = [
 	'- No sé, hace tiempo que no la veo',
 
 	'- Madre mía, como tienes las vacas en el establo, mezcladas de cualquier manera<br />' +
-	'- Sí, están un poco desordeñadas'
+	'- Sí, están un poco desordeñadas',
+
+	'- Bienvenidos al curso de relajación<br />' +
+	'- ¡Empezad ya, hostias!',
+
+	'- ¿Hay algún doctor en la sala?<br />' +
+	'- Presente! Especializado en Matemáticas<br />' +
+	'- ¡Rápido doctor, mi amigo se se muere!<br />' +
+	'- Pues uno menos'
 ];
 
 const getFilteredJokes = text =>
