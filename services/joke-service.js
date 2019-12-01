@@ -594,7 +594,15 @@ const jokes = [
 	'- ¿Hay algún doctor en la sala?<br />' +
 	'- Presente! Especializado en Matemáticas<br />' +
 	'- ¡Rápido doctor, mi amigo se se muere!<br />' +
-	'- Pues uno menos'
+	'- Pues uno menos',
+
+	'- ¿Cómo se dice Un zapato en inglés?<br />' +
+	'- A shoe<br />' +
+	'- Salud Jajaja',
+
+	'- ¿Balias, guapo?<br />' +
+	'- No<br />' +
+	'- Perfecto. Sujétame el cubata que esto es un temazo'
 ];
 
 const getFilteredJokes = text =>
