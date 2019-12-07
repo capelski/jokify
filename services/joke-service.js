@@ -602,7 +602,15 @@ const jokes = [
 
 	'- ¿Balias, guapo?<br />' +
 	'- No<br />' +
-	'- Perfecto. Sujétame el cubata que esto es un temazo'
+	'- Perfecto. Sujétame el cubata que esto es un temazo',
+
+	'La rencarnación tiene que existir, porque ciertos niveles de retraso no se acumulan en una sola vida ni de coña',
+
+	'Mi mujer insiste en que use la escobilla del vater, pero voy a volver al papel, tengo el culo en carne vive',
+
+	'- Después del divorcio hemos dividio la casa en dos partes<br />' +
+	'- ¿Y qué parte te ha tocado?<br />' +
+	'- La de fuera'
 ];
 
 const getFilteredJokes = text =>
