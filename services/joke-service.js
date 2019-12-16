@@ -610,7 +610,16 @@ const jokes = [
 
 	'- Después del divorcio hemos dividio la casa en dos partes<br />' +
 	'- ¿Y qué parte te ha tocado?<br />' +
-	'- La de fuera'
+	'- La de fuera',
+
+	'- Dice mamá que estas obsesionado con el móvil<br />' +
+	'- Cállate Alfonsiete',
+
+	'- Cuando alguien me dice un cumplido, me apetece follarmelo. ¿Que cree que tengo, doctor?<br />' +
+	'- Creo que tiene usted unos ojos preciosos',
+
+	'- Hijo, la cigüeña te va a traer un hermanito<br />' +
+	'- ¿La cigüena? Joder papá, si es que te follas todo lo que pillas'
 ];
 
 const getFilteredJokes = text =>
