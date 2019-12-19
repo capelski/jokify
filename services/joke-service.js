@@ -619,7 +619,23 @@ const jokes = [
 	'- Creo que tiene usted unos ojos preciosos',
 
 	'- Hijo, la cigüeña te va a traer un hermanito<br />' +
-	'- ¿La cigüena? Joder papá, si es que te follas todo lo que pillas'
+	'- ¿La cigüena? Joder papá, si es que te follas todo lo que pillas',
+
+	'- Cariño, te detienes mucho en los detalles y así pierdes la visión de conjunto<br />' +
+	'- Pero es que el niño es negro<br/>' +
+	'- Y dale...',
+
+	'Las mujeres que os quejáis de los dolores del parto deberíais probar lo que es ser hombre y tener 37 de fiebre',
+
+	'- Mi esposa se ha caido al río y la estan buscando río arriba<br />' +
+	'- La corriente va para abajo<br />' +
+	'- Es que la maldita siempre lleva la contraria',
+
+	'- ¿Nivel de ortografia?<br />' +
+	'- Excelente<br />' +
+	'- Mencione dos palabras con tilde<br />' +
+	'- Matilde y Cleotilde<br />' +
+	'- ¡Contratado!',
 ];
 
 const getFilteredJokes = text =>
