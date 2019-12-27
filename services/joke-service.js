@@ -638,8 +638,18 @@ const jokes = [
 	'- ¡Contratado!',
 ];
 
-const getFilteredJokes = text =>
-	jokes.filter(joke => text && joke.toLowerCase().indexOf(text.toLowerCase()) > -1);
+const parseSearchText = text => text
+	.toLowerCase()
+	.replace(/á/g, 'a')
+	.replace(/é/g, 'e')
+	.replace(/í/g, 'i')
+	.replace(/ó/g, 'o')
+	.replace(/ú/g, 'u');
+
+const getFilteredJokes = filter => {
+	const parsedFilter = parseSearchText(filter);
+	return jokes.filter(joke => parseSearchText(joke).indexOf(parsedFilter) > -1);
+};
 
 const getRandomJoke = excludedIndexes => {
 	var randomNumber = Math.round(Math.random() * Number.MAX_SAFE_INTEGER);
