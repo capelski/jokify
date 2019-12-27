@@ -636,6 +636,16 @@ const jokes = [
 	'- Mencione dos palabras con tilde<br />' +
 	'- Matilde y Cleotilde<br />' +
 	'- ¡Contratado!',
+
+	'Si la raja del culo fuera horizontal daríamos palmadas al subir las escaleras',
+
+	'- ¿Cómo te llamas?<br />' +
+	'- No soy ni el ayer ni el mañana<br />' +
+	'- ¿Qué coño dices?<br />' +
+	'- Soy Eloy<br />',
+
+	'- No eres tú, es tu ortografía<br />' +
+	'- Entonces, ¿ya no nos vamos haber?'
 ];
 
 const parseSearchText = text => text
