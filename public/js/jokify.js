@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function getNextJoke() {
         $.ajax({
             method: 'get',
-            url: '/api/random?$modena=jokify'
+            url: '/random?$modena=jokify-api'
         })
         .then((randomJoke) => {
             nextJoke = randomJoke;

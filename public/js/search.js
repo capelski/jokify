@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         animateSymbols();
         $.ajax({
             method: 'get',
-            url: `/api/filter?$modena=jokify&text=${filter.value}`
+            url: `/filter?$modena=jokify-api&text=${filter.value}`
         })
         .then(randomJokes => {
             if (randomJokes.length === 0) {
