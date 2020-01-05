@@ -108,7 +108,7 @@ $jokeSpacing: 15px;
 .joke {
     position: relative;
     height: calc(100% - #{$buttonSize / 2 + $jokeSpacing * 2});
-    top: -100%;
+    bottom: -100%;
     overflow: auto;
     color: white;
     padding: 0 $jokeSpacing;
@@ -124,12 +124,12 @@ $jokeSpacing: 15px;
     align-items: flex-start;
 }
 
-@include fall-from-top();
+@include raise-from-bottom();
 
 .joke.animate {
-    animation: fall-from-top 2s;
+    animation: raise-from-bottom 2s;
     animation-fill-mode: forwards;
-    -webkit-animation: fall-from-top 2s;
+    -webkit-animation: raise-from-bottom 2s;
     -webkit-animation-fill-mode: forwards;
 }
 

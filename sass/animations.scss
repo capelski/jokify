@@ -82,7 +82,7 @@ $accelerationConstant: -9.81 * 4;
 
 ///////////////////////////// FREE FALL /////////////////////////////////
 
-@mixin fall-from-top-core() {
+@mixin raise-from-bottom-core() {
   $framesNumber: 40;
 
   $maxValue: log($framesNumber + 1);
@@ -90,18 +90,18 @@ $accelerationConstant: -9.81 * 4;
 
   @for $i from 0 through $framesNumber {
     #{$i * $frameWeight}% {
-      top: #{(-1 * (100 - (log($i + 1) / $maxValue) * 100))+'%'};
+      bottom: #{(-1 * (100 - (log($i + 1) / $maxValue) * 100))+'%'};
     }
   }
 }
 
-@mixin fall-from-top() {
+@mixin raise-from-bottom() {
 
-  @keyframes fall-from-top {
-    @include fall-from-top-core();
+  @keyframes raise-from-bottom {
+    @include raise-from-bottom-core();
   }
 
-  @-webkit-keyframes fall-from-top {
-    @include fall-from-top-core();
+  @-webkit-keyframes raise-from-bottom {
+    @include raise-from-bottom-core();
   }
 }
