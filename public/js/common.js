@@ -2,6 +2,15 @@ const viewport = document.getElementById('viewport');
 const themes = ['blue-theme', 'green-theme', 'orange-theme', 'pink-theme', 'red-theme'];
 const emojis = ['laugh', 'poo', 'wink-tongue', 'boom', 'bomb', 'tada', 'halloween', 'dice'];
 
+// Insert the 50 parabola HTML nodes on page load
+for (let i = 1; i <= 50; ++i) {
+    const span = document.createElement('span');
+    span.classList.add('symbol');
+    span.classList.add('parabola');
+    span.classList.add(`trajectory-${i}`);
+    viewport.appendChild(span);
+}
+
 function animateJoke(node) {
     node.classList.remove('animate');
     setTimeout(() => {

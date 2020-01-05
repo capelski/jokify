@@ -22,5 +22,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     jokifier.addEventListener('click', jokify);
-    jokify();
+
+    $.ajax({
+        method: 'get',
+        url: '/random?$modena=jokify-api'
+    })
+    .then(firstJoke => {
+        joke.innerHTML = firstJoke;
+        jokify();
+    })
 });

@@ -9,9 +9,7 @@
     "author": "Carles Capellas <capellas.carles@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "ejs": "2.6.1",
         "express": "4.17.1",
-        "express-session": "1.16.1",
         "node-sass": "4.12.0"
     }
 }

@@ -1,13 +1,7 @@
 const express = require('express');
-const session = require('express-session');
 const { readdirSync, writeFile } = require('fs');
 const { render } = require('node-sass');
 const { join } = require('path');
-const jokesController = require('./controllers/joke-controller');
-
-const defaultConfig = {
-    SESSION_SECRET: 'to be replaced with environment variables',
-};
 
 const compileSassFile = (inputFile, outputFile) => {
     render({
@@ -38,19 +32,11 @@ const compileSassFiles = () => {
     });
 };
 
-module.exports = (environmentConfig = {}) => {
-	compileSassFiles();
+module.exports = () => {
+    compileSassFiles();
+    
 	const app = express();
-	app.set('view engine', 'ejs');
     app.use('/', express.static(join(__dirname, 'public')));
-    app.use(session({
-        secret: environmentConfig.SESSION_SECRET || defaultConfig.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: true
-	}));
-	app.get('/', jokesController.indexView);
-	app.get('/search', jokesController.searchView);
-	app.get('/api/filter', jokesController.filteredJokes);
-	app.get('/api/random', jokesController.randomJoke);
+	app.get('/search', (req, res) => res.sendFile(join(__dirname, 'public', 'search.html')));
 	return app;
 };
