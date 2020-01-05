@@ -645,7 +645,23 @@ const jokes = [
 	'- Soy Eloy<br />',
 
 	'- No eres tú, es tu ortografía<br />' +
-	'- Entonces, ¿ya no nos vamos haber?'
+	'- Entonces, ¿ya no nos vamos haber?',
+
+	'No se puede discutir con un DJ. Siempre te cambian de tema',
+
+	'Menuda mierda de fiesta. En cuanto encuentre las bragas me voy',
+
+	'- Cariño, ¿a ti cómo te gustan los huevos?<br />' +
+	'- ¿A mi? Que me reboten en la barbilla',
+
+	'- Abra las piernas<br />' +
+	'- Es que me cuesta vencer mi timidez, doctor<br />' +
+	'- Pues con las piernas cerradas no puedo sacar al niño',
+
+	'- Papá, ¿que es ser bipolar?<br />' +
+	'- Es cambiar de la noche al día sin razón alguna<br />' +
+	'- ¿Cómo el tio Jorge?<br />' +
+	'- No, el tio Jorge es Drag Queen'
 ];
 
 const parseSearchText = text => text
