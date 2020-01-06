@@ -1,8 +1,11 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+import $ from 'jquery';
+import { animateJoke, animateSymbols, randomColorize, insertParabolas } from './common';
+import '../style/main.scss';
 
-    var searcher = document.getElementById('searcher');
-    var jokes = document.getElementById('jokes');
-    var filter = document.getElementById('filter');
+document.addEventListener("DOMContentLoaded", (event) => {
+    const searcher = document.getElementById('searcher');
+    const jokes = document.getElementById('jokes');
+    const filter = document.getElementById('filter') as HTMLInputElement;
 
     function getFilteredJokes() {
         const updatedUrl = window.location.href.split('?')[0] + `?text=${filter.value}`;
@@ -24,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             jokes.scrollTo({ top: 0 });
         });
     }
+
+    insertParabolas();
 
     // Check for the first url parameter and perform a search with it's value
     if (window.location.search) {

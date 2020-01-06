@@ -1,4 +1,8 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+import $ from 'jquery';
+import { animateJoke, animateSymbols, randomColorize, insertParabolas } from './common';
+import '../style/main.scss';
+
+document.addEventListener("DOMContentLoaded", (event) => {
     const jokifier = document.getElementById('jokify');
     const joke = document.getElementById('joke');    
     let nextJoke;
@@ -23,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     jokifier.addEventListener('click', jokify);
 
+    insertParabolas();
     $.ajax({
         method: 'get',
         url: '/random?$modena=jokify-api'
