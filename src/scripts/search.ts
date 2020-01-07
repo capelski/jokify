@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { animateJoke, animateSymbols, randomColorize, insertParabolas } from './common';
 import '../style/main.scss';
+import { animateJoke, animateSymbols, insertParabolas, randomColorize } from './common';
 
 document.addEventListener('DOMContentLoaded', event => {
     const searcher = document.getElementById('searcher');
@@ -17,11 +17,10 @@ document.addEventListener('DOMContentLoaded', event => {
             method: 'get',
             url: `/filter?$modena=jokify-api&text=${filter.value}`
         }).then(randomJokes => {
-            if (randomJokes.length === 0) {
-                jokes.innerHTML = 'Oooops! Parece que no hay resultados';
-            } else {
-                jokes.innerHTML = randomJokes.join('<br /><br />');
-            }
+            jokes.innerHTML =
+                randomJokes.length === 0
+                    ? 'Oooops! Parece que no hay resultados'
+                    : randomJokes.join('<br /><br />');
             jokes.scrollTo({ top: 0 });
         });
     }

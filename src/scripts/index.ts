@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { animateJoke, animateSymbols, randomColorize, insertParabolas } from './common';
 import '../style/main.scss';
+import { animateJoke, animateSymbols, insertParabolas, randomColorize } from './common';
 
 document.addEventListener('DOMContentLoaded', event => {
     const jokifier = document.getElementById('jokify');

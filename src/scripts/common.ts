@@ -34,6 +34,6 @@ export const animateSymbols = () => {
 export const randomColorize = () => {
     const viewport = document.getElementById('viewport');
     DOMTokenList.prototype.remove.apply(viewport.classList, themes);
-    var nextTheme = themes[Math.round(Math.random() * (themes.length - 1))];
+    const nextTheme = themes[Math.round(Math.random() * (themes.length - 1))];
     viewport.classList.add(nextTheme);
 };
