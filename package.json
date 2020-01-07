@@ -7,6 +7,8 @@
         "build": "npm run clean:build && webpack --mode production",
         "clean:build": "rm -rf dist",
         "clean:dependencies": "rm -rf node_modules/ package-lock.json",
+        "lint": "tslint -e 'node_modules/**' -p .",
+        "lint:fix": "tslint -e 'node_modules/**' -p . --fix",
         "prettier": "prettier --list-different \"src/**/*.ts\"",
         "prettier:fix": "prettier --write \"src/**/*.ts\"",
         "start": "node index.js",
@@ -30,12 +32,14 @@
         "prettier": "1.19.1",
         "sass-loader": "8.0.0",
         "style-loader": "1.1.2",
+        "tslint": "5.20.1",
+        "tslint-config-prettier": "1.18.0",
         "typescript": "3.7.4",
         "webpack": "4.41.5",
         "webpack-cli": "3.3.10",
         "webpack-dev-server": "3.10.1"
     },
     "husky": {
-        "pre-commit": "npm run prettier"
+        "pre-commit": "npm lint && npm run prettier"
     }
 }
