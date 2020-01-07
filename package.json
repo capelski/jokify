@@ -25,6 +25,7 @@
         "css-loader": "3.4.1",
         "html-loader": "0.5.5",
         "html-webpack-plugin": "3.2.0",
+        "husky": "4.0.0",
         "node-sass": "4.12.0",
         "prettier": "1.19.1",
         "sass-loader": "8.0.0",
@@ -33,5 +34,8 @@
         "webpack": "4.41.5",
         "webpack-cli": "3.3.10",
         "webpack-dev-server": "3.10.1"
+    },
+    "husky": {
+        "pre-commit": "npm run prettier"
     }
 }
