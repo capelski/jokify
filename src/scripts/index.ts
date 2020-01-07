@@ -2,17 +2,16 @@ import $ from 'jquery';
 import { animateJoke, animateSymbols, randomColorize, insertParabolas } from './common';
 import '../style/main.scss';
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', event => {
     const jokifier = document.getElementById('jokify');
-    const joke = document.getElementById('joke');    
+    const joke = document.getElementById('joke');
     let nextJoke;
 
     function getNextJoke() {
         $.ajax({
             method: 'get',
             url: '/random?$modena=jokify-api'
-        })
-        .then((randomJoke) => {
+        }).then(randomJoke => {
             nextJoke = randomJoke;
         });
     }
@@ -31,9 +30,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     $.ajax({
         method: 'get',
         url: '/random?$modena=jokify-api'
-    })
-    .then(firstJoke => {
+    }).then(firstJoke => {
         joke.innerHTML = firstJoke;
         jokify();
-    })
+    });
 });

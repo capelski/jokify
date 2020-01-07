@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { animateJoke, animateSymbols, randomColorize, insertParabolas } from './common';
 import '../style/main.scss';
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', event => {
     const searcher = document.getElementById('searcher');
     const jokes = document.getElementById('jokes');
     const filter = document.getElementById('filter') as HTMLInputElement;
@@ -16,12 +16,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         $.ajax({
             method: 'get',
             url: `/filter?$modena=jokify-api&text=${filter.value}`
-        })
-        .then(randomJokes => {
+        }).then(randomJokes => {
             if (randomJokes.length === 0) {
                 jokes.innerHTML = 'Oooops! Parece que no hay resultados';
-            }
-            else {
+            } else {
                 jokes.innerHTML = randomJokes.join('<br /><br />');
             }
             jokes.scrollTo({ top: 0 });
@@ -38,7 +36,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     function keyDownTextField(e) {
-        if(e.target === filter && e.keyCode === 13) {
+        if (e.target === filter && e.keyCode === 13) {
             getFilteredJokes();
         }
     }

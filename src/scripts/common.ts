@@ -10,9 +10,9 @@ export const insertParabolas = () => {
         span.classList.add(`trajectory-${i}`);
         viewport.appendChild(span);
     }
-}
+};
 
-export const animateJoke = (node) => {
+export const animateJoke = node => {
     node.classList.remove('animate');
     setTimeout(() => {
         node.classList.add('animate');
