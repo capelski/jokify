@@ -3,7 +3,7 @@ const emojis = ['laugh', 'poo', 'wink-tongue', 'boom', 'bomb', 'tada', 'hallowee
 
 export const insertParabolas = () => {
     for (let i = 1; i <= 50; ++i) {
-        const viewport = document.getElementById('viewport');
+        const viewport = document.getElementById('viewport')!;
         const span = document.createElement('span');
         span.classList.add('symbol');
         span.classList.add('parabola');
@@ -12,7 +12,7 @@ export const insertParabolas = () => {
     }
 };
 
-export const animateJoke = node => {
+export const animateJoke = (node: HTMLElement) => {
     node.classList.remove('animate');
     setTimeout(() => {
         node.classList.add('animate');
@@ -32,7 +32,7 @@ export const animateSymbols = () => {
 };
 
 export const randomColorize = () => {
-    const viewport = document.getElementById('viewport');
+    const viewport = document.getElementById('viewport')!;
     DOMTokenList.prototype.remove.apply(viewport.classList, themes);
     const nextTheme = themes[Math.round(Math.random() * (themes.length - 1))];
     viewport.classList.add(nextTheme);

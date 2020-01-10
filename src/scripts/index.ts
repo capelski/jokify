@@ -2,10 +2,10 @@ import $ from 'jquery';
 import '../style/main.scss';
 import { animateJoke, animateSymbols, insertParabolas, randomColorize } from './common';
 
-document.addEventListener('DOMContentLoaded', event => {
-    const jokifier = document.getElementById('jokify');
-    const joke = document.getElementById('joke');
-    let nextJoke;
+document.addEventListener('DOMContentLoaded', () => {
+    const jokifier = document.getElementById('jokify')!;
+    const joke = document.getElementById('joke')!;
+    let nextJoke: string;
 
     function getNextJoke() {
         $.ajax({

@@ -1,11 +1,14 @@
 {
     "compilerOptions": {
         "esModuleInterop": true,
-        "lib": [
-            "dom",
-            "es2017",
-        ],
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["dom", "es2017"],
         "module": "commonjs",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
         "target": "es5"
     },
     "exclude": ["node_modules/"],
