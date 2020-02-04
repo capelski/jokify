@@ -2,10 +2,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: {
-        index: './src/scripts/index.ts',
-        search: './src/scripts/search.ts'
-    },
+    entry: './src/scripts/index.tsx',
     module: {
         rules: [
             {
@@ -24,7 +21,7 @@ module.exports = {
                     'css-loader',
                     // Compiles Sass to CSS
                     'sass-loader'
-                ],
+                ]
             },
             {
                 test: /\.html$/,
@@ -34,41 +31,39 @@ module.exports = {
                     }
                 ]
             }
-        ]     
+        ]
     },
     output: {
-        filename: '[name].js?$modena=bachata-science',
-        publicPath: '/',
+        filename: '[name].js?$modena=jokify',
+        publicPath: '/'
     },
     plugins: [
         new HtmlWebpackPlugin({
             filename: './index.html',
-            inject: false,
-            template: './src/index.html',
+            template: './src/react.html'
         }),
-        
-        new HtmlWebpackPlugin({
-            filename: './search.html',
-            inject: false,
-            template: './src/search.html',
-        }),
-        new CopyWebpackPlugin([{
-            from: 'assets'
-        }])
+        new CopyWebpackPlugin([
+            {
+                from: 'assets'
+            }
+        ])
     ],
     resolve: {
-        extensions: ['.js', '.ts', '.scss'],
+        extensions: ['.js', '.ts', '.tsx', '.scss']
     },
     // TODO To be applied only on development mode
     devServer: {
         contentBase: './dist',
         historyApiFallback: true,
-        proxy: [{
-            context: ['/random'],
-            target: 'http://localhost',
-        },{
-            context: ['/filter'],
-            target: 'http://localhost',
-        }],
+        proxy: [
+            {
+                context: ['/random'],
+                target: 'http://localhost'
+            },
+            {
+                context: ['/filter'],
+                target: 'http://localhost'
+            }
+        ]
     }
 };

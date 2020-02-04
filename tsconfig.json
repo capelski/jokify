@@ -2,6 +2,7 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
         "lib": ["dom", "es2017"],
         "module": "commonjs",
         "noImplicitAny": true,
@@ -12,5 +13,5 @@
         "target": "es5"
     },
     "exclude": ["node_modules/"],
-    "include": ["./src"]
+    "include": ["./src/scripts/index.tsx"]
 }
