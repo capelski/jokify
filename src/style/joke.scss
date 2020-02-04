@@ -1,0 +1,71 @@
+@import 'variables';
+
+.joke {
+    position: relative;
+    height: calc(100% - #{$buttonSize + $buttonSpacing});
+    overflow: auto;
+    color: white;
+    padding: 0 $jokeSpacing;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    max-width: 760px;
+    margin: auto;
+    animation-timing-function: cubic-bezier(1, 0.37, 0.56, 0.76);
+}
+
+@keyframes slide-right-in {
+    0% {
+        right: -100%;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes slide-right-out {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: -100%;
+    }
+}
+
+@keyframes slide-left-in {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes slide-left-out {
+    0% {
+        right: 0%;
+    }
+
+    100% {
+        right: -100%;
+    }
+}
+
+.joke.right.in {
+    animation: slide-right-in 1s;
+}
+
+.joke.right.out {
+    animation: slide-right-out 1s;
+}
+
+.joke.left.in {
+    animation: slide-left-in 1s;
+}
+
+.joke.left.out {
+    animation: slide-left-out 1s;
+}

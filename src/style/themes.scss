@@ -1,0 +1,60 @@
+@mixin theme-transition() {
+    -webkit-transition: background-color 0.5s linear, color 0.5s linear;
+    -ms-transition: background-color 0.5s linear, color 0.5s linear;
+    transition: background-color 0.5s linear, color 0.5s linear;
+}
+
+.blue-theme {
+    background-color: #779ecb;
+    @include theme-transition();
+
+    .jokifier {
+        background-color: #476e9b;
+        color: #97beee;
+        @include theme-transition();
+    }
+}
+
+.green-theme {
+    background-color: #77dd77;
+    @include theme-transition();
+
+    .jokifier {
+        background-color: #47ad47;
+        color: #97fd97;
+        @include theme-transition();
+    }
+}
+
+.orange-theme {
+    background-color: #ffb347;
+    @include theme-transition();
+
+    .jokifier {
+        background-color: #cf8317;
+        color: #ffd367;
+        @include theme-transition();
+    }
+}
+
+.pink-theme {
+    background-color: #dea5a4;
+    @include theme-transition();
+
+    .jokifier {
+        background-color: #ae7574;
+        color: #fec5c4;
+        @include theme-transition();
+    }
+}
+
+.red-theme {
+    background-color: #ff6961;
+    @include theme-transition();
+
+    .jokifier {
+        background-color: #cf3931;
+        color: #ff8981;
+        @include theme-transition();
+    }
+}

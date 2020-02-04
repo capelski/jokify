@@ -1,0 +1,27 @@
+@import 'variables';
+
+.buttons {
+    height: #{$buttonSize + $buttonSpacing};
+    display: flex;
+    justify-content: center;
+    padding: $buttonSpacing / 2;
+}
+
+.previous-button,
+.search-button,
+.share-button,
+.next-button {
+    background-color: white;
+    height: $buttonSize;
+    width: $buttonSize;
+    border-radius: $buttonSize / 2;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    font-family: 'Gloria Hallelujah', sans-serif;
+    margin: 0 5px;
+
+    span {
+        position: relative;
+    }
+}

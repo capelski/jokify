@@ -5,6 +5,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { JokeComponent } from './joke';
 import { Joke } from './types';
 
+import '../style/main.scss';
+
 // TODO Extract URL base
 const fetchServerJoke = (id?: number) => {
     const url = id
@@ -49,8 +51,8 @@ const App = () => {
     };
 
     return (
-        <BrowserRouter>
-            <div className={`fixed-viewport ${getRandomTheme()}`}>
+        <div className={`fixed-viewport ${getRandomTheme()}`}>
+            <BrowserRouter>
                 <Route path={['/jokify/:id', '/jokify', '/:id', '/']}>
                     <JokeComponent
                         joke={currentJoke}
@@ -59,9 +61,9 @@ const App = () => {
                         previousJoke={previousJoke}
                     />
                 </Route>
-            </div>
-        </BrowserRouter>
+            </BrowserRouter>
+        </div>
     );
 };
 
-ReactDOM.render(<App />, document.getElementById('app-placeholder'));
+ReactDOM.render(<App />, document.body);
