@@ -40,7 +40,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: './index.html',
-            template: './src/react.html'
+            template: './src/index.html'
         }),
         new CopyWebpackPlugin([
             {
@@ -57,11 +57,7 @@ module.exports = {
         historyApiFallback: true,
         proxy: [
             {
-                context: ['/random'],
-                target: 'http://localhost'
-            },
-            {
-                context: ['/filter'],
+                context: ['/joke'],
                 target: 'http://localhost'
             }
         ]
