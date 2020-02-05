@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-interface ParabolasProps {
+interface EmojisProps {
     animate: boolean;
 }
 
 const emojis = ['laugh', 'poo', 'wink-tongue', 'boom', 'bomb', 'tada', 'halloween', 'dice'];
-const symbols = [...new Array(50)].map(
+const symbols = [...new Array(30)].map(
     (_, i) => emojis[Math.round(Math.random() * (emojis.length - 1))]
 );
 
 // tslint:disable-next-line:variable-name
-export const Parabolas: React.FC<ParabolasProps> = props => {
+export const Emojis: React.FC<EmojisProps> = props => {
     const [animate, setAnimate] = useState(false);
 
     if (!animate && props.animate) {
@@ -19,7 +19,7 @@ export const Parabolas: React.FC<ParabolasProps> = props => {
     }
 
     return (
-        <div className="parabolas">
+        <div className="emojis">
             {symbols.map((symbol, i) => {
                 return (
                     <span

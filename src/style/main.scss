@@ -1,8 +1,8 @@
 @import 'buttons';
 @import 'emojis';
+@import 'filter';
 @import 'joke';
 @import 'themes';
-@import 'variables';
 
 @font-face {
     font-family: 'Gloria Hallelujah';
@@ -29,21 +29,4 @@ body {
 .fixed-viewport {
     position: relative;
     overflow: hidden;
-}
-
-.filter-input {
-    display: block;
-    margin: 20px auto;
-    width: 200px;
-    border: none;
-    border-bottom: 1px solid #9e9e9e;
-    outline: none;
-    height: 1rem;
-    font-size: 16px;
-    padding: 10px;
-}
-
-.filter .joke {
-    height: calc(100% - #{$buttonSize / 2 + $jokeSpacing * 2} - 80px);
-    align-items: flex-start;
 }

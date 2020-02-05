@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Parabolas } from './parabolas';
+import { Emojis } from './emojis';
 import { Joke } from './types';
 
 interface JokeProps {
     fetchJoke: (history: any, id?: Joke['id']) => void;
     joke?: Joke;
-    nextJoke: (history: any) => void;
+    nextJoke: (history: any, filter?: string) => void;
     previousJoke: (history: any) => void;
 }
 
@@ -16,6 +16,8 @@ export const JokeComponent = (props: JokeProps) => {
     const { id } = useParams();
     const [isLeaving, setIsLeaving] = useState(false);
     const [direction, setDirection] = useState('right');
+    const [filter, setFilter] = useState('');
+    const [displayFilter, setDisplayFilter] = useState(false);
 
     // To be executed only for the first render of the application
     useEffect(() => {
@@ -30,13 +32,22 @@ export const JokeComponent = (props: JokeProps) => {
             props.previousJoke(history);
         }, 500);
     };
+
     const nextClickHandler = () => {
         setDirection('right');
         setIsLeaving(true);
         setTimeout(() => {
             setIsLeaving(false);
-            props.nextJoke(history);
+            props.nextJoke(history, displayFilter ? filter : undefined);
         }, 500);
+    };
+
+    const searchClickHandler = () => {
+        setDisplayFilter(!displayFilter);
+    };
+
+    const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFilter(event.target.value);
     };
 
     return props.joke ? (
@@ -47,12 +58,13 @@ export const JokeComponent = (props: JokeProps) => {
                     __html: props.joke.text
                 }}
             />
+
             <div className="buttons">
                 <button type="button" className="previous-button" onClick={previousClickHandler}>
                     <span>{'<'}</span>
                 </button>
 
-                <button type="button" className="search-button">
+                <button type="button" className="search-button" onClick={searchClickHandler}>
                     <span>🔎</span>
                 </button>
 
@@ -64,7 +76,12 @@ export const JokeComponent = (props: JokeProps) => {
                     <span>{'>'}</span>
                 </button>
             </div>
-            <Parabolas animate={isLeaving} />
+
+            <div className={`filter ${displayFilter ? '' : 'hidden-filter'}`}>
+                <input type="text" id="filter" value={filter} onChange={filterChangeHandler} />
+            </div>
+
+            <Emojis animate={isLeaving} />
         </React.Fragment>
     ) : (
         <div className="joke">Loading...</div>

@@ -7,11 +7,13 @@ import { Joke } from './types';
 
 import '../style/main.scss';
 
-// TODO Extract URL base
-const fetchServerJoke = (id?: number) => {
+// TODO Allow setting the api Url
+const fetchServerJoke = (id?: number, filter?: string) => {
     const url = id
-        ? `http://localhost/joke/${id}?$modena=jokify-api`
-        : `http://localhost/joke?$modena=jokify-api`;
+        ? `/joke/${id}?$modena=jokify-api`
+        : filter
+        ? `/joke?filter=${filter}&$modena=jokify-api`
+        : `/joke?$modena=jokify-api`;
 
     return axios.get(url);
 };
@@ -26,13 +28,13 @@ const App = () => {
     const [baseUrl] = useState(window.location.pathname.indexOf('/jokify') > -1 ? '/jokify/' : '/');
     const currentJoke = jokes[jokeIndex];
 
-    const nextJoke = (history: any) => {
+    const nextJoke = (history: any, filter?: string) => {
         if (jokeIndex < jokes.length - 1) {
             const nextIndex = jokeIndex + 1;
             setJokeIndex(nextIndex);
             history.push(`${baseUrl}${jokes[nextIndex].id}`);
         } else {
-            fetchJoke(history);
+            fetchJoke(history, undefined, filter);
         }
     };
 
@@ -42,8 +44,8 @@ const App = () => {
         history.push(`${baseUrl}${jokes[nextIndex].id}`);
     };
 
-    const fetchJoke = (history: any, id?: Joke['id']) => {
-        fetchServerJoke(id).then(response => {
+    const fetchJoke = (history: any, id?: Joke['id'], filter?: string) => {
+        fetchServerJoke(id, filter).then(response => {
             setJokes([...jokes, response.data]);
             setJokeIndex(jokes.length);
             history.push(`${baseUrl}${response.data.id}`);

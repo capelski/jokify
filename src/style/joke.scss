@@ -2,7 +2,7 @@
 
 .joke {
     position: relative;
-    height: calc(100% - #{$buttonSize + $buttonSpacing});
+    height: calc(100% - #{$buttonSize + $buttonSpacing * 2});
     overflow: auto;
     color: white;
     padding: 0 $jokeSpacing;
