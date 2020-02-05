@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { Joke } from '../types';
 import { Emojis } from './emojis';
-import { Joke } from './types';
 
 interface JokeProps {
     fetchJoke: (history: any, id?: Joke['id']) => void;

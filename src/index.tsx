@@ -2,10 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { JokeComponent } from './joke';
+import { JokeComponent } from './components/joke';
 import { Joke } from './types';
 
-import '../style/main.scss';
+import './style/main.scss';
 
 // TODO Allow setting the api Url
 const fetchServerJoke = (id?: number, filter?: string) => {

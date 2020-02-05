@@ -2,7 +2,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/scripts/index.tsx',
+    entry: './src/index.tsx',
     module: {
         rules: [
             {
