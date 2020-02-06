@@ -31,12 +31,14 @@ export const Jokes = (props: JokesProps) => {
                             : 'current';
                     return (
                         <div className={`joke ${props.animationDirection} ${cssClass}`}>
-                            <p
-                                className="joke-paragraph"
-                                dangerouslySetInnerHTML={{
-                                    __html: joke.text
-                                }}
-                            />
+                            {joke.text.map(paragraph => (
+                                <p
+                                    className="joke-paragraph"
+                                    dangerouslySetInnerHTML={{
+                                        __html: paragraph
+                                    }}
+                                />
+                            ))}
                         </div>
                     );
                 })}
