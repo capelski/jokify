@@ -16,8 +16,8 @@ export const Filter = (props: FilterProps) => {
     };
 
     return (
-        <div className={`filter ${props.isDisplayed ? '' : 'hidden-filter'}`}>
-            <input type="text" id="filter" value={filter} onChange={filterChangeHandler} />
+        <div className={`filter ${props.isDisplayed ? 'visible-filter' : 'hidden-filter'}`}>
+            <input type="text" value={filter} onChange={filterChangeHandler} />
         </div>
     );
 };
