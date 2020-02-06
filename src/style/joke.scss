@@ -1,71 +1,98 @@
 @import 'variables';
 
-.joke {
+.jokes {
     position: relative;
+    width: 100%;
     height: calc(100% - #{$buttonSize + $buttonSpacing * 2});
-    overflow: auto;
-    color: white;
-    padding: 0 $jokeSpacing;
     display: flex;
-    align-items: center;
-    font-size: 25px;
-    max-width: 760px;
-    margin: auto;
-    animation-timing-function: cubic-bezier(1, 0.37, 0.56, 0.76);
+
+    .joke {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+
+        box-sizing: border-box;
+        overflow: auto;
+        padding: 0 $jokeSpacing;
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+        color: white;
+        animation-fill-mode: forwards;
+        animation-duration: $animationDuration;
+
+        &.slide-left {
+            left: 100%;
+            right: -100%;
+
+            &.current {
+                animation-name: slide-in-left;
+                animation-timing-function: ease-in;
+            }
+
+            &.older {
+                animation-name: slide-out-left;
+                animation-timing-function: ease-out;
+            }
+        }
+
+        &.slide-right {
+            left: -100%;
+            right: 100%;
+
+            &.current {
+                animation-name: slide-in-right;
+                animation-timing-function: ease-in;
+            }
+
+            &.newer {
+                animation-name: slide-out-right;
+                animation-timing-function: ease-out;
+            }
+        }
+
+        .joke-paragraph {
+            margin: auto;
+        }
+    }
 }
 
-@keyframes slide-right-in {
+@keyframes slide-in-left {
     0% {
-        right: -100%;
+        transform: translateX(0);
     }
 
     100% {
-        right: 0;
+        transform: translateX(-100%);
     }
 }
 
-@keyframes slide-right-out {
+@keyframes slide-out-left {
     0% {
-        left: 0%;
+        transform: translateX(-100%);
     }
 
     100% {
-        left: -100%;
+        transform: translateX(-200%);
     }
 }
 
-@keyframes slide-left-in {
+@keyframes slide-in-right {
     0% {
-        left: -100%;
+        transform: translateX(0);
     }
 
     100% {
-        left: 0;
+        transform: translateX(100%);
     }
 }
 
-@keyframes slide-left-out {
+@keyframes slide-out-right {
     0% {
-        right: 0%;
+        transform: translateX(100%);
     }
 
     100% {
-        right: -100%;
+        transform: translateX(200%);
     }
-}
-
-.joke.right.in {
-    animation: slide-right-in 1s;
-}
-
-.joke.right.out {
-    animation: slide-right-out 1s;
-}
-
-.joke.left.in {
-    animation: slide-left-in 1s;
-}
-
-.joke.left.out {
-    animation: slide-left-out 1s;
 }
