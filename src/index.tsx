@@ -21,7 +21,7 @@ const fetchServerJoke = (id?: number, filter?: string) => {
     return axios.get(url);
 };
 const getRandomTheme = () => themes[Math.round(Math.random() * (themes.length - 1))];
-const themes = ['blue-theme', 'green-theme', 'orange-theme', 'pink-theme', 'red-theme'];
+const themes = ['alpha-theme', 'beta-theme', 'gamma-theme', 'delta-theme'];
 
 // tslint:disable-next-line:variable-name
 const App = () => {
@@ -35,8 +35,10 @@ const App = () => {
     const [filter, setFilter] = useState('');
     const [displayFilter, setDisplayFilter] = useState(false);
     const [areEmojisAnimated, setAreEmojisAnimated] = useState(false);
+    const [theme, setTheme] = useState(getRandomTheme());
 
     const animateEmojis = () => {
+        setTheme(getRandomTheme());
         setAreEmojisAnimated(true);
         setTimeout(() => {
             setAreEmojisAnimated(false);
@@ -78,7 +80,7 @@ const App = () => {
     };
 
     return (
-        <div className={`fixed-viewport ${getRandomTheme()}`}>
+        <div className={`viewport ${theme}`}>
             <BrowserRouter>
                 <Route path={['/jokify/:id', '/jokify', '/:id', '/']}>
                     <Jokes

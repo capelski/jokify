@@ -4,57 +4,86 @@
     transition: background-color 0.5s linear, color 0.5s linear;
 }
 
-.blue-theme {
-    background-color: #779ecb;
+.alpha-theme {
+    background-color: #4d6cfa;
     @include theme-transition();
 
-    .jokifier {
-        background-color: #476e9b;
-        color: #97beee;
-        @include theme-transition();
+    .jokes {
+        .joke {
+            .joke-paragraph {
+                @include theme-transition();
+
+                &:nth-child(even) {
+                    background-color: #477106;
+                }
+
+                &:nth-child(odd) {
+                    color: #477106;
+                }
+            }
+        }
     }
 }
 
-.green-theme {
-    background-color: #77dd77;
+.beta-theme {
+    background-color: #d8305a;
     @include theme-transition();
 
-    .jokifier {
-        background-color: #47ad47;
-        color: #97fd97;
-        @include theme-transition();
+    .jokes {
+        .joke {
+            .joke-paragraph {
+                @include theme-transition();
+
+                &:nth-child(even) {
+                    background-color: #fc863b;
+                }
+
+                &:nth-child(odd) {
+                    color: #fc863b;
+                }
+            }
+        }
     }
 }
 
-.orange-theme {
-    background-color: #ffb347;
+.gamma-theme {
+    background-color: #a094ff;
     @include theme-transition();
 
-    .jokifier {
-        background-color: #cf8317;
-        color: #ffd367;
-        @include theme-transition();
+    .jokes {
+        .joke {
+            .joke-paragraph {
+                @include theme-transition();
+
+                &:nth-child(even) {
+                    background-color: #4d36fe;
+                }
+
+                &:nth-child(odd) {
+                    color: #4d36fe;
+                }
+            }
+        }
     }
 }
 
-.pink-theme {
-    background-color: #dea5a4;
+.delta-theme {
+    background-color: #94dfff;
     @include theme-transition();
 
-    .jokifier {
-        background-color: #ae7574;
-        color: #fec5c4;
-        @include theme-transition();
-    }
-}
+    .jokes {
+        .joke {
+            .joke-paragraph {
+                @include theme-transition();
 
-.red-theme {
-    background-color: #ff6961;
-    @include theme-transition();
+                &:nth-child(even) {
+                    background-color: #ff6767;
+                }
 
-    .jokifier {
-        background-color: #cf3931;
-        color: #ff8981;
-        @include theme-transition();
+                &:nth-child(odd) {
+                    color: #ff6767;
+                }
+            }
+        }
     }
 }

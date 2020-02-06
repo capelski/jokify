@@ -30,9 +30,10 @@ export const Jokes = (props: JokesProps) => {
                             ? 'newer'
                             : 'current';
                     return (
-                        <div className={`joke ${props.animationDirection} ${cssClass}`}>
+                        <div key={index} className={`joke ${props.animationDirection} ${cssClass}`}>
                             {joke.text.map(paragraph => (
                                 <p
+                                    key={paragraph}
                                     className="joke-paragraph"
                                     dangerouslySetInnerHTML={{
                                         __html: paragraph
