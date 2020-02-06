@@ -1,12 +1,16 @@
-$animationDuration: 0.5s;
+$desktopBreakpointStart: 600px;
+
+$animationDuration: 1s;
 $jokeSpacing: 24px;
-$jokeOffset: 40%;
-$jokeMovingOffset: 40%;
+$jokeDesktopOffset: 40%;
+$jokeDesktopMovement: 40%;
+$jokeMobileOffset: 100%;
+$jokeMobileMovement: 100%;
 
 $buttonSize: 60px;
 $buttonSpacing: 15px;
 
-$filterHeight: 30px;
+$filterHeight: 20px;
 $filterMargin: 10px;
 $filterPadding: 10px;
 

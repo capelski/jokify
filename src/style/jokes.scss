@@ -29,28 +29,62 @@
         }
 
         &.slide-left {
-            left: $jokeOffset;
-            right: -$jokeOffset;
+            left: $jokeMobileOffset;
+            right: -$jokeMobileOffset;
+
+            @media (min-width: $desktopBreakpointStart) {
+                left: $jokeDesktopOffset;
+                right: -$jokeDesktopOffset;
+            }
 
             &.current {
-                animation-name: slide-in-left;
+                animation-name: slide-in-left-mobile;
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &.current {
+                    animation-name: slide-in-left-desktop;
+                }
             }
 
             &.older {
-                animation-name: slide-out-left;
+                animation-name: slide-out-left-mobile;
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &.older {
+                    animation-name: slide-out-left-desktop;
+                }
             }
         }
 
         &.slide-right {
-            left: -$jokeOffset;
-            right: $jokeOffset;
+            left: -$jokeMobileOffset;
+            right: $jokeMobileOffset;
+
+            @media (min-width: $desktopBreakpointStart) {
+                left: -$jokeDesktopOffset;
+                right: $jokeDesktopOffset;
+            }
 
             &.current {
-                animation-name: slide-in-right;
+                animation-name: slide-in-right-mobile;
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &.current {
+                    animation-name: slide-in-right-desktop;
+                }
             }
 
             &.newer {
-                animation-name: slide-out-right;
+                animation-name: slide-out-right-mobile;
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &.newer {
+                    animation-name: slide-out-right-desktop;
+                }
             }
         }
 
@@ -62,8 +96,8 @@
             margin: 0;
             max-width: 532px;
 
-            @media (min-width: 599px) {
-                padding: 24px 32px;
+            @media (min-width: $desktopBreakpointStart) {
+                padding: 16px 32px;
                 font-size: 32px;
                 line-height: 38px;
             }
@@ -81,66 +115,62 @@
     }
 }
 
-@keyframes slide-in-left {
-    0% {
-        transform: translateX(0);
+@mixin slide-in($start, $end) {
+    #{0%} {
+        transform: translateX($start);
         opacity: 0;
     }
 
-    25% {
+    #{25%} {
         opacity: 0;
     }
 
-    100% {
-        transform: translateX(-$jokeOffset);
+    #{100%} {
+        transform: translateX($end);
         opacity: 1;
     }
 }
 
-@keyframes slide-out-left {
-    0% {
+@mixin slide-out($start, $end) {
+    #{0%} {
         opacity: 1;
-        transform: translateX(-$jokeOffset);
+        transform: translateX($start);
     }
 
-    40% {
+    #{40%} {
         opacity: 0;
     }
 
-    100% {
+    #{100%} {
         opacity: 0;
-        transform: translateX(-#{$jokeOffset + $jokeMovingOffset});
+        transform: translateX($end);
     }
 }
 
-@keyframes slide-in-right {
-    0% {
-        opacity: 0;
-        transform: translateX(0);
-    }
-
-    25% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX($jokeOffset);
-    }
+@keyframes slide-in-left-mobile {
+    @include slide-in(0, -$jokeMobileOffset);
+}
+@keyframes slide-in-left-desktop {
+    @include slide-in(0, -$jokeDesktopOffset);
 }
 
-@keyframes slide-out-right {
-    0% {
-        opacity: 1;
-        transform: translateX($jokeOffset);
-    }
+@keyframes slide-out-left-mobile {
+    @include slide-out(-$jokeMobileOffset, -#{$jokeMobileOffset + $jokeMobileMovement});
+}
+@keyframes slide-out-left-desktop {
+    @include slide-out(-$jokeDesktopOffset, -#{$jokeDesktopOffset + $jokeDesktopMovement});
+}
 
-    40% {
-        opacity: 0;
-    }
+@keyframes slide-in-right-mobile {
+    @include slide-in(0, $jokeMobileOffset);
+}
+@keyframes slide-in-right-desktop {
+    @include slide-in(0, $jokeDesktopOffset);
+}
 
-    100% {
-        opacity: 0;
-        transform: translateX(#{$jokeOffset + $jokeMovingOffset});
-    }
+@keyframes slide-out-right-mobile {
+    @include slide-out($jokeMobileOffset, #{$jokeMobileOffset + $jokeMobileMovement});
+}
+@keyframes slide-out-right-desktop {
+    @include slide-out($jokeDesktopOffset, #{$jokeDesktopOffset + $jokeDesktopMovement});
 }
