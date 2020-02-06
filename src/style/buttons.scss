@@ -14,14 +14,26 @@
     background-color: white;
     height: $buttonSize;
     width: $buttonSize;
-    border-radius: $buttonSize / 2;
     outline: none;
     border: none;
-    font-size: 20px;
+    font-size: 24px;
     font-family: 'Gloria Hallelujah', sans-serif;
-    margin: 0 5px;
+    margin: 0 8px;
 
     span {
         position: relative;
     }
+}
+
+.previous-button {
+    transform: rotate(8deg);
+}
+.search-button {
+    transform: rotate(-3deg);
+}
+.share-button {
+    transform: rotate(5deg);
+}
+.next-button {
+    transform: rotate(-6deg);
 }

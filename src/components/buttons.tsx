@@ -17,7 +17,7 @@ export const Buttons = (props: ButtonsProps) => {
     return (
         <div className="buttons">
             <button type="button" className="previous-button" onClick={previousClickHandler}>
-                <span>{'<'}</span>
+                <span>◀️</span>
             </button>
 
             <button type="button" className="search-button" onClick={props.searchClickHandler}>
@@ -25,11 +25,11 @@ export const Buttons = (props: ButtonsProps) => {
             </button>
 
             <button type="button" className="share-button">
-                <span>🔗</span>
+                <span>📩</span>
             </button>
 
             <button type="button" className="next-button" onClick={nextClickHandler}>
-                <span>{'>'}</span>
+                <span>▶️</span>
             </button>
         </div>
     );
