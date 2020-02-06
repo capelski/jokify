@@ -42,7 +42,11 @@ export const Jokes = (props: JokesProps) => {
                         </div>
                     );
                 })}
-                {!props.jokes.length && <div className="joke">Cargando...</div>}
+                {!props.jokes.length && (
+                    <div className="joke loading">
+                        <p className="joke-paragraph">Cargando...</p>
+                    </div>
+                )}
             </div>
         </React.Fragment>
     );

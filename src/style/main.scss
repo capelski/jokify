@@ -4,16 +4,6 @@
 @import 'jokes';
 @import 'themes';
 
-@font-face {
-    font-family: 'Gloria Hallelujah';
-    src: url('/fonts/GloriaHallelujah.ttf?$modena=jokify');
-}
-
-@font-face {
-    font-family: 'Indie Flower', cursive;
-    src: url('/fonts/IndieFlower.ttf?$modena=jokify');
-}
-
 html,
 body,
 .fixed-viewport {
@@ -22,8 +12,7 @@ body,
 
 body {
     margin: 0;
-    // font-family: 'Gloria Hallelujah', sans-serif;
-    font-family: 'Indie Flower', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .fixed-viewport {
