@@ -92,6 +92,7 @@ const App = () => {
                 </Route>
 
                 <Buttons
+                    joke={jokes[jokeIndex]}
                     nextJoke={nextJoke}
                     previousJoke={previousJoke}
                     searchClickHandler={searchClickHandler}
