@@ -1,4 +1,5 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -14,14 +15,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    // Creates `style` nodes from JS strings
-                    'style-loader',
-                    // Translates CSS into CommonJS
-                    'css-loader',
-                    // Compiles Sass to CSS
-                    'sass-loader'
-                ]
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
                 test: /\.html$/,
@@ -38,6 +32,9 @@ module.exports = {
         publicPath: '/'
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css?$modena=jokify'
+        }),
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './src/index.html'
