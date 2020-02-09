@@ -23,6 +23,14 @@
             }
         }
     }
+
+    .buttons {
+        svg {
+            path {
+                fill: #477106;
+            }
+        }
+    }
 }
 
 .beta-theme {
@@ -41,6 +49,14 @@
                 &:nth-child(odd) {
                     color: #fc863b;
                 }
+            }
+        }
+    }
+
+    .buttons {
+        svg {
+            path {
+                fill: #fc863b;
             }
         }
     }
@@ -65,6 +81,14 @@
             }
         }
     }
+
+    .buttons {
+        svg {
+            path {
+                fill: #4d36fe;
+            }
+        }
+    }
 }
 
 .delta-theme {
@@ -83,6 +107,14 @@
                 &:nth-child(odd) {
                     color: #ff6767;
                 }
+            }
+        }
+    }
+
+    .buttons {
+        svg {
+            path {
+                fill: #ff6767;
             }
         }
     }
