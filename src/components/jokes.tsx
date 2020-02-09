@@ -31,6 +31,7 @@ export const Jokes = (props: JokesProps) => {
                             : 'current';
                     return (
                         <div key={index} className={`joke ${props.animationDirection} ${cssClass}`}>
+                            <p className="top-spacer"></p>
                             {joke.text.map(paragraph => (
                                 <p
                                     key={paragraph}
@@ -40,6 +41,7 @@ export const Jokes = (props: JokesProps) => {
                                     }}
                                 />
                             ))}
+                            <p className="bottom-spacer"></p>
                         </div>
                     );
                 })}

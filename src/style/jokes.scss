@@ -17,7 +17,6 @@
         padding: 0 $jokeSpacing;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         animation-fill-mode: forwards;
         animation-duration: $animationDuration;
@@ -88,6 +87,14 @@
             }
         }
 
+        .top-spacer {
+            margin-top: auto;
+        }
+
+        .bottom-spacer {
+            margin-bottom: auto;
+        }
+
         .joke-paragraph {
             padding: 12px 16px;
             font-size: 24px;
@@ -104,12 +111,12 @@
 
             &:nth-child(even) {
                 color: white;
-                transform: rotate(-2deg);
+                transform: rotate(2deg);
             }
 
             &:nth-child(odd) {
                 background-color: white;
-                transform: rotate(2deg);
+                transform: rotate(-2deg);
             }
         }
     }
