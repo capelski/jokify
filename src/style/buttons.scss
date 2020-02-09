@@ -1,9 +1,9 @@
 @import 'variables';
 
 .buttons {
-    height: #{$buttonSize + $buttonSpacing * 2};
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
     padding: $buttonSpacing;
 }
 
@@ -17,12 +17,9 @@
     outline: none;
     border: none;
     font-size: 24px;
-    font-family: 'Gloria Hallelujah', sans-serif;
     margin: 0 8px;
-
-    span {
-        position: relative;
-    }
+    display: flex;
+    justify-content: center;
 }
 
 .previous-button {
