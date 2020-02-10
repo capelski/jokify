@@ -51,7 +51,7 @@ export const Buttons = (props: ButtonsProps) => {
 
             <button type="button" className="search-button" onClick={props.searchClickHandler}>
                 <svg
-                    enable-background="new 0 0 515.558 515.558"
+                    enableBackground="new 0 0 515.558 515.558"
                     viewBox="0 0 515.558 515.558"
                     height="32px"
                     width="32px"
