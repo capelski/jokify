@@ -3,8 +3,16 @@
 .jokes {
     position: relative;
     width: 100%;
-    height: calc(100% - #{$buttonSize + $buttonSpacing * 2});
+    height: calc(100% - #{$buttonSizeMobile + $buttonSpacingMobile * 2 + $buttonSpacingMobile});
     display: flex;
+    margin-top: $buttonSpacingMobile;
+
+    @media (min-width: $desktopBreakpointStart) {
+        height: calc(
+            100% - #{$buttonSizeDesktop + $buttonSpacingDesktop * 2 + $buttonSpacingDesktop}
+        );
+        margin-top: $buttonSpacingDesktop;
+    }
 
     .joke {
         position: absolute;

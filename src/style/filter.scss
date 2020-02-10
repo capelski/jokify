@@ -6,8 +6,12 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: #{$buttonSize + $buttonSpacing * 2};
+    bottom: #{$buttonSizeMobile + $buttonSpacingMobile * 2};
     transition: bottom 1s;
+
+    @media (min-width: $desktopBreakpointStart) {
+        bottom: #{$buttonSizeDesktop + $buttonSpacingDesktop * 2};
+    }
 
     input {
         border: 2px solid #cdcdcd;

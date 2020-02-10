@@ -4,7 +4,11 @@
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    padding: $buttonSpacing;
+    padding: $buttonSpacingMobile;
+
+    @media (min-width: $desktopBreakpointStart) {
+        padding: $buttonSpacingDesktop;
+    }
 }
 
 .previous-button,
@@ -12,14 +16,19 @@
 .share-button,
 .next-button {
     background-color: white;
-    height: $buttonSize;
-    width: $buttonSize;
+    height: $buttonSizeMobile;
+    width: $buttonSizeMobile;
     outline: none;
     border: none;
     font-size: 24px;
     margin: 0 8px;
     display: flex;
     justify-content: center;
+
+    @media (min-width: $desktopBreakpointStart) {
+        height: $buttonSizeDesktop;
+        width: $buttonSizeDesktop;
+    }
 }
 
 .previous-button {

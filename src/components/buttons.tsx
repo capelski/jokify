@@ -37,8 +37,8 @@ export const Buttons = (props: ButtonsProps) => {
                     y="0px"
                     viewBox="0 0 492 492"
                     xmlSpace="preserve"
-                    height="40px"
-                    width="40px"
+                    height="32px"
+                    width="32px"
                 >
                     <path
                         d="M198.608,246.104L382.664,62.04c5.068-5.056,7.856-11.816,7.856-19.024c0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12
@@ -53,8 +53,8 @@ export const Buttons = (props: ButtonsProps) => {
                 <svg
                     enable-background="new 0 0 515.558 515.558"
                     viewBox="0 0 515.558 515.558"
-                    height="40px"
-                    width="40px"
+                    height="32px"
+                    width="32px"
                 >
                     <path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z" />
                 </svg>
@@ -68,8 +68,8 @@ export const Buttons = (props: ButtonsProps) => {
                         y="0px"
                         viewBox="0 0 507.45 507.45"
                         xmlSpace="preserve"
-                        width="40px"
-                        height="40px"
+                        width="32px"
+                        height="32px"
                     >
                         <path
                             d="M408,178.5c-20.4,0-38.25,7.65-51,20.4L175.95,94.35c2.55-5.1,2.55-12.75,2.55-17.85C178.5,33.15,145.35,0,102,0
@@ -89,8 +89,8 @@ export const Buttons = (props: ButtonsProps) => {
                     y="0px"
                     viewBox="0 0 492.004 492.004"
                     xmlSpace="preserve"
-                    height="40px"
-                    width="40px"
+                    height="32px"
+                    width="32px"
                 >
                     <path
                         d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12
