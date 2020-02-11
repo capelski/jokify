@@ -30,7 +30,7 @@ export const Buttons = (props: ButtonsProps) => {
 
     return (
         <div className="buttons">
-            <button type="button" className="previous-button" onClick={previousClickHandler}>
+            <button type="button" className="button previous-button" onClick={previousClickHandler}>
                 <svg
                     version="1.1"
                     x="0px"
@@ -49,7 +49,11 @@ export const Buttons = (props: ButtonsProps) => {
                 </svg>
             </button>
 
-            <button type="button" className="search-button" onClick={props.searchClickHandler}>
+            <button
+                type="button"
+                className="button search-button"
+                onClick={props.searchClickHandler}
+            >
                 <svg
                     enableBackground="new 0 0 515.558 515.558"
                     viewBox="0 0 515.558 515.558"
@@ -61,7 +65,7 @@ export const Buttons = (props: ButtonsProps) => {
             </button>
 
             {'share' in navigator && (
-                <button type="button" className="share-button" onClick={shareClickHandler}>
+                <button type="button" className="button share-button" onClick={shareClickHandler}>
                     <svg
                         version="1.1"
                         x="0px"
@@ -82,7 +86,7 @@ export const Buttons = (props: ButtonsProps) => {
                 </button>
             )}
 
-            <button type="button" className="next-button" onClick={nextClickHandler}>
+            <button type="button" className="button next-button" onClick={nextClickHandler}>
                 <svg
                     version="1.1"
                     x="0px"

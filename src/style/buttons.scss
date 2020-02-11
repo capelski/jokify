@@ -9,37 +9,38 @@
     @media (min-width: $desktopBreakpointStart) {
         padding: $buttonSpacingDesktop;
     }
-}
 
-.previous-button,
-.search-button,
-.share-button,
-.next-button {
-    background-color: white;
-    height: $buttonSizeMobile;
-    width: $buttonSizeMobile;
-    outline: none;
-    border: none;
-    font-size: 24px;
-    margin: 0 8px;
-    display: flex;
-    justify-content: center;
+    .button {
+        background-color: white;
+        height: $buttonSizeMobile;
+        width: $buttonSizeMobile;
+        outline: none;
+        border: none;
+        font-size: 24px;
+        margin: 0 8px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
 
-    @media (min-width: $desktopBreakpointStart) {
-        height: $buttonSizeDesktop;
-        width: $buttonSizeDesktop;
+        @media (min-width: $desktopBreakpointStart) {
+            height: $buttonSizeDesktop;
+            width: $buttonSizeDesktop;
+        }
+
+        &.previous-button {
+            transform: rotate(6deg);
+        }
+
+        &.search-button {
+            transform: rotate(-3deg);
+        }
+
+        &.share-button {
+            transform: rotate(3deg);
+        }
+
+        &.next-button {
+            transform: rotate(-4deg);
+        }
     }
-}
-
-.previous-button {
-    transform: rotate(8deg);
-}
-.search-button {
-    transform: rotate(-3deg);
-}
-.share-button {
-    transform: rotate(5deg);
-}
-.next-button {
-    transform: rotate(-6deg);
 }

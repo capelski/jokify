@@ -25,9 +25,26 @@
     }
 
     .buttons {
-        svg {
-            path {
-                fill: #477106;
+        .button {
+            svg {
+                path {
+                    fill: #477106;
+                }
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &:hover {
+                    border: 3px solid #477106;
+                }
+            }
+
+            &:active {
+                background-color: #477106;
+                svg {
+                    path {
+                        fill: #4d6cfa;
+                    }
+                }
             }
         }
     }
@@ -54,9 +71,26 @@
     }
 
     .buttons {
-        svg {
-            path {
-                fill: #fc863b;
+        .button {
+            svg {
+                path {
+                    fill: #fc863b;
+                }
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &:hover {
+                    border: 3px solid #fc863b;
+                }
+            }
+
+            &:active {
+                background-color: #fc863b;
+                svg {
+                    path {
+                        fill: #d8305a;
+                    }
+                }
             }
         }
     }
@@ -83,9 +117,26 @@
     }
 
     .buttons {
-        svg {
-            path {
-                fill: #4d36fe;
+        .button {
+            svg {
+                path {
+                    fill: #4d36fe;
+                }
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &:hover {
+                    border: 3px solid #4d36fe;
+                }
+            }
+
+            &:active {
+                background-color: #4d36fe;
+                svg {
+                    path {
+                        fill: #a094ff;
+                    }
+                }
             }
         }
     }
@@ -112,9 +163,26 @@
     }
 
     .buttons {
-        svg {
-            path {
-                fill: #ff6767;
+        .button {
+            svg {
+                path {
+                    fill: #ff6767;
+                }
+            }
+
+            @media (min-width: $desktopBreakpointStart) {
+                &:hover {
+                    border: 3px solid #ff6767;
+                }
+            }
+
+            &:active {
+                background-color: #ff6767;
+                svg {
+                    path {
+                        fill: #94dfff;
+                    }
+                }
             }
         }
     }
