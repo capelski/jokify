@@ -8,9 +8,9 @@
             "type": "image/png"
         }
     ],
-    "start_url": "/",
+    "start_url": "/jokify",
     "background_color": "#FFFFFF",
     "display": "standalone",
-    "scope": "/",
+    "scope": "/jokify",
     "theme_color": "#FFFFFF"
 }
