@@ -1,18 +1,9 @@
-@mixin theme-transition() {
-    -webkit-transition: background-color 0.5s linear, color 0.5s linear;
-    -ms-transition: background-color 0.5s linear, color 0.5s linear;
-    transition: background-color 0.5s linear, color 0.5s linear;
-}
-
 .alpha-theme {
     background-color: #4d6cfa;
-    @include theme-transition();
 
     .jokes {
         .joke {
             .joke-paragraph {
-                @include theme-transition();
-
                 &:nth-child(even) {
                     background-color: #477106;
                 }
@@ -52,13 +43,10 @@
 
 .beta-theme {
     background-color: #d8305a;
-    @include theme-transition();
 
     .jokes {
         .joke {
             .joke-paragraph {
-                @include theme-transition();
-
                 &:nth-child(even) {
                     background-color: #fc863b;
                 }
@@ -98,13 +86,10 @@
 
 .gamma-theme {
     background-color: #a094ff;
-    @include theme-transition();
 
     .jokes {
         .joke {
             .joke-paragraph {
-                @include theme-transition();
-
                 &:nth-child(even) {
                     background-color: #4d36fe;
                 }
@@ -144,13 +129,10 @@
 
 .delta-theme {
     background-color: #94dfff;
-    @include theme-transition();
 
     .jokes {
         .joke {
             .joke-paragraph {
-                @include theme-transition();
-
                 &:nth-child(even) {
                     background-color: #ff6767;
                 }

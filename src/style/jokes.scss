@@ -27,7 +27,7 @@
         flex-direction: column;
         align-items: center;
         animation-fill-mode: forwards;
-        animation-duration: $animationDuration;
+        animation-duration: $jokeAnimationDuration;
 
         &.loading {
             left: 0;
@@ -76,6 +76,8 @@
             font-weight: 600;
             margin: 0;
             max-width: 532px;
+            transition: background-color $colorTransitionDuration linear,
+                color $colorTransitionDuration linear;
 
             @media (min-width: $desktopBreakpointStart) {
                 padding: 16px 32px;

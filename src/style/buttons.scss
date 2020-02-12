@@ -42,5 +42,11 @@
         &.next-button {
             transform: rotate(-4deg);
         }
+
+        svg {
+            path {
+                transition: fill $colorTransitionDuration linear;
+            }
+        }
     }
 }

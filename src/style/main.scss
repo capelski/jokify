@@ -18,4 +18,5 @@ body {
 .viewport {
     position: relative;
     overflow: hidden;
+    transition: background-color $colorTransitionDuration linear;
 }
