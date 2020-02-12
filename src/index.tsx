@@ -29,7 +29,7 @@ const getRandomTheme = () => {
     const nextThemeIndex = Math.round(Math.random() * (themes.available.length - 1));
     const nextTheme = themes.available[nextThemeIndex];
 
-    themes.available.splice(nextThemeIndex);
+    themes.available.splice(nextThemeIndex, 1);
     if (themes.current) {
         themes.available.push(themes.current);
     }
