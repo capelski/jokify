@@ -20,8 +20,24 @@ const fetchServerJoke = (id?: number, filter?: string) => {
 
     return axios.get(url);
 };
-const getRandomTheme = () => themes[Math.round(Math.random() * (themes.length - 1))];
-const themes = ['alpha-theme', 'beta-theme', 'gamma-theme', 'delta-theme'];
+
+const themes = {
+    available: ['alpha-theme', 'beta-theme', 'gamma-theme', 'delta-theme'],
+    current: ''
+};
+
+const getRandomTheme = () => {
+    const nextThemeIndex = Math.round(Math.random() * (themes.available.length - 1));
+    const nextTheme = themes.available[nextThemeIndex];
+
+    themes.available.splice(nextThemeIndex);
+    if (themes.current) {
+        themes.available.push(themes.current);
+    }
+    themes.current = nextTheme;
+
+    return nextTheme;
+};
 
 // tslint:disable-next-line:variable-name
 const App = () => {
