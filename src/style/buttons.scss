@@ -4,10 +4,10 @@
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    padding: $buttonSpacingMobile;
+    padding: $spacingMobile;
 
     @media (min-width: $desktopBreakpointStart) {
-        padding: $buttonSpacingDesktop;
+        padding: $spacingDesktop;
     }
 
     .button {

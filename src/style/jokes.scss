@@ -1,17 +1,30 @@
 @import 'variables';
 
+$buttonsHeightMobile: $buttonSizeMobile + $spacingMobile * 2 + $spacingMobile;
+$buttonsHeightDesktop: $buttonSizeDesktop + $spacingDesktop * 2 + $spacingDesktop;
+
+$filtersHeightMobile: $filterHeight + $spacingMobile + $filterPadding * 2;
+$filtersHeightDesktop: $filterHeight + $spacingDesktop + $filterPadding * 2;
+
 .jokes {
     position: relative;
     width: 100%;
-    height: calc(100% - #{$buttonSizeMobile + $buttonSpacingMobile * 2 + $buttonSpacingMobile});
     display: flex;
-    margin-top: $buttonSpacingMobile;
+    transition: height $colorTransitionDuration;
+    height: calc(100% - #{$buttonsHeightMobile});
+    margin-top: $spacingMobile;
+
+    &.filter-visible {
+        height: calc(100% - #{$buttonsHeightMobile + $filtersHeightMobile});
+    }
 
     @media (min-width: $desktopBreakpointStart) {
-        height: calc(
-            100% - #{$buttonSizeDesktop + $buttonSpacingDesktop * 2 + $buttonSpacingDesktop}
-        );
-        margin-top: $buttonSpacingDesktop;
+        height: calc(100% - #{$buttonsHeightDesktop});
+        margin-top: $spacingDesktop;
+
+        &.filter-visible {
+            height: calc(100% - #{$buttonsHeightDesktop + $filtersHeightDesktop});
+        }
     }
 
     .joke {

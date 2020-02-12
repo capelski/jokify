@@ -102,6 +102,7 @@ const App = () => {
                     <Jokes
                         animationDirection={animationDirection}
                         currentIndex={jokeIndex}
+                        displayFilter={displayFilter}
                         fetchJoke={fetchJoke}
                         jokes={jokes}
                     />
@@ -115,7 +116,7 @@ const App = () => {
                 />
             </BrowserRouter>
 
-            <Filter isDisplayed={displayFilter} onFilterChange={setFilter} />
+            <Filter onFilterChange={setFilter} />
 
             <Emojis animate={areEmojisAnimated} />
         </div>

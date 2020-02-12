@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 interface FilterProps {
-    isDisplayed: boolean;
     onFilterChange: (filter: string) => void;
 }
 
@@ -16,7 +15,7 @@ export const Filter = (props: FilterProps) => {
     };
 
     return (
-        <div className={`filter ${props.isDisplayed ? 'visible-filter' : 'hidden-filter'}`}>
+        <div className="filter">
             <input type="text" value={filter} onChange={filterChangeHandler} />
         </div>
     );
