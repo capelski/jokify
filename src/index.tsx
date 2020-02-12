@@ -2,12 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { Buttons } from './components/buttons';
 import { Emojis } from './components/emojis';
 import { Jokes } from './components/jokes';
 import { Joke } from './types';
 
-import { Buttons } from './components/buttons';
-import { Filter } from './components/filter';
 import './style/main.scss';
 
 // TODO Allow setting the api Url
@@ -49,7 +48,7 @@ const App = () => {
 
     const [animationDirection, setAnimationDirection] = useState('slide-left');
     const [filter, setFilter] = useState('');
-    const [displayFilter, setDisplayFilter] = useState(false);
+    const [isFilterVisible, setIsFilterVisible] = useState(false);
     const [areEmojisAnimated, setAreEmojisAnimated] = useState(false);
     const [theme, setTheme] = useState(getRandomTheme());
 
@@ -62,7 +61,7 @@ const App = () => {
     };
 
     const fetchJoke = (history: any, id?: Joke['id']) => {
-        fetchServerJoke(id, displayFilter ? filter : undefined).then(response => {
+        fetchServerJoke(id, isFilterVisible ? filter : undefined).then(response => {
             setJokes([...jokes, response.data]);
             setJokeIndex(jokes.length);
             history.push(`${baseUrl}${response.data.id}`);
@@ -91,10 +90,6 @@ const App = () => {
         history.push(`${baseUrl}${jokes[nextIndex].id}`);
     };
 
-    const searchClickHandler = () => {
-        setDisplayFilter(!displayFilter);
-    };
-
     return (
         <div className={`viewport ${theme}`}>
             <BrowserRouter>
@@ -102,21 +97,21 @@ const App = () => {
                     <Jokes
                         animationDirection={animationDirection}
                         currentIndex={jokeIndex}
-                        displayFilter={displayFilter}
                         fetchJoke={fetchJoke}
+                        isFilterVisible={isFilterVisible}
                         jokes={jokes}
                     />
                 </Route>
 
                 <Buttons
+                    isFilterVisible={isFilterVisible}
                     joke={jokes[jokeIndex]}
                     nextJoke={nextJoke}
+                    onFilterChange={setFilter}
                     previousJoke={previousJoke}
-                    searchClickHandler={searchClickHandler}
+                    setIsFilterVisible={setIsFilterVisible}
                 />
             </BrowserRouter>
-
-            <Filter onFilterChange={setFilter} />
 
             <Emojis animate={areEmojisAnimated} />
         </div>

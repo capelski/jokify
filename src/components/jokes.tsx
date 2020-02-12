@@ -5,8 +5,8 @@ import { Joke } from '../types';
 interface JokesProps {
     animationDirection: string;
     currentIndex: number;
-    displayFilter: boolean;
     fetchJoke: (history: any, id?: Joke['id']) => void;
+    isFilterVisible: boolean;
     jokes: Joke[];
 }
 
@@ -22,7 +22,7 @@ export const Jokes = (props: JokesProps) => {
 
     return (
         <React.Fragment>
-            <div className={`jokes${props.displayFilter ? ' filter-visible' : ''}`}>
+            <div className={`jokes${props.isFilterVisible ? ' filter-visible' : ''}`}>
                 {props.jokes.map((joke, index) => {
                     const cssClass =
                         index < props.currentIndex
