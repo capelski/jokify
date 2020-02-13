@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -6,37 +5,12 @@ import { Buttons } from './components/buttons';
 import { Emojis } from './components/emojis';
 import { Jokes } from './components/jokes';
 import { Joke } from './types';
+import { fetchServerJoke, getRandomTheme } from './utils';
 
 import './style/main.scss';
 
-// TODO Allow setting the api Url
-const fetchServerJoke = (id?: number, filter?: string) => {
-    const url = id
-        ? `/joke/${id}?$modena=jokify-api`
-        : filter
-        ? `/joke?filter=${filter}&$modena=jokify-api`
-        : `/joke?$modena=jokify-api`;
-
-    return axios.get(url);
-};
-
-const themes = {
-    available: ['alpha-theme', 'beta-theme', 'gamma-theme', 'delta-theme'],
-    current: ''
-};
-
-const getRandomTheme = () => {
-    const nextThemeIndex = Math.round(Math.random() * (themes.available.length - 1));
-    const nextTheme = themes.available[nextThemeIndex];
-
-    themes.available.splice(nextThemeIndex, 1);
-    if (themes.current) {
-        themes.available.push(themes.current);
-    }
-    themes.current = nextTheme;
-
-    return nextTheme;
-};
+// If calling the function directly in the useState, it will be called in every render cycle
+const initialTheme = getRandomTheme();
 
 // tslint:disable-next-line:variable-name
 const App = () => {
@@ -50,10 +24,9 @@ const App = () => {
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     const [areEmojisAnimated, setAreEmojisAnimated] = useState(false);
-    const [theme, setTheme] = useState(getRandomTheme());
+    const [theme, setTheme] = useState(initialTheme);
 
     const animateEmojis = () => {
-        setTheme(getRandomTheme());
         setAreEmojisAnimated(true);
         setTimeout(() => {
             setAreEmojisAnimated(false);
@@ -63,8 +36,7 @@ const App = () => {
     const fetchJoke = (history: any, id?: Joke['id']) => {
         fetchServerJoke(id, isFilterVisible ? filter : undefined).then(response => {
             setJokes([...jokes, response.data]);
-            setJokeIndex(jokes.length);
-            history.push(`${baseUrl}${response.data.id}`);
+            updateCurrentJoke(jokes.length, response.data.id, history);
         });
     };
 
@@ -74,8 +46,7 @@ const App = () => {
 
         if (jokeIndex < jokes.length - 1) {
             const nextIndex = jokeIndex + 1;
-            setJokeIndex(nextIndex);
-            history.push(`${baseUrl}${jokes[nextIndex].id}`);
+            updateCurrentJoke(nextIndex, jokes[nextIndex].id, history);
         } else {
             fetchJoke(history);
         }
@@ -86,8 +57,13 @@ const App = () => {
         setAnimationDirection('slide-right');
 
         const nextIndex = Math.max(jokeIndex - 1, 0);
+        updateCurrentJoke(nextIndex, jokes[nextIndex].id, history);
+    };
+
+    const updateCurrentJoke = (nextIndex: number, jokeId: number, history: any) => {
         setJokeIndex(nextIndex);
-        history.push(`${baseUrl}${jokes[nextIndex].id}`);
+        setTheme(getRandomTheme());
+        history.push(`${baseUrl}${jokeId}`);
     };
 
     return (
