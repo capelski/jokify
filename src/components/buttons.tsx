@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Joke } from '../types';
 import { Filter } from './filter';
@@ -13,13 +13,20 @@ interface ButtonsProps {
 }
 
 // tslint:disable-next-line:variable-name
-export const Buttons = (props: ButtonsProps) => {
+export const Buttons: React.FC<ButtonsProps> = props => {
     const history = useHistory();
+    const inputReference = useRef<HTMLInputElement>(null);
 
     const nextClickHandler = () => props.nextJoke(history);
     const previousClickHandler = () => props.previousJoke(history);
     const searchClickHandler = () => {
         props.setIsFilterVisible(!props.isFilterVisible);
+        if (!props.isFilterVisible) {
+            // The timeout is needed so the css transition has finished
+            setTimeout(() => {
+                inputReference.current && inputReference.current.focus();
+            }, 500);
+        }
     };
     const shareClickHandler = () => {
         if ('share' in navigator) {
@@ -122,7 +129,7 @@ export const Buttons = (props: ButtonsProps) => {
                     </svg>
                 </button>
             </div>
-            <Filter onFilterChange={props.onFilterChange} />
+            <Filter inputReference={inputReference} onFilterChange={props.onFilterChange} />
         </React.Fragment>
     );
 };

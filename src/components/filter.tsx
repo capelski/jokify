@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
 interface FilterProps {
+    inputReference: React.RefObject<HTMLInputElement>;
     onFilterChange: (filter: string) => void;
 }
 
 // tslint:disable-next-line:variable-name
-export const Filter = (props: FilterProps) => {
+export const Filter: React.FC<FilterProps> = props => {
     const [filter, setFilter] = useState('');
 
     const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +17,12 @@ export const Filter = (props: FilterProps) => {
 
     return (
         <div className="filter">
-            <input type="text" value={filter} onChange={filterChangeHandler} />
+            <input
+                ref={props.inputReference}
+                type="text"
+                value={filter}
+                onChange={filterChangeHandler}
+            />
         </div>
     );
 };

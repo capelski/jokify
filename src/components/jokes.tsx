@@ -11,7 +11,7 @@ interface JokesProps {
 }
 
 // tslint:disable-next-line:variable-name
-export const Jokes = (props: JokesProps) => {
+export const Jokes: React.FC<JokesProps> = props => {
     const history = useHistory();
     const { id } = useParams();
 
