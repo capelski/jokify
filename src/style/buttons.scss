@@ -19,7 +19,6 @@
         font-size: 24px;
         margin: 0 8px;
         display: flex;
-        justify-content: center;
         cursor: pointer;
 
         @media (min-width: $desktopBreakpointStart) {
@@ -44,6 +43,8 @@
         }
 
         svg {
+            margin: auto;
+
             path {
                 transition: fill $colorTransitionDuration linear;
             }

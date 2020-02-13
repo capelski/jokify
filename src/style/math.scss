@@ -1,7 +1,7 @@
-$LN2:   0.6931471805599453;
+$LN2: 0.6931471805599453;
 $SQRT2: 1.4142135623730951;
 
-@function ldexp ($x, $exp) {
+@function ldexp($x, $exp) {
     $b: if($exp >= 0, 2, 1 / 2);
     @if $exp < 0 {
         $exp: $exp * -1;
@@ -16,7 +16,7 @@ $SQRT2: 1.4142135623730951;
     @return $x;
 }
 
-@function frexp ($x) {
+@function frexp($x) {
     $exp: 0;
     @if $x < 0 {
         $x: $x * -1;
@@ -35,7 +35,7 @@ $SQRT2: 1.4142135623730951;
     @return $x, $exp;
 }
 
-@function log ($x) {
+@function log($x) {
     @if $x <= 0 {
         @return 0 / 0;
     }
@@ -56,60 +56,75 @@ $SQRT2: 1.4142135623730951;
 }
 
 @function pow($number, $exp) {
-  $value: 1;
-  @if $exp > 0 {
-    @for $i from 1 through $exp {
-      $value: $value * $number;
+    $value: 1;
+    @if $exp > 0 {
+        @for $i from 1 through $exp {
+            $value: $value * $number;
+        }
+    } @else if $exp < 0 {
+        @for $i from 1 through -$exp {
+            $value: $value / $number;
+        }
     }
-  }
-  @else if $exp < 0 {
-    @for $i from 1 through -$exp {
-      $value: $value / $number;
-    }
-  }
-  @return $value;
+    @return $value;
 }
 
 @function fact($number) {
-  $value: 1;
-  @if $number > 0 {
-    @for $i from 1 through $number {
-      $value: $value * $i;
+    $value: 1;
+    @if $number > 0 {
+        @for $i from 1 through $number {
+            $value: $value * $i;
+        }
     }
-  }
-  @return $value;
+    @return $value;
 }
 
 @function pi() {
-  @return 3.14159265359;
+    @return 3.14159265359;
 }
 
 @function rad($angle) {
-  $unitless: $angle / ($angle * 0 + 1);
-  $unitless: $unitless / 180 * pi();
-  @return $unitless;
+    $unitless: $angle / ($angle * 0 + 1);
+    $unitless: $unitless / 180 * pi();
+    @return $unitless;
 }
 
 @function sin($angle) {
-  $sin: 0;
-  $angle: rad($angle);
-  // Iterate a bunch of times.
-  @for $i from 0 through 10 {
-    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
-  }
-  @return $sin;
+    $sin: 0;
+    $angle: rad($angle);
+    // Iterate a bunch of times.
+    @for $i from 0 through 10 {
+        $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+    }
+    @return $sin;
 }
 
 @function cos($angle) {
-  $cos: 0;
-  $angle: rad($angle);
-  // Iterate a bunch of times.
-  @for $i from 0 through 10 {
-    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
-  }
-  @return $cos;
+    $cos: 0;
+    $angle: rad($angle);
+    // Iterate a bunch of times.
+    @for $i from 0 through 10 {
+        $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    }
+    @return $cos;
 }
 
 @function tan($angle) {
-  @return sin($angle) / cos($angle);
+    @return sin($angle) / cos($angle);
+}
+
+@function sqrt($r) {
+    $x0: 1;
+    $x1: $x0;
+
+    @for $i from 1 through 10 {
+        $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+        $x0: $x1;
+    }
+
+    @return $x1;
+}
+
+@function round2Decimals($number) {
+    @return round($number * 100) / 100;
 }
