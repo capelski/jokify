@@ -1,23 +1,22 @@
 import React, { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Joke } from '../types';
 
 interface JokesProps {
     animationDirection: string;
     currentIndex: number;
-    fetchJoke: (history: any, id?: Joke['id']) => void;
+    fetchJoke: (id?: Joke['id']) => void;
     isFilterVisible: boolean;
     jokes: Joke[];
 }
 
 // tslint:disable-next-line:variable-name
 export const Jokes: React.FC<JokesProps> = props => {
-    const history = useHistory();
     const { id } = useParams();
 
     // To be executed only for the first render of the application
     useEffect(() => {
-        props.fetchJoke(history, id ? parseInt(id, 10) : undefined);
+        props.fetchJoke(id ? parseInt(id, 10) : undefined);
     }, []);
 
     return (

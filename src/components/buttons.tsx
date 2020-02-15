@@ -1,24 +1,20 @@
 import React, { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Joke } from '../types';
 import { Filter } from './filter';
 
 interface ButtonsProps {
     isFilterVisible: boolean;
     joke?: Joke;
-    nextJoke: (history: any) => void;
+    nextJoke: () => void;
     onFilterChange: (filter: string) => void;
-    previousJoke: (history: any) => void;
+    previousJoke: () => void;
     setIsFilterVisible: (isFilterVisible: boolean) => void;
 }
 
 // tslint:disable-next-line:variable-name
 export const Buttons: React.FC<ButtonsProps> = props => {
-    const history = useHistory();
     const inputReference = useRef<HTMLInputElement>(null);
 
-    const nextClickHandler = () => props.nextJoke(history);
-    const previousClickHandler = () => props.previousJoke(history);
     const searchClickHandler = () => {
         props.setIsFilterVisible(!props.isFilterVisible);
         if (!props.isFilterVisible) {
@@ -28,6 +24,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
             }, 500);
         }
     };
+
     const shareClickHandler = () => {
         if ('share' in navigator) {
             (navigator as any).share({
@@ -47,7 +44,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                 <button
                     type="button"
                     className="button previous-button"
-                    onClick={previousClickHandler}
+                    onClick={props.previousJoke}
                 >
                     <svg
                         version="1.1"
@@ -110,7 +107,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     </button>
                 )}
 
-                <button type="button" className="button next-button" onClick={nextClickHandler}>
+                <button type="button" className="button next-button" onClick={props.nextJoke}>
                     <svg
                         version="1.1"
                         x="0px"
