@@ -89,6 +89,12 @@ const AppWithHistory = () => {
                 setIsFilterVisible={setIsFilterVisible}
             />
             <Emojis />
+
+            {/* Preload the background images so there is no flickering on the first theme load */}
+            <div style={{ backgroundImage: 'url("/images/alpha-bg.png?$modena=jokify")' }} />
+            <div style={{ backgroundImage: 'url("/images/beta-bg.png?$modena=jokify")' }} />
+            <div style={{ backgroundImage: 'url("/images/gamma-bg.png?$modena=jokify")' }} />
+            <div style={{ backgroundImage: 'url("/images/delta-bg.png?$modena=jokify")' }} />
         </div>
     );
 };
