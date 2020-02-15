@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, useHistory } from 'react-router-dom';
+import { BrowserRouter, useHistory } from 'react-router-dom';
 import { Buttons } from './components/buttons';
 import { Emojis } from './components/emojis';
 import { Jokes } from './components/jokes';
@@ -73,16 +73,13 @@ const AppWithHistory = () => {
 
     return (
         <div className={`viewport ${theme}`} tabIndex={0} onKeyDown={onKeyDown}>
-            <Route path={['/jokify/:id', '/jokify', '/:id', '/']}>
-                <Jokes
-                    animationDirection={animationDirection}
-                    currentIndex={jokeIndex}
-                    fetchJoke={fetchJoke}
-                    isFilterVisible={isFilterVisible}
-                    jokes={jokes}
-                />
-            </Route>
-
+            <Jokes
+                animationDirection={animationDirection}
+                currentIndex={jokeIndex}
+                fetchJoke={fetchJoke}
+                isFilterVisible={isFilterVisible}
+                jokes={jokes}
+            />
             <Buttons
                 isFilterVisible={isFilterVisible}
                 joke={jokes[jokeIndex]}
@@ -91,7 +88,6 @@ const AppWithHistory = () => {
                 previousJoke={previousJoke}
                 setIsFilterVisible={setIsFilterVisible}
             />
-
             <Emojis />
         </div>
     );
