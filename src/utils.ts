@@ -24,6 +24,6 @@ export const getRandomTheme = () => {
         themes.available.push(themes.current);
     }
     themes.current = nextTheme;
-    console.log(themes);
+
     return nextTheme;
 };

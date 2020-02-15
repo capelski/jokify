@@ -23,15 +23,7 @@ const App = () => {
     const [animationDirection, setAnimationDirection] = useState('slide-left');
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
-    const [areEmojisAnimated, setAreEmojisAnimated] = useState(false);
     const [theme, setTheme] = useState(initialTheme);
-
-    const animateEmojis = () => {
-        setAreEmojisAnimated(true);
-        setTimeout(() => {
-            setAreEmojisAnimated(false);
-        }, 500);
-    };
 
     const fetchJoke = (history: any, id?: Joke['id']) => {
         fetchServerJoke(id, isFilterVisible ? filter : undefined).then(response => {
@@ -41,7 +33,6 @@ const App = () => {
     };
 
     const nextJoke = (history: any) => {
-        animateEmojis();
         setAnimationDirection('slide-left');
 
         if (jokeIndex < jokes.length - 1) {
@@ -53,7 +44,6 @@ const App = () => {
     };
 
     const previousJoke = (history: any) => {
-        animateEmojis();
         setAnimationDirection('slide-right');
 
         const nextIndex = Math.max(jokeIndex - 1, 0);
@@ -89,7 +79,7 @@ const App = () => {
                 />
             </BrowserRouter>
 
-            <Emojis animate={areEmojisAnimated} />
+            <Emojis />
         </div>
     );
 };

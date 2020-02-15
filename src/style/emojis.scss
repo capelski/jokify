@@ -44,12 +44,12 @@ $accelerationConstant: -9.81 * 6;
     content: '\1F3B2';
 }
 
-@mixin parabola-core($parabolaId, $xSpeed, $ySpeed, $rotation, $parabolaTime) {
+@mixin parabola-core($parabolaName, $xSpeed, $ySpeed, $rotation, $parabolaTime) {
     $framesNumber: $framesPerSecond * $parabolaTime;
     $frameWeight: 100 / $framesNumber;
     $frameRotation: $rotation / $framesNumber;
 
-    @keyframes parabola-keyframe-#{$parabolaId} {
+    @keyframes #{$parabolaName} {
         @for $i from 0 through $framesNumber {
             $percent: round2Decimals($i * $frameWeight);
             $time: $percent / 100 * $parabolaTime;
@@ -94,13 +94,64 @@ $accelerationConstant: -9.81 * 6;
     $parabolaTime: (-$b - sqrt($b * $b - 4 * $a * $c)) / (2 * $a);
     // @debug $a, $b, $c, $parabolaTime;
 
-    @include parabola-core($parabolaId, $xSpeed, $ySpeed, $rotation, $parabolaTime);
+    @include parabola-core(
+        'parabola-keyframe-' + $parabolaId + '-alpha',
+        $xSpeed,
+        $ySpeed,
+        $rotation,
+        $parabolaTime
+    );
 
-    .parabola.trajectory-#{$parabolaId} {
-        animation: parabola-keyframe-#{$parabolaId} $parabolaTime + s;
+    @include parabola-core(
+        'parabola-keyframe-' + $parabolaId + '-beta',
+        $xSpeed,
+        $ySpeed,
+        $rotation,
+        $parabolaTime
+    );
+
+    @include parabola-core(
+        'parabola-keyframe-' + $parabolaId + '-gamma',
+        $xSpeed,
+        $ySpeed,
+        $rotation,
+        $parabolaTime
+    );
+
+    @include parabola-core(
+        'parabola-keyframe-' + $parabolaId + '-delta',
+        $xSpeed,
+        $ySpeed,
+        $rotation,
+        $parabolaTime
+    );
+
+    .trajectory-#{$parabolaId} {
         animation-fill-mode: forwards;
-        -webkit-animation: parabola-keyframe-#{$parabolaId} $parabolaTime + s;
-        -webkit-animation-fill-mode: forwards;
+    }
+
+    .alpha-theme {
+        .trajectory-#{$parabolaId} {
+            animation: parabola-keyframe-#{$parabolaId}-alpha $parabolaTime + s;
+        }
+    }
+
+    .beta-theme {
+        .trajectory-#{$parabolaId} {
+            animation: parabola-keyframe-#{$parabolaId}-beta $parabolaTime + s;
+        }
+    }
+
+    .gamma-theme {
+        .trajectory-#{$parabolaId} {
+            animation: parabola-keyframe-#{$parabolaId}-gama $parabolaTime + s;
+        }
+    }
+
+    .delta-theme {
+        .trajectory-#{$parabolaId} {
+            animation: parabola-keyframe-#{$parabolaId}-delta $parabolaTime + s;
+        }
     }
 }
 
