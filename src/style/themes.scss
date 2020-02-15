@@ -1,5 +1,6 @@
 .alpha-theme {
     background-color: #4d6cfa;
+    background-image: url('/images/alpha-bg.png?$modena=jokify');
 
     .jokes {
         .joke {
@@ -25,7 +26,7 @@
 
             @media (min-width: $desktopBreakpointStart) {
                 &:hover {
-                    border: 3px solid #477106;
+                    outline: 4px solid #477106;
                 }
             }
 
@@ -44,6 +45,7 @@
 
 .beta-theme {
     background-color: #d8305a;
+    background-image: url('/images/beta-bg.png?$modena=jokify');
 
     .jokes {
         .joke {
@@ -69,7 +71,7 @@
 
             @media (min-width: $desktopBreakpointStart) {
                 &:hover {
-                    border: 3px solid #fc863b;
+                    outline: 4px solid #fc863b;
                 }
             }
 
@@ -88,6 +90,7 @@
 
 .gamma-theme {
     background-color: #a094ff;
+    background-image: url('/images/gamma-bg.png?$modena=jokify');
 
     .jokes {
         .joke {
@@ -113,7 +116,7 @@
 
             @media (min-width: $desktopBreakpointStart) {
                 &:hover {
-                    border: 3px solid #4d36fe;
+                    outline: 4px solid #4d36fe;
                 }
             }
 
@@ -132,6 +135,7 @@
 
 .delta-theme {
     background-color: #94dfff;
+    background-image: url('/images/delta-bg.png?$modena=jokify');
 
     .jokes {
         .joke {
@@ -157,7 +161,7 @@
 
             @media (min-width: $desktopBreakpointStart) {
                 &:hover {
-                    border: 3px solid #ff6767;
+                    outline: 4px solid #ff6767;
                 }
             }
 

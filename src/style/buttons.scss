@@ -24,6 +24,7 @@
         @media (min-width: $desktopBreakpointStart) {
             height: $buttonSizeDesktop;
             width: $buttonSizeDesktop;
+            transition: outline 0.25s;
         }
 
         &.previous-button {

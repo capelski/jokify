@@ -18,5 +18,13 @@ body {
 .viewport {
     position: relative;
     overflow: hidden;
-    transition: background-color $colorTransitionDuration linear;
+    transition: background-color $colorTransitionDuration linear,
+        background-image $colorTransitionDuration linear;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 60%;
+
+    @media (min-width: $desktopBreakpointStart) {
+        background-position: unset;
+    }
 }
