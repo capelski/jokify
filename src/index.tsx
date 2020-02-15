@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, useHistory } from 'react-router-dom';
 import { Buttons } from './components/buttons';
@@ -58,8 +58,21 @@ const AppWithHistory = () => {
         history.push(`${baseUrl}${jokeId}`);
     };
 
+    const onKeyDown = (event: React.KeyboardEvent) => {
+        if (event.keyCode === 37) {
+            previousJoke();
+        } else if (event.keyCode === 39) {
+            nextJoke();
+        }
+    };
+
+    useEffect(() => {
+        // Set the focus to the viewport to enable the key events
+        document.querySelector<HTMLDivElement>('.viewport')!.focus();
+    }, []);
+
     return (
-        <div className={`viewport ${theme}`}>
+        <div className={`viewport ${theme}`} tabIndex={0} onKeyDown={onKeyDown}>
             <Route path={['/jokify/:id', '/jokify', '/:id', '/']}>
                 <Jokes
                     animationDirection={animationDirection}
