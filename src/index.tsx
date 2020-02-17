@@ -6,6 +6,7 @@ import { Emojis } from './components/emojis';
 import { Jokes } from './components/jokes';
 import { Joke } from './types';
 import { fetchServerJoke, getRandomTheme } from './utils';
+import { useSwipeable } from 'react-swipeable';
 
 import './style/main.scss';
 
@@ -71,8 +72,10 @@ const AppWithHistory = () => {
         document.querySelector<HTMLDivElement>('.viewport')!.focus();
     }, []);
 
+    const swipeHandlers = useSwipeable({ onSwipedLeft: nextJoke, onSwipedRight: previousJoke });
+
     return (
-        <div className={`viewport ${theme}`} tabIndex={0} onKeyDown={onKeyDown}>
+        <div {...swipeHandlers} className={`viewport ${theme}`} tabIndex={0} onKeyDown={onKeyDown}>
             <Jokes
                 animationDirection={animationDirection}
                 currentIndex={jokeIndex}
