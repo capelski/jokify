@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "lib": ["dom", "es2017"],
+        "target": "es5"
+    },
+    "extends": "./tsconfig-common.json",
+    "include": ["./client"]
+}

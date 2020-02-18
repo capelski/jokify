@@ -3,14 +3,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.tsx',
+    entry: './client/index.tsx',
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader',
                 query: {
-                    configFileName: './tsconfig.json'
+                    configFileName: './tsconfig-client.json'
                 }
             },
             {
@@ -37,7 +37,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: './index.html',
-            template: './src/index.html'
+            template: './client/index.html'
         }),
         new CopyWebpackPlugin([
             {
