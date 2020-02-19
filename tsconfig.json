@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "esModuleInterop": true,
+        "jsx": "react",
         "forceConsistentCasingInFileNames": true,
         "module": "commonjs",
         "noImplicitAny": true,
@@ -11,5 +12,6 @@
         "skipLibCheck": true,
         "strictNullChecks": true
     },
-    "exclude": ["node_modules/"]
+    "exclude": ["node_modules/"],
+    "include": ["./server", "./client"]
 }

@@ -12,8 +12,8 @@
         "clean:dependencies": "rm -rf node_modules/ package-lock.json",
         "lint": "tslint -e 'node_modules/**' -p .",
         "lint:fix": "tslint -e 'node_modules/**' -p . --fix",
-        "prettier": "prettier --list-different \"{client,server}/**/*.ts\"",
-        "prettier:fix": "prettier --write \"{client,server}/**/*.ts\"",
+        "prettier": "prettier --list-different \"{client,server}/**/*.{ts,tsx}\"",
+        "prettier:fix": "prettier --write \"{client,server}/**/*.{ts,tsx}\"",
         "start": "node dist/index.js",
         "start:dev": "webpack-dev-server --open --mode development"
     },
