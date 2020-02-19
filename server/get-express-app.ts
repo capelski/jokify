@@ -3,6 +3,8 @@ import express from 'express';
 import { readFile } from 'fs';
 import { join } from 'path';
 
+const indexPath = join(__dirname, 'index.html');
+
 export default () => {
     const app = express();
 
@@ -10,13 +12,14 @@ export default () => {
     app.use('/:id', (req, res) => {
         const { id } = req.params;
 
+        // TODO Extract url to configuration
         return axios
-            .get(`/joke/${id}?$modena=jokify-api`)
+            .get(`https://carlescapellas.xyz/joke/${id}?$modena=jokify-api`)
             .then(response => {
-                readFile(join(__dirname, 'index.html'), 'utf8', (error, fileContents) => {
+                readFile(indexPath, 'utf8', (error, fileContents) => {
                     if (error) {
                         console.error(error);
-                        return res.status(500).send('An error occurred');
+                        return res.sendFile(indexPath);
                     }
 
                     // Ideally, we would replace the following div with the server rendered version of the app.
@@ -43,7 +46,10 @@ export default () => {
                     return res.send(replacedHtml);
                 });
             })
-            .catch(() => res.status(500).send('An error occurred'));
+            .catch(error => {
+                console.log(error);
+                return res.sendFile(indexPath);
+            });
     });
 
     return app;
