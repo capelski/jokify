@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, useHistory } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { Joke } from '../types';
 import { fetchServerJoke, getRandomTheme } from '../utils';
@@ -7,19 +6,15 @@ import { Buttons } from './buttons';
 import { Emojis } from './emojis';
 import { Jokes } from './jokes';
 
+// For the application to work on both http://localhost/ and http://domain/jokify/
+const baseUrl = window.location.pathname.indexOf('/jokify') > -1 ? '/jokify/' : '/';
 // If calling the function directly in the useState, it will be called in every render cycle
 const initialTheme = getRandomTheme();
 
 // tslint:disable-next-line:variable-name
-const AppWithHistory = () => {
-    const history = useHistory();
-
-    // For the application to work on both http://localhost/ and http://domain/jokify/
-    const [baseUrl] = useState(window.location.pathname.indexOf('/jokify') > -1 ? '/jokify/' : '/');
-
+export const App = () => {
     const [jokes, setJokes] = useState<Joke[]>([]);
     const [jokeIndex, setJokeIndex] = useState(-1);
-
     const [animationDirection, setAnimationDirection] = useState('slide-left');
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -55,7 +50,7 @@ const AppWithHistory = () => {
     const updateCurrentJoke = (nextIndex: number, jokeId: number) => {
         setJokeIndex(nextIndex);
         setTheme(getRandomTheme());
-        history.push(`${baseUrl}${jokeId}`);
+        window.history.pushState({}, document.title, `${baseUrl}${jokeId}`);
     };
 
     const onKeyDown = (event: React.KeyboardEvent) => {
@@ -66,7 +61,11 @@ const AppWithHistory = () => {
         }
     };
 
+    // To be executed only for the first render of the application
     useEffect(() => {
+        const parts = window.location.pathname.split('/');
+        const id = parseInt(parts[parts.length - 1], 10);
+        fetchJoke(id);
         // Set the focus to the viewport to enable the key events
         document.querySelector<HTMLDivElement>('.viewport')!.focus();
     }, []);
@@ -78,7 +77,6 @@ const AppWithHistory = () => {
             <Jokes
                 animationDirection={animationDirection}
                 currentIndex={jokeIndex}
-                fetchJoke={fetchJoke}
                 isFilterVisible={isFilterVisible}
                 jokes={jokes}
             />
@@ -100,10 +98,3 @@ const AppWithHistory = () => {
         </div>
     );
 };
-
-// tslint:disable-next-line:variable-name
-export const App = () => (
-    <BrowserRouter>
-        <AppWithHistory />
-    </BrowserRouter>
-);

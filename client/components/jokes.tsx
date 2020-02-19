@@ -1,58 +1,47 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { Joke } from '../types';
 
 interface JokesProps {
     animationDirection: string;
     currentIndex: number;
-    fetchJoke: (id?: Joke['id']) => void;
     isFilterVisible: boolean;
     jokes: Joke[];
 }
 
 // tslint:disable-next-line:variable-name
-export const Jokes: React.FC<JokesProps> = props => {
-    const { id } = useParams();
-
-    // To be executed only for the first render of the application
-    useEffect(() => {
-        props.fetchJoke(id ? parseInt(id, 10) : undefined);
-    }, []);
-
-    return (
-        <React.Fragment>
-            <div className={`jokes${props.isFilterVisible ? ' filter-visible' : ''}`}>
-                {props.jokes.map((joke, index) => {
-                    const cssClass =
-                        index < props.currentIndex
-                            ? 'older'
-                            : index > props.currentIndex
-                            ? 'newer'
-                            : 'current';
-                    return (
-                        <div key={index} className={`joke ${props.animationDirection} ${cssClass}`}>
-                            <p className="top-spacer"></p>
-                            {joke.text.map(paragraph => (
-                                <p
-                                    key={paragraph}
-                                    className="joke-paragraph"
-                                    dangerouslySetInnerHTML={{
-                                        __html: paragraph
-                                    }}
-                                />
-                            ))}
-                            <p className="bottom-spacer"></p>
-                        </div>
-                    );
-                })}
-                {!props.jokes.length && (
-                    <div className="joke loading">
+export const Jokes: React.FC<JokesProps> = props => (
+    <React.Fragment>
+        <div className={`jokes${props.isFilterVisible ? ' filter-visible' : ''}`}>
+            {props.jokes.map((joke, index) => {
+                const cssClass =
+                    index < props.currentIndex
+                        ? 'older'
+                        : index > props.currentIndex
+                        ? 'newer'
+                        : 'current';
+                return (
+                    <div key={index} className={`joke ${props.animationDirection} ${cssClass}`}>
                         <p className="top-spacer"></p>
-                        <p className="joke-paragraph">Cargando...</p>
+                        {joke.text.map(paragraph => (
+                            <p
+                                key={paragraph}
+                                className="joke-paragraph"
+                                dangerouslySetInnerHTML={{
+                                    __html: paragraph
+                                }}
+                            />
+                        ))}
                         <p className="bottom-spacer"></p>
                     </div>
-                )}
-            </div>
-        </React.Fragment>
-    );
-};
+                );
+            })}
+            {!props.jokes.length && (
+                <div className="joke loading">
+                    <p className="top-spacer"></p>
+                    <p className="joke-paragraph">Cargando...</p>
+                    <p className="bottom-spacer"></p>
+                </div>
+            )}
+        </div>
+    </React.Fragment>
+);
