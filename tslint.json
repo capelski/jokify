@@ -48,6 +48,7 @@
         "variable-name": [true, "check-format", "ban-keywords", "allow-leading-underscore"],
         "no-implicit-dependencies": false,
         "no-console": false,
-        "interface-name": false
+        "interface-name": false,
+        "no-submodule-imports": false
     }
 }

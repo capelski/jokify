@@ -21,7 +21,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
         if (!props.isFilterVisible) {
             // The timeout is needed so the css transition has finished
             setTimeout(() => {
-                inputReference.current && inputReference.current.focus();
+                // any casting necessary for the server side
+                (inputReference.current as any).focus();
             }, 500);
         }
     };

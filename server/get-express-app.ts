@@ -2,13 +2,17 @@ import axios from 'axios';
 import express from 'express';
 import { readFile } from 'fs';
 import { join } from 'path';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { App, AppProps } from '../client/components/App';
 
-const indexPath = join(__dirname, 'index.html');
+const staticPath = join(__dirname, '..');
+const indexPath = join(staticPath, 'index.html');
 
 export default () => {
     const app = express();
 
-    app.use(express.static(__dirname));
+    app.use(express.static(staticPath));
     app.use('/:id', (req, res) => {
         const { id } = req.params;
 
@@ -22,28 +26,19 @@ export default () => {
                         return res.sendFile(indexPath);
                     }
 
-                    // Ideally, we would replace the following div with the server rendered version of the app.
-                    // Given we are using BrowserRouter however, we will settle with sending part of the html
-                    const replacedHtml = fileContents
-                        .replace(
-                            '<div id="app-placeholder"></div>',
-                            `<div id="app-placeholder">
-<div class="joke">${response.data.text
-                                .map(
-                                    (paragraph: string) =>
-                                        `<p class="joke-paragraph">${paragraph}</p>`
-                                )
-                                .join('')}</div>
-</div>`
-                        )
-                        .replace(
-                            /<meta name="description" [^>]*\/>/,
-                            `<meta name="description" content="${response.data.text.join(
-                                ' / '
-                            )}" />`
-                        );
+                    const appProps: Partial<AppProps> = {
+                        initialJoke: response.data
+                    };
+                    const serializedApp = ReactDOMServer.renderToString(
+                        React.createElement(App, appProps as AppProps)
+                    );
 
-                    return res.send(replacedHtml);
+                    return res.send(
+                        fileContents.replace(
+                            '<div id="app-placeholder"></div>',
+                            `<div id="app-placeholder">${serializedApp}</div>`
+                        )
+                    );
                 });
             })
             .catch(error => {

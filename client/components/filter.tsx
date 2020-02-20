@@ -10,7 +10,8 @@ export const Filter: React.FC<FilterProps> = props => {
     const [filter, setFilter] = useState('');
 
     const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const filterValue = event.target.value;
+        // any casting necessary for the server side
+        const filterValue = (event.target as any).value;
         setFilter(filterValue);
         props.onFilterChange(filterValue);
     };
