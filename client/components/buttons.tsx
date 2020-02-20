@@ -3,6 +3,7 @@ import { Joke } from '../types';
 import { Filter } from './filter';
 
 interface ButtonsProps {
+    browserShare?: (...args: any[]) => void;
     isFilterVisible: boolean;
     joke?: Joke;
     nextJoke: () => void;
@@ -26,8 +27,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
     };
 
     const shareClickHandler = () => {
-        if ('share' in navigator) {
-            (navigator as any).share({
+        if (props.browserShare) {
+            props.browserShare({
                 text: props.joke?.text
                     .join(' / ')
                     .substring(0, 50)
@@ -81,7 +82,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     </svg>
                 </button>
 
-                {'share' in navigator && (
+                {props.browserShare && (
                     <button
                         type="button"
                         className="button share-button"

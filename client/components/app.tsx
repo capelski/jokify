@@ -6,15 +6,21 @@ import { Buttons } from './buttons';
 import { Emojis } from './emojis';
 import { Jokes } from './jokes';
 
-// For the application to work on both http://localhost/ and http://domain/jokify/
-const baseUrl = window.location.pathname.indexOf('/jokify') > -1 ? '/jokify/' : '/';
+export interface AppProps {
+    browserShare?: (...args: any[]) => void;
+    focusViewport: () => void;
+    updateUrl: (jokeId: number) => void;
+    initialJokeId?: number;
+    initialJoke?: Joke;
+}
+
 // If calling the function directly in the useState, it will be called in every render cycle
 const initialTheme = getRandomTheme();
 
 // tslint:disable-next-line:variable-name
-export const App = () => {
-    const [jokes, setJokes] = useState<Joke[]>([]);
-    const [jokeIndex, setJokeIndex] = useState(-1);
+export const App: React.FC<AppProps> = props => {
+    const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
+    const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
     const [animationDirection, setAnimationDirection] = useState('slide-left');
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -50,7 +56,7 @@ export const App = () => {
     const updateCurrentJoke = (nextIndex: number, jokeId: number) => {
         setJokeIndex(nextIndex);
         setTheme(getRandomTheme());
-        window.history.pushState({}, document.title, `${baseUrl}${jokeId}`);
+        props.updateUrl(jokeId);
     };
 
     const onKeyDown = (event: React.KeyboardEvent) => {
@@ -63,11 +69,10 @@ export const App = () => {
 
     // To be executed only for the first render of the application
     useEffect(() => {
-        const parts = window.location.pathname.split('/');
-        const id = parseInt(parts[parts.length - 1], 10);
-        fetchJoke(id);
+        fetchJoke(props.initialJokeId);
+
         // Set the focus to the viewport to enable the key events
-        document.querySelector<HTMLDivElement>('.viewport')!.focus();
+        props.focusViewport();
     }, []);
 
     const swipeHandlers = useSwipeable({ onSwipedLeft: nextJoke, onSwipedRight: previousJoke });
@@ -81,6 +86,7 @@ export const App = () => {
                 jokes={jokes}
             />
             <Buttons
+                browserShare={props.browserShare}
                 isFilterVisible={isFilterVisible}
                 joke={jokes[jokeIndex]}
                 nextJoke={nextJoke}
