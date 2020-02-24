@@ -114,8 +114,8 @@ $filtersHeightDesktop: $filterHeight + $spacingDesktop + $filterPadding * 2;
 @mixin slide-in($name, $start, $end) {
     @keyframes #{$name} {
         #{0%} {
-            transform: translateX($start);
             opacity: 0;
+            transform: translateX($start);
         }
 
         #{25%} {
@@ -123,8 +123,8 @@ $filtersHeightDesktop: $filterHeight + $spacingDesktop + $filterPadding * 2;
         }
 
         #{100%} {
-            transform: translateX($end);
             opacity: 1;
+            transform: translateX($end);
         }
     }
 }

@@ -78,11 +78,11 @@ export const App: React.FC<AppProps> = props => {
 
     const swipeHandlers = useSwipeable({
         onSwipedLeft() {
-            setSwipePosition(0);
+            setTimeout(() => setSwipePosition(0), 500);
             nextJoke();
         },
         onSwipedRight() {
-            setSwipePosition(0);
+            setTimeout(() => setSwipePosition(0), 500);
             previousJoke();
         },
         onSwiping(eventData) {
