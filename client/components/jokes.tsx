@@ -6,12 +6,18 @@ interface JokesProps {
     currentIndex: number;
     isFilterVisible: boolean;
     jokes: Joke[];
+    swipePosition: number;
 }
 
 // tslint:disable-next-line:variable-name
 export const Jokes: React.FC<JokesProps> = props => (
     <React.Fragment>
-        <div className={`jokes${props.isFilterVisible ? ' filter-visible' : ''}`}>
+        <div
+            className={`jokes${props.isFilterVisible ? ' filter-visible' : ''}`}
+            style={{
+                transform: `translateX(${-props.swipePosition}px)`
+            }}
+        >
             {props.jokes.map((joke, index) => {
                 const cssClass =
                     index < props.currentIndex

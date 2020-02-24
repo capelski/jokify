@@ -24,6 +24,7 @@ export const App: React.FC<AppProps> = props => {
     const [animationDirection, setAnimationDirection] = useState('slide-left');
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
+    const [swipePosition, setSwipePosition] = useState(0);
     const [theme, setTheme] = useState(initialTheme);
 
     const fetchJoke = (id?: Joke['id']) => {
@@ -75,7 +76,19 @@ export const App: React.FC<AppProps> = props => {
         props.focusViewport();
     }, []);
 
-    const swipeHandlers = useSwipeable({ onSwipedLeft: nextJoke, onSwipedRight: previousJoke });
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft() {
+            setSwipePosition(0);
+            nextJoke();
+        },
+        onSwipedRight() {
+            setSwipePosition(0);
+            previousJoke();
+        },
+        onSwiping(eventData) {
+            setSwipePosition(eventData.deltaX);
+        }
+    });
 
     return (
         <div {...swipeHandlers} className={`viewport ${theme}`} tabIndex={0} onKeyDown={onKeyDown}>
@@ -84,6 +97,7 @@ export const App: React.FC<AppProps> = props => {
                 currentIndex={jokeIndex}
                 isFilterVisible={isFilterVisible}
                 jokes={jokes}
+                swipePosition={swipePosition}
             />
             <Buttons
                 browserShare={props.browserShare}
