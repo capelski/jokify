@@ -77,16 +77,22 @@ export const App: React.FC<AppProps> = props => {
     }, []);
 
     const swipeHandlers = useSwipeable({
-        onSwipedLeft() {
+        onSwipedLeft(eventData) {
             setTimeout(() => setSwipePosition(0), 500);
-            nextJoke();
+            if (Math.abs(eventData.deltaX) > 80) {
+                nextJoke();
+            }
         },
-        onSwipedRight() {
+        onSwipedRight(eventData) {
             setTimeout(() => setSwipePosition(0), 500);
-            previousJoke();
+            if (Math.abs(eventData.deltaX) > 80) {
+                previousJoke();
+            }
         },
         onSwiping(eventData) {
-            setSwipePosition(eventData.deltaX);
+            if (Math.abs(eventData.deltaX) > 40) {
+                setSwipePosition(eventData.deltaX);
+            }
         }
     });
 
