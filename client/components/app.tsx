@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import { Joke } from '../types';
+import { Joke, SlideDirection } from '../types';
 import { fetchServerJoke, getRandomTheme } from '../utils';
 import { Buttons } from './buttons';
 import { Emojis } from './emojis';
@@ -21,7 +21,7 @@ const initialTheme = getRandomTheme();
 export const App: React.FC<AppProps> = props => {
     const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
     const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
-    const [animationDirection, setAnimationDirection] = useState('slide-left');
+    const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     const [swipePosition, setSwipePosition] = useState(0);
@@ -106,6 +106,7 @@ export const App: React.FC<AppProps> = props => {
                 swipePosition={swipePosition}
             />
             <Buttons
+                animationDirection={animationDirection}
                 browserShare={props.browserShare}
                 isFilterVisible={isFilterVisible}
                 joke={jokes[jokeIndex]}

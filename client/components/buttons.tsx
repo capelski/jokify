@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import { Joke } from '../types';
+import { Joke, SlideDirection } from '../types';
 import { Filter } from './filter';
 
 interface ButtonsProps {
+    animationDirection: SlideDirection;
     browserShare?: (...args: any[]) => void;
     isFilterVisible: boolean;
     joke?: Joke;
@@ -45,7 +46,9 @@ export const Buttons: React.FC<ButtonsProps> = props => {
             <div className="buttons">
                 <button
                     type="button"
-                    className="button previous-button"
+                    className={`button previous-button${
+                        props.animationDirection === 'slide-right' ? ' current' : ''
+                    }`}
                     onClick={props.previousJoke}
                 >
                     <svg
@@ -109,7 +112,13 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     </button>
                 )}
 
-                <button type="button" className="button next-button" onClick={props.nextJoke}>
+                <button
+                    type="button"
+                    className={`button next-button${
+                        props.animationDirection === 'slide-left' ? ' current' : ''
+                    }`}
+                    onClick={props.nextJoke}
+                >
                     <svg
                         version="1.1"
                         x="0px"

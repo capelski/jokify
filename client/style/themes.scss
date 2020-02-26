@@ -1,3 +1,22 @@
+@mixin color-spark($name, $color) {
+    @keyframes #{$name} {
+        0%,
+        75% {
+            background-color: $color;
+            fill: white;
+        }
+        100% {
+            background-color: white;
+            fill: $color;
+        }
+    }
+}
+
+@include color-spark('color-spark-alpha', #477106);
+@include color-spark('color-spark-beta', #fc863b);
+@include color-spark('color-spark-gamma', #4d36fe);
+@include color-spark('color-spark-delta', #ff6767);
+
 .alpha-theme {
     background-color: #4d6cfa;
     background-image: url('/images/alpha-bg.png?$modena=jokify');
@@ -18,6 +37,16 @@
 
     .buttons {
         .button {
+            &.current {
+                animation: color-spark-alpha $colorTransitionDuration;
+
+                svg {
+                    path {
+                        animation: color-spark-alpha $colorTransitionDuration;
+                    }
+                }
+            }
+
             svg {
                 path {
                     fill: #477106;
@@ -63,6 +92,16 @@
 
     .buttons {
         .button {
+            &.current {
+                animation: color-spark-beta $colorTransitionDuration;
+
+                svg {
+                    path {
+                        animation: color-spark-beta $colorTransitionDuration;
+                    }
+                }
+            }
+
             svg {
                 path {
                     fill: #fc863b;
@@ -108,6 +147,16 @@
 
     .buttons {
         .button {
+            &.current {
+                animation: color-spark-gamma $colorTransitionDuration;
+
+                svg {
+                    path {
+                        animation: color-spark-gamma $colorTransitionDuration;
+                    }
+                }
+            }
+
             svg {
                 path {
                     fill: #4d36fe;
@@ -153,6 +202,16 @@
 
     .buttons {
         .button {
+            &.current {
+                animation: color-spark-delta $colorTransitionDuration;
+
+                svg {
+                    path {
+                        animation: color-spark-delta $colorTransitionDuration;
+                    }
+                }
+            }
+
             svg {
                 path {
                     fill: #ff6767;
