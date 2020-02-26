@@ -22,7 +22,7 @@ const updateUrl = (jokeId: number) => {
 const appPlaceholder = document.getElementById('app-placeholder');
 ReactDOM.render(
     <App
-        browserShare={(navigator as any).share}
+        browserShare={(navigator as any).share.bind(navigator)}
         focusViewport={focusViewport}
         initialJokeId={initialJokeId}
         updateUrl={updateUrl}
