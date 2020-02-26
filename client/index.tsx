@@ -19,10 +19,12 @@ const updateUrl = (jokeId: number) => {
     window.history.pushState({}, document.title, `${baseUrl}${jokeId}`);
 };
 
+const share = (navigator as any).share && (navigator as any).share.bind(navigator);
+
 const appPlaceholder = document.getElementById('app-placeholder');
 ReactDOM.render(
     <App
-        browserShare={(navigator as any).share.bind(navigator)}
+        browserShare={share}
         focusViewport={focusViewport}
         initialJokeId={initialJokeId}
         updateUrl={updateUrl}
