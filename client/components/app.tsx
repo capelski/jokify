@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { Joke, SlideDirection } from '../types';
-import { fetchServerJoke, getRandomTheme } from '../utils';
+import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
 import { Buttons } from './buttons';
 import { Emojis } from './emojis';
 import { Jokes } from './jokes';
+import { Loader } from './loader';
 
 export interface AppProps {
     browserShare?: (...args: any[]) => void;
@@ -14,27 +15,24 @@ export interface AppProps {
     initialJoke?: Joke;
 }
 
-// If calling the function directly in the useState, it will be called in every render cycle
-const initialTheme = getRandomTheme();
-
 // tslint:disable-next-line:variable-name
 export const App: React.FC<AppProps> = props => {
+    const [isLoading, setIsLoading] = useState(true);
     const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
     const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
     const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     const [swipePosition, setSwipePosition] = useState(0);
-    const [theme, setTheme] = useState(initialTheme);
+    const [theme, setTheme] = useState('');
 
-    const fetchJoke = (id?: Joke['id']) => {
+    const fetchJoke = (id?: Joke['id']) =>
         fetchServerJoke(id, isFilterVisible ? filter : undefined)
             .then(response => {
                 setJokes([...jokes, response.data]);
                 updateCurrentJoke(jokes.length, response.data.id);
             })
             .catch(() => {});
-    };
 
     const nextJoke = () => {
         setAnimationDirection('slide-left');
@@ -70,7 +68,9 @@ export const App: React.FC<AppProps> = props => {
 
     // To be executed only for the first render of the application
     useEffect(() => {
-        fetchJoke(props.initialJokeId);
+        stallPromise(fetchJoke(props.initialJokeId)).then(() => {
+            setIsLoading(false);
+        });
 
         // Set the focus to the viewport to enable the key events
         props.focusViewport();
@@ -97,7 +97,12 @@ export const App: React.FC<AppProps> = props => {
     });
 
     return (
-        <div {...swipeHandlers} className={`viewport ${theme}`} tabIndex={0} onKeyDown={onKeyDown}>
+        <div
+            {...swipeHandlers}
+            className={`viewport ${theme}${isLoading ? '' : ' finished-loading'}`}
+            tabIndex={0}
+            onKeyDown={onKeyDown}
+        >
             <Jokes
                 animationDirection={animationDirection}
                 currentIndex={jokeIndex}
@@ -116,6 +121,8 @@ export const App: React.FC<AppProps> = props => {
                 setIsFilterVisible={setIsFilterVisible}
             />
             <Emojis />
+
+            <Loader />
 
             {/* Preload the background images so there is no flickering on the first theme load */}
             <div style={{ backgroundImage: 'url("/images/alpha-bg.png?$modena=jokify")' }} />

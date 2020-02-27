@@ -41,13 +41,6 @@ export const Jokes: React.FC<JokesProps> = props => (
                     </div>
                 );
             })}
-            {!props.jokes.length && (
-                <div className="joke loading">
-                    <p className="top-spacer"></p>
-                    <p className="joke-paragraph">Cargando...</p>
-                    <p className="bottom-spacer"></p>
-                </div>
-            )}
         </div>
     </React.Fragment>
 );

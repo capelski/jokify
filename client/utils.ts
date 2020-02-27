@@ -27,3 +27,8 @@ export const getRandomTheme = () => {
 
     return nextTheme;
 };
+
+export const stallPromise = (promise: Promise<any>, minimumTime = 1000) => {
+    const minimumTimePromise = new Promise(resolve => setTimeout(resolve, minimumTime));
+    return Promise.all([promise, minimumTimePromise]).then(results => results[0]);
+};

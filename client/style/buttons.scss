@@ -1,54 +1,74 @@
 @import 'variables';
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: $spacingMobile;
-
-    @media (min-width: $desktopBreakpointStart) {
-        padding: $spacingDesktop;
+@keyframes slide-buttons {
+    from {
+        transform: translateY(200px);
     }
+    to {
+        transform: translateY(0);
+    }
+}
 
-    .button {
-        background-color: white;
-        height: $buttonSizeMobile;
-        width: $buttonSizeMobile;
-        outline: none;
-        border: none;
-        font-size: 24px;
-        margin: 0 8px;
+.viewport {
+    .buttons {
         display: flex;
-        cursor: pointer;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: $spacingMobile;
+        transform: translateY(200px);
 
         @media (min-width: $desktopBreakpointStart) {
-            height: $buttonSizeDesktop;
-            width: $buttonSizeDesktop;
-            transition: outline 0.25s;
+            padding: $spacingDesktop;
         }
 
-        &.previous-button {
-            transform: rotate(6deg);
-        }
+        .button {
+            background-color: white;
+            height: $buttonSizeMobile;
+            width: $buttonSizeMobile;
+            outline: none;
+            border: none;
+            font-size: 24px;
+            margin: 0 8px;
+            display: flex;
+            cursor: pointer;
 
-        &.search-button {
-            transform: rotate(-3deg);
-        }
-
-        &.share-button {
-            transform: rotate(3deg);
-        }
-
-        &.next-button {
-            transform: rotate(-4deg);
-        }
-
-        svg {
-            margin: auto;
-
-            path {
-                transition: fill $colorTransitionDuration linear;
+            @media (min-width: $desktopBreakpointStart) {
+                height: $buttonSizeDesktop;
+                width: $buttonSizeDesktop;
+                transition: outline 0.25s;
             }
+
+            &.previous-button {
+                transform: rotate(6deg);
+            }
+
+            &.search-button {
+                transform: rotate(-3deg);
+            }
+
+            &.share-button {
+                transform: rotate(3deg);
+            }
+
+            &.next-button {
+                transform: rotate(-4deg);
+            }
+
+            svg {
+                margin: auto;
+
+                path {
+                    transition: fill $colorTransitionDuration linear;
+                }
+            }
+        }
+    }
+
+    &.finished-loading {
+        .buttons {
+            animation: slide-buttons 0.5s;
+            animation-fill-mode: forwards;
+            animation-delay: $loaderAnimationDuration + 0.25s;
         }
     }
 }

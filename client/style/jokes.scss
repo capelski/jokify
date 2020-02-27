@@ -42,12 +42,6 @@ $filtersHeightDesktop: $filterHeight + $spacingDesktop + $filterPadding * 2;
         animation-fill-mode: forwards;
         animation-duration: $jokeAnimationDuration;
 
-        &.loading {
-            left: 0;
-            right: 0;
-            opacity: 1;
-        }
-
         &.slide-left {
             left: $jokeOffset;
             right: -$jokeOffset;
