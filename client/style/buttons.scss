@@ -64,7 +64,7 @@
         }
     }
 
-    &.finished-loading {
+    &.has-finished-initial-load {
         .buttons {
             animation: slide-buttons 0.5s;
             animation-fill-mode: forwards;

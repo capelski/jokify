@@ -17,7 +17,7 @@ export interface AppProps {
 
 // tslint:disable-next-line:variable-name
 export const App: React.FC<AppProps> = props => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
     const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
     const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
     const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
@@ -69,7 +69,7 @@ export const App: React.FC<AppProps> = props => {
     // To be executed only for the first render of the application
     useEffect(() => {
         stallPromise(fetchJoke(props.initialJokeId)).then(() => {
-            setIsLoading(false);
+            setHasFinishedInitialLoad(true);
         });
 
         // Set the focus to the viewport to enable the key events
@@ -99,7 +99,9 @@ export const App: React.FC<AppProps> = props => {
     return (
         <div
             {...swipeHandlers}
-            className={`viewport ${theme}${isLoading ? '' : ' finished-loading'}`}
+            className={`viewport ${theme}${
+                hasFinishedInitialLoad ? ' has-finished-initial-load' : ''
+            }`}
             tabIndex={0}
             onKeyDown={onKeyDown}
         >

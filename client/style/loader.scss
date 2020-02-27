@@ -17,10 +17,10 @@
         top: calc(50% - 25px);
     }
     to {
-        width: 2500px;
-        height: 2500px;
-        left: calc(50% - 1250px);
-        top: calc(50% - 1250px);
+        width: 1000px;
+        height: 1000px;
+        left: calc(50% - 500px);
+        top: calc(50% - 500px);
     }
 }
 
@@ -30,8 +30,8 @@
         bottom: 0;
     }
     100% {
-        top: -10000px;
-        bottom: 9000px;
+        top: -3000px;
+        bottom: 2000px;
     }
 }
 
@@ -70,7 +70,7 @@
         }
     }
 
-    &.finished-loading {
+    &.has-finished-initial-load {
         .loader {
             background-color: transparent;
             animation: disappear 0.25;
