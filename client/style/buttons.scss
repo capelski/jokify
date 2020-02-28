@@ -32,6 +32,10 @@
             display: flex;
             cursor: pointer;
 
+            &.hidden-button {
+                display: none;
+            }
+
             @media (min-width: $desktopBreakpointStart) {
                 height: $buttonSizeDesktop;
                 width: $buttonSizeDesktop;
