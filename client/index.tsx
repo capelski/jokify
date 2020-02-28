@@ -21,12 +21,16 @@ const updateUrl = (jokeId: number) => {
 };
 
 const appPlaceholder = document.getElementById('app-placeholder');
-ReactDOM.render(
-    <App
-        focusDOMElement={focusDOMElement}
-        getNavigator={() => navigator as INavigator}
-        initialJokeId={initialJokeId}
-        updateUrl={updateUrl}
-    />,
-    appPlaceholder
-);
+if (appPlaceholder) {
+    // Remove server side HTML to render a clean application
+    appPlaceholder.innerHTML = '';
+    ReactDOM.render(
+        <App
+            focusDOMElement={focusDOMElement}
+            getNavigator={() => navigator as INavigator}
+            initialJokeId={initialJokeId}
+            updateUrl={updateUrl}
+        />,
+        appPlaceholder
+    );
+}
