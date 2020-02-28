@@ -26,11 +26,15 @@ export default () => {
                         return res.sendFile(indexPath);
                     }
 
-                    const appProps: Partial<AppProps> = {
-                        initialJoke: response.data
+                    const appProps: AppProps = {
+                        focusDOMElement: () => {},
+                        initialJoke: response.data,
+                        initialJokeId: undefined,
+                        navigator: {},
+                        updateUrl: () => {}
                     };
                     const serializedApp = ReactDOMServer.renderToString(
-                        React.createElement(App, appProps as AppProps)
+                        React.createElement(App, appProps)
                     );
 
                     return res.send(
