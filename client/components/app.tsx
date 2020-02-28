@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSwipeable } from 'react-swipeable';
 import { Joke, SlideDirection } from '../types';
 import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
 import { Buttons, INavigator } from './buttons';
 import { Emojis } from './emojis';
+import { InteractionsContainer } from './interactions-container';
 import { Jokes } from './jokes';
 import { Loader } from './loader';
 
@@ -61,14 +61,6 @@ export const App: React.FC<AppProps> = props => {
         props.updateUrl(jokeId);
     };
 
-    const onKeyDown = (event: React.KeyboardEvent) => {
-        if (event.keyCode === 37) {
-            previousJoke();
-        } else if (event.keyCode === 39) {
-            nextJoke();
-        }
-    };
-
     // To be executed only for the first render of the application
     useEffect(() => {
         stallPromise(fetchJoke(props.initialJokeId, true))
@@ -81,32 +73,13 @@ export const App: React.FC<AppProps> = props => {
         props.focusDOMElement();
     }, []);
 
-    const swipeHandlers = useSwipeable({
-        onSwipedLeft(eventData) {
-            setTimeout(() => setSwipePosition(0), 500);
-            if (Math.abs(eventData.deltaX) > 80) {
-                nextJoke();
-            }
-        },
-        onSwipedRight(eventData) {
-            setTimeout(() => setSwipePosition(0), 500);
-            if (Math.abs(eventData.deltaX) > 80) {
-                previousJoke();
-            }
-        },
-        onSwiping(eventData) {
-            if (Math.abs(eventData.deltaX) > 40) {
-                setSwipePosition(eventData.deltaX);
-            }
-        }
-    });
-
     return (
-        <div
-            {...swipeHandlers}
-            className={`app ${theme}${hasFinishedInitialLoad ? ' has-finished-initial-load' : ''}`}
-            tabIndex={0}
-            onKeyDown={onKeyDown}
+        <InteractionsContainer
+            hasFinishedInitialLoad={hasFinishedInitialLoad}
+            nextJoke={nextJoke}
+            onSwipe={setSwipePosition}
+            previousJoke={previousJoke}
+            theme={theme}
         >
             <Jokes
                 animationDirection={animationDirection}
@@ -134,6 +107,6 @@ export const App: React.FC<AppProps> = props => {
             <div style={{ backgroundImage: 'url("/images/beta-bg.png?$modena=jokify")' }} />
             <div style={{ backgroundImage: 'url("/images/gamma-bg.png?$modena=jokify")' }} />
             <div style={{ backgroundImage: 'url("/images/delta-bg.png?$modena=jokify")' }} />
-        </div>
+        </InteractionsContainer>
     );
 };
