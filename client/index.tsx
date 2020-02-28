@@ -11,8 +11,8 @@ const baseUrl = window.location.pathname.indexOf('/jokify') > -1 ? '/jokify/' : 
 const pathnameParts = window.location.pathname.split('/');
 const initialJokeId = parseInt(pathnameParts[pathnameParts.length - 1], 10);
 
-const focusViewport = () => {
-    document.querySelector<HTMLDivElement>('.viewport')!.focus();
+const focusDOMElement = () => {
+    document.querySelector<HTMLDivElement>('.app')!.focus();
 };
 
 const updateUrl = (jokeId: number) => {
@@ -25,7 +25,7 @@ const appPlaceholder = document.getElementById('app-placeholder');
 ReactDOM.render(
     <App
         browserShare={share}
-        focusViewport={focusViewport}
+        focusDOMElement={focusDOMElement}
         initialJokeId={initialJokeId}
         updateUrl={updateUrl}
     />,

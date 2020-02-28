@@ -9,7 +9,7 @@ import { Loader } from './loader';
 
 export interface AppProps {
     browserShare?: (...args: any[]) => void;
-    focusViewport: () => void;
+    focusDOMElement: () => void;
     updateUrl: (jokeId: number) => void;
     initialJokeId?: number;
     initialJoke?: Joke;
@@ -77,8 +77,8 @@ export const App: React.FC<AppProps> = props => {
             })
             .catch(() => {});
 
-        // Set the focus to the viewport to enable the key events
-        props.focusViewport();
+        // Set the focus to the app html node to capture the key events
+        props.focusDOMElement();
     }, []);
 
     const swipeHandlers = useSwipeable({
@@ -101,13 +101,10 @@ export const App: React.FC<AppProps> = props => {
         }
     });
 
-    // TODO Rename viewport to app
     return (
         <div
             {...swipeHandlers}
-            className={`viewport ${theme}${
-                hasFinishedInitialLoad ? ' has-finished-initial-load' : ''
-            }`}
+            className={`app ${theme}${hasFinishedInitialLoad ? ' has-finished-initial-load' : ''}`}
             tabIndex={0}
             onKeyDown={onKeyDown}
         >
