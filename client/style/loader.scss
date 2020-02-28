@@ -17,21 +17,21 @@
         top: calc(50% - 25px);
     }
     to {
-        width: 1000px;
-        height: 1000px;
-        left: calc(50% - 500px);
-        top: calc(50% - 500px);
+        width: 2000px;
+        height: 2000px;
+        left: calc(50% - 1000px);
+        top: calc(50% - 1000px);
     }
 }
 
-@keyframes disappear {
+@keyframes push-up {
     0% {
         top: 0;
         bottom: 0;
     }
     100% {
-        top: -3000px;
-        bottom: 2000px;
+        top: -6000px;
+        bottom: 6000px;
     }
 }
 
@@ -65,7 +65,6 @@
                 transform: rotate(9deg);
                 transition: background-color 0.5s;
                 transition-delay: $loaderAnimationDuration;
-                background-color: black;
             }
         }
     }
@@ -73,12 +72,12 @@
     &.has-finished-initial-load {
         .loader {
             background-color: transparent;
-            animation: disappear 0.25;
+            animation: push-up 0.25;
             animation-fill-mode: forwards;
             animation-delay: $loaderAnimationDuration * 2;
 
             .spinner {
-                background-color: transparent;
+                background-color: transparent !important;
                 animation: growth $loaderAnimationDuration;
                 animation-fill-mode: forwards;
                 animation-timing-function: linear;

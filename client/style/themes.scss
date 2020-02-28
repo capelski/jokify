@@ -21,6 +21,14 @@
     background-color: #4d6cfa;
     background-image: url('/images/alpha-bg.png?$modena=jokify');
 
+    .loader {
+        .spinner-wrapper {
+            .spinner {
+                background-color: #4d6cfa;
+            }
+        }
+    }
+
     .jokes {
         .joke {
             .joke-paragraph {
@@ -75,6 +83,14 @@
 .beta-theme {
     background-color: #d8305a;
     background-image: url('/images/beta-bg.png?$modena=jokify');
+
+    .loader {
+        .spinner-wrapper {
+            .spinner {
+                background-color: #d8305a;
+            }
+        }
+    }
 
     .jokes {
         .joke {
@@ -131,6 +147,14 @@
     background-color: #a094ff;
     background-image: url('/images/gamma-bg.png?$modena=jokify');
 
+    .loader {
+        .spinner-wrapper {
+            .spinner {
+                background-color: #a094ff;
+            }
+        }
+    }
+
     .jokes {
         .joke {
             .joke-paragraph {
@@ -185,6 +209,14 @@
 .delta-theme {
     background-color: #94dfff;
     background-image: url('/images/delta-bg.png?$modena=jokify');
+
+    .loader {
+        .spinner-wrapper {
+            .spinner {
+                background-color: #94dfff;
+            }
+        }
+    }
 
     .jokes {
         .joke {

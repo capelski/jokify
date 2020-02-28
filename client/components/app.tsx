@@ -15,6 +15,9 @@ export interface AppProps {
     initialJoke?: Joke;
 }
 
+// Calling the function inside useState, will cause it to be called in every render cycle
+const initialTheme = getRandomTheme();
+
 // tslint:disable-next-line:variable-name
 export const App: React.FC<AppProps> = props => {
     const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
@@ -24,15 +27,13 @@ export const App: React.FC<AppProps> = props => {
     const [filter, setFilter] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     const [swipePosition, setSwipePosition] = useState(0);
-    const [theme, setTheme] = useState('');
+    const [theme, setTheme] = useState(initialTheme);
 
-    const fetchJoke = (id?: Joke['id']) =>
-        fetchServerJoke(id, isFilterVisible ? filter : undefined)
-            .then(response => {
-                setJokes([...jokes, response.data]);
-                updateCurrentJoke(jokes.length, response.data.id);
-            })
-            .catch(() => {});
+    const fetchJoke = (id?: Joke['id'], skipThemeChange = false) =>
+        fetchServerJoke(id, isFilterVisible ? filter : undefined).then(response => {
+            setJokes([...jokes, response.data]);
+            updateCurrentJoke(jokes.length, response.data.id, skipThemeChange);
+        });
 
     const nextJoke = () => {
         setAnimationDirection('slide-left');
@@ -41,7 +42,7 @@ export const App: React.FC<AppProps> = props => {
             const nextIndex = jokeIndex + 1;
             updateCurrentJoke(nextIndex, jokes[nextIndex].id);
         } else {
-            fetchJoke();
+            fetchJoke().catch(() => {});
         }
     };
 
@@ -52,9 +53,11 @@ export const App: React.FC<AppProps> = props => {
         updateCurrentJoke(nextIndex, jokes[nextIndex].id);
     };
 
-    const updateCurrentJoke = (nextIndex: number, jokeId: number) => {
+    const updateCurrentJoke = (nextIndex: number, jokeId: number, skipThemeChange = false) => {
         setJokeIndex(nextIndex);
-        setTheme(getRandomTheme());
+        if (!skipThemeChange) {
+            setTheme(getRandomTheme());
+        }
         props.updateUrl(jokeId);
     };
 
@@ -68,9 +71,11 @@ export const App: React.FC<AppProps> = props => {
 
     // To be executed only for the first render of the application
     useEffect(() => {
-        stallPromise(fetchJoke(props.initialJokeId)).then(() => {
-            setHasFinishedInitialLoad(true);
-        });
+        stallPromise(fetchJoke(props.initialJokeId, true))
+            .then(() => {
+                setHasFinishedInitialLoad(true);
+            })
+            .catch(() => {});
 
         // Set the focus to the viewport to enable the key events
         props.focusViewport();
@@ -96,6 +101,7 @@ export const App: React.FC<AppProps> = props => {
         }
     });
 
+    // TODO Rename viewport to app
     return (
         <div
             {...swipeHandlers}
