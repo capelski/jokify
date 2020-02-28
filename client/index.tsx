@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './components/app';
 
+import { INavigator } from './components/buttons';
 import './style/main.scss';
 
 // For the application to work on both http://localhost/ and http://domain/jokify/
@@ -19,14 +20,12 @@ const updateUrl = (jokeId: number) => {
     window.history.pushState({}, document.title, `${baseUrl}${jokeId}`);
 };
 
-const share = (navigator as any).share && (navigator as any).share.bind(navigator);
-
 const appPlaceholder = document.getElementById('app-placeholder');
 ReactDOM.render(
     <App
-        browserShare={share}
         focusDOMElement={focusDOMElement}
         initialJokeId={initialJokeId}
+        navigator={navigator as INavigator}
         updateUrl={updateUrl}
     />,
     appPlaceholder

@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { Joke, SlideDirection } from '../types';
 import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
-import { Buttons } from './buttons';
+import { Buttons, INavigator } from './buttons';
 import { Emojis } from './emojis';
 import { Jokes } from './jokes';
 import { Loader } from './loader';
 
 export interface AppProps {
-    browserShare?: (...args: any[]) => void;
     focusDOMElement: () => void;
-    updateUrl: (jokeId: number) => void;
-    initialJokeId?: number;
     initialJoke?: Joke;
+    initialJokeId?: number;
+    navigator: INavigator;
+    updateUrl: (jokeId: number) => void;
 }
 
 // Calling the function inside useState, will cause it to be called in every render cycle
@@ -117,9 +117,9 @@ export const App: React.FC<AppProps> = props => {
             />
             <Buttons
                 animationDirection={animationDirection}
-                browserShare={props.browserShare}
                 isFilterVisible={isFilterVisible}
                 joke={jokes[jokeIndex]}
+                navigator={props.navigator}
                 nextJoke={nextJoke}
                 onFilterChange={setFilter}
                 previousJoke={previousJoke}

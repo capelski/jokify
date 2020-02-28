@@ -2,11 +2,15 @@ import React, { useRef } from 'react';
 import { Joke, SlideDirection } from '../types';
 import { Filter } from './filter';
 
+export interface INavigator {
+    share?: (...args: any[]) => void;
+}
+
 interface ButtonsProps {
     animationDirection: SlideDirection;
-    browserShare?: (...args: any[]) => void;
     isFilterVisible: boolean;
     joke?: Joke;
+    navigator: INavigator;
     nextJoke: () => void;
     onFilterChange: (filter: string) => void;
     previousJoke: () => void;
@@ -29,8 +33,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
     };
 
     const shareClickHandler = () => {
-        if (props.browserShare) {
-            props.browserShare({
+        if (props.navigator.share) {
+            props.navigator.share({
                 text: props.joke?.text
                     .join(' / ')
                     .substring(0, 50)
@@ -88,7 +92,9 @@ export const Buttons: React.FC<ButtonsProps> = props => {
 
                 <button
                     type="button"
-                    className={`button share-button${props.browserShare ? '' : ' hidden-button'}`}
+                    className={`button share-button${
+                        props.navigator.share ? '' : ' hidden-button'
+                    }`}
                     onClick={shareClickHandler}
                 >
                     <svg
