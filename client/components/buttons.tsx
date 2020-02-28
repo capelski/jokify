@@ -8,9 +8,9 @@ export interface INavigator {
 
 interface ButtonsProps {
     animationDirection: SlideDirection;
+    getNavigator: () => INavigator;
     isFilterVisible: boolean;
     joke?: Joke;
-    navigator: INavigator;
     nextJoke: () => void;
     onFilterChange: (filter: string) => void;
     previousJoke: () => void;
@@ -20,6 +20,7 @@ interface ButtonsProps {
 // tslint:disable-next-line:variable-name
 export const Buttons: React.FC<ButtonsProps> = props => {
     const inputReference = useRef<HTMLInputElement>(null);
+    const navigatorInstance = props.getNavigator();
 
     const searchClickHandler = () => {
         props.setIsFilterVisible(!props.isFilterVisible);
@@ -33,8 +34,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
     };
 
     const shareClickHandler = () => {
-        if (props.navigator.share) {
-            props.navigator.share({
+        if (navigatorInstance.share) {
+            navigatorInstance.share({
                 text: props.joke?.text
                     .join(' / ')
                     .substring(0, 50)
@@ -93,7 +94,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                 <button
                     type="button"
                     className={`button share-button${
-                        props.navigator.share ? '' : ' hidden-button'
+                        navigatorInstance.share ? '' : ' hidden-button'
                     }`}
                     onClick={shareClickHandler}
                 >

@@ -28,9 +28,9 @@ export default () => {
 
                     const appProps: AppProps = {
                         focusDOMElement: () => {},
+                        getNavigator: () => ({}),
                         initialJoke: response.data,
                         initialJokeId: undefined,
-                        navigator: {},
                         updateUrl: () => {}
                     };
                     const serializedApp = ReactDOMServer.renderToString(

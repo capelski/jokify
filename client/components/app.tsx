@@ -9,9 +9,9 @@ import { Loader } from './loader';
 
 export interface AppProps {
     focusDOMElement: () => void;
+    getNavigator: () => INavigator;
     initialJoke?: Joke;
     initialJokeId?: number;
-    navigator: INavigator;
     updateUrl: (jokeId: number) => void;
 }
 
@@ -119,7 +119,7 @@ export const App: React.FC<AppProps> = props => {
                 animationDirection={animationDirection}
                 isFilterVisible={isFilterVisible}
                 joke={jokes[jokeIndex]}
-                navigator={props.navigator}
+                getNavigator={props.getNavigator}
                 nextJoke={nextJoke}
                 onFilterChange={setFilter}
                 previousJoke={previousJoke}

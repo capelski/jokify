@@ -24,8 +24,8 @@ const appPlaceholder = document.getElementById('app-placeholder');
 ReactDOM.render(
     <App
         focusDOMElement={focusDOMElement}
+        getNavigator={() => navigator as INavigator}
         initialJokeId={initialJokeId}
-        navigator={navigator as INavigator}
         updateUrl={updateUrl}
     />,
     appPlaceholder
