@@ -9,6 +9,7 @@ export interface INavigator {
 interface ButtonsProps {
     animationDirection: SlideDirection;
     isFilterVisible: boolean;
+    isFirstJoke: boolean;
     joke?: Joke;
     navigator: INavigator;
     nextJoke: () => void;
@@ -45,6 +46,12 @@ export const Buttons: React.FC<ButtonsProps> = props => {
         }
     };
 
+    const previousClickHandler = () => {
+        if (!props.isFirstJoke) {
+            props.previousJoke();
+        }
+    };
+
     return (
         <React.Fragment>
             <div className="buttons">
@@ -52,8 +59,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     type="button"
                     className={`button previous-button${
                         props.animationDirection === 'slide-right' ? ' current' : ''
-                    }`}
-                    onClick={props.previousJoke}
+                    }${props.isFirstJoke ? ' disabled-button' : ''}`}
+                    onClick={previousClickHandler}
                 >
                     <svg
                         version="1.1"

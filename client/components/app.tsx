@@ -91,6 +91,7 @@ export const App: React.FC<AppProps> = props => {
             <Buttons
                 animationDirection={animationDirection}
                 isFilterVisible={isFilterVisible}
+                isFirstJoke={jokeIndex < 1}
                 joke={jokes[jokeIndex]}
                 navigator={props.navigator}
                 nextJoke={nextJoke}

@@ -62,13 +62,13 @@
             }
 
             @media (min-width: $desktopBreakpointStart) {
-                &:hover {
+                &:not(.disabled-button):hover {
                     outline: 4px solid #477106;
                 }
             }
 
             &.search-button.filter-visible,
-            &:active {
+            &:not(.disabled-button):active {
                 background-color: #477106;
                 svg {
                     path {
@@ -125,13 +125,13 @@
             }
 
             @media (min-width: $desktopBreakpointStart) {
-                &:hover {
+                &:not(.disabled-button):hover {
                     outline: 4px solid #fc863b;
                 }
             }
 
             &.search-button.filter-visible,
-            &:active {
+            &:not(.disabled-button):active {
                 background-color: #fc863b;
                 svg {
                     path {
@@ -188,13 +188,13 @@
             }
 
             @media (min-width: $desktopBreakpointStart) {
-                &:hover {
+                &:not(.disabled-button):hover {
                     outline: 4px solid #4d36fe;
                 }
             }
 
             &.search-button.filter-visible,
-            &:active {
+            &:not(.disabled-button):active {
                 background-color: #4d36fe;
                 svg {
                     path {
@@ -251,13 +251,13 @@
             }
 
             @media (min-width: $desktopBreakpointStart) {
-                &:hover {
+                &:not(.disabled-button):hover {
                     outline: 4px solid #ff6767;
                 }
             }
 
             &.search-button.filter-visible,
-            &:active {
+            &:not(.disabled-button):active {
                 background-color: #ff6767;
                 svg {
                     path {

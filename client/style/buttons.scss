@@ -32,14 +32,23 @@
             display: flex;
             cursor: pointer;
 
+            @media (min-width: $desktopBreakpointStart) {
+                height: $buttonSizeDesktop;
+                width: $buttonSizeDesktop;
+            }
+
             &.hidden-button {
                 display: none;
             }
 
-            @media (min-width: $desktopBreakpointStart) {
-                height: $buttonSizeDesktop;
-                width: $buttonSizeDesktop;
-                transition: outline 0.25s;
+            &.disabled-button {
+                opacity: 0.5;
+
+                svg {
+                    path {
+                        transition: none;
+                    }
+                }
             }
 
             &.previous-button {
