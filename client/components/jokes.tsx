@@ -3,8 +3,8 @@ import { Joke } from '../types';
 
 interface JokesProps {
     animationDirection: string;
+    areOptionsVisible: boolean;
     currentIndex: number;
-    isFilterVisible: boolean;
     jokes: Joke[];
     swipePosition: number;
 }
@@ -13,7 +13,7 @@ interface JokesProps {
 export const Jokes: React.FC<JokesProps> = props => (
     <React.Fragment>
         <div
-            className={`jokes${props.isFilterVisible ? ' filter-visible' : ''}`}
+            className={`jokes${props.areOptionsVisible ? ' options-visible' : ''}`}
             style={{
                 transform: `translateX(${-props.swipePosition}px)`
             }}

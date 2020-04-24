@@ -43,37 +43,40 @@
         }
     }
 
-    .buttons {
-        .button {
-            &.current {
-                animation: color-spark-alpha $colorTransitionDuration;
-
-                svg {
-                    path {
-                        animation: color-spark-alpha $colorTransitionDuration;
-                    }
-                }
-            }
+    .button {
+        &.current {
+            animation: color-spark-alpha $colorTransitionDuration;
 
             svg {
-                path {
-                    fill: #477106;
+                path,
+                polygon {
+                    animation: color-spark-alpha $colorTransitionDuration;
                 }
             }
+        }
 
-            @media (min-width: $desktopBreakpointStart) {
-                &:not(.disabled-button):hover {
-                    outline: 4px solid #477106;
-                }
+        svg {
+            path,
+            polygon {
+                fill: #477106;
             }
+        }
 
-            &.search-button.filter-visible,
-            &:not(.disabled-button):active {
-                background-color: #477106;
-                svg {
-                    path {
-                        fill: white;
-                    }
+        @media (min-width: $desktopBreakpointStart) {
+            &:not(.disabled-button):hover {
+                outline: 4px solid #477106;
+            }
+        }
+
+        &.options-button.options-visible,
+        &:not(.disabled-button):active,
+        &.random-button.selected,
+        &.chronological-button.selected {
+            background-color: #477106;
+            svg {
+                path,
+                polygon {
+                    fill: white;
                 }
             }
         }
@@ -106,37 +109,40 @@
         }
     }
 
-    .buttons {
-        .button {
-            &.current {
-                animation: color-spark-beta $colorTransitionDuration;
-
-                svg {
-                    path {
-                        animation: color-spark-beta $colorTransitionDuration;
-                    }
-                }
-            }
+    .button {
+        &.current {
+            animation: color-spark-beta $colorTransitionDuration;
 
             svg {
-                path {
-                    fill: #fc863b;
+                path,
+                polygon {
+                    animation: color-spark-beta $colorTransitionDuration;
                 }
             }
+        }
 
-            @media (min-width: $desktopBreakpointStart) {
-                &:not(.disabled-button):hover {
-                    outline: 4px solid #fc863b;
-                }
+        svg {
+            path,
+            polygon {
+                fill: #fc863b;
             }
+        }
 
-            &.search-button.filter-visible,
-            &:not(.disabled-button):active {
-                background-color: #fc863b;
-                svg {
-                    path {
-                        fill: white;
-                    }
+        @media (min-width: $desktopBreakpointStart) {
+            &:not(.disabled-button):hover {
+                outline: 4px solid #fc863b;
+            }
+        }
+
+        &.options-button.options-visible,
+        &:not(.disabled-button):active,
+        &.random-button.selected,
+        &.chronological-button.selected {
+            background-color: #fc863b;
+            svg {
+                path,
+                polygon {
+                    fill: white;
                 }
             }
         }
@@ -169,37 +175,40 @@
         }
     }
 
-    .buttons {
-        .button {
-            &.current {
-                animation: color-spark-gamma $colorTransitionDuration;
-
-                svg {
-                    path {
-                        animation: color-spark-gamma $colorTransitionDuration;
-                    }
-                }
-            }
+    .button {
+        &.current {
+            animation: color-spark-gamma $colorTransitionDuration;
 
             svg {
-                path {
-                    fill: #4d36fe;
+                path,
+                polygon {
+                    animation: color-spark-gamma $colorTransitionDuration;
                 }
             }
+        }
 
-            @media (min-width: $desktopBreakpointStart) {
-                &:not(.disabled-button):hover {
-                    outline: 4px solid #4d36fe;
-                }
+        svg {
+            path,
+            polygon {
+                fill: #4d36fe;
             }
+        }
 
-            &.search-button.filter-visible,
-            &:not(.disabled-button):active {
-                background-color: #4d36fe;
-                svg {
-                    path {
-                        fill: white;
-                    }
+        @media (min-width: $desktopBreakpointStart) {
+            &:not(.disabled-button):hover {
+                outline: 4px solid #4d36fe;
+            }
+        }
+
+        &.options-button.options-visible,
+        &:not(.disabled-button):active,
+        &.random-button.selected,
+        &.chronological-button.selected {
+            background-color: #4d36fe;
+            svg {
+                path,
+                polygon {
+                    fill: white;
                 }
             }
         }
@@ -232,37 +241,40 @@
         }
     }
 
-    .buttons {
-        .button {
-            &.current {
-                animation: color-spark-delta $colorTransitionDuration;
-
-                svg {
-                    path {
-                        animation: color-spark-delta $colorTransitionDuration;
-                    }
-                }
-            }
+    .button {
+        &.current {
+            animation: color-spark-delta $colorTransitionDuration;
 
             svg {
-                path {
-                    fill: #ff6767;
+                path,
+                polygon {
+                    animation: color-spark-delta $colorTransitionDuration;
                 }
             }
+        }
 
-            @media (min-width: $desktopBreakpointStart) {
-                &:not(.disabled-button):hover {
-                    outline: 4px solid #ff6767;
-                }
+        svg {
+            path,
+            polygon {
+                fill: #ff6767;
             }
+        }
 
-            &.search-button.filter-visible,
-            &:not(.disabled-button):active {
-                background-color: #ff6767;
-                svg {
-                    path {
-                        fill: white;
-                    }
+        @media (min-width: $desktopBreakpointStart) {
+            &:not(.disabled-button):hover {
+                outline: 4px solid #ff6767;
+            }
+        }
+
+        &.options-button.options-visible,
+        &:not(.disabled-button):active,
+        &.random-button.selected,
+        &.chronological-button.selected {
+            background-color: #ff6767;
+            svg {
+                path,
+                polygon {
+                    fill: white;
                 }
             }
         }

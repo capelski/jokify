@@ -20,59 +20,79 @@
         @media (min-width: $desktopBreakpointStart) {
             padding: $spacingDesktop;
         }
+    }
 
-        .button {
-            background-color: white;
-            height: $buttonSizeMobile;
-            width: $buttonSizeMobile;
-            outline: none;
-            border: none;
-            font-size: 24px;
-            margin: 0 8px;
-            display: flex;
-            cursor: pointer;
+    .button {
+        background-color: white;
+        height: $buttonSizeMobile;
+        width: $buttonSizeMobile;
+        outline: none;
+        border: none;
+        font-size: 24px;
+        margin: 0 8px;
+        display: flex;
+        cursor: pointer;
 
-            @media (min-width: $desktopBreakpointStart) {
-                height: $buttonSizeDesktop;
-                width: $buttonSizeDesktop;
-            }
+        @media (min-width: $desktopBreakpointStart) {
+            height: $buttonSizeDesktop;
+            width: $buttonSizeDesktop;
+        }
 
-            &.hidden-button {
-                display: none;
-            }
+        &.hidden-button {
+            display: none;
+        }
 
-            &.disabled-button {
-                opacity: 0.5;
-
-                svg {
-                    path {
-                        transition: none;
-                    }
-                }
-            }
-
-            &.previous-button {
-                transform: rotate(6deg);
-            }
-
-            &.search-button {
-                transform: rotate(-3deg);
-            }
-
-            &.share-button {
-                transform: rotate(3deg);
-            }
-
-            &.next-button {
-                transform: rotate(-4deg);
-            }
+        &.disabled-button {
+            opacity: 0.5;
 
             svg {
-                margin: auto;
-
                 path {
-                    transition: fill $colorTransitionDuration linear;
+                    transition: none;
                 }
+            }
+        }
+
+        &.previous-button {
+            transform: rotate(6deg);
+        }
+
+        &.options-button {
+            transform: rotate(-3deg);
+        }
+
+        &.share-button {
+            transform: rotate(3deg);
+        }
+
+        &.next-button {
+            transform: rotate(-4deg);
+        }
+
+        &.random-button {
+            transform: rotate(-3deg);
+        }
+
+        &.chronological-button {
+            transform: rotate(3deg);
+        }
+
+        &.oldest-button {
+            transform: rotate(3deg);
+
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+
+        &.newest-button {
+            transform: rotate(-3deg);
+        }
+
+        svg {
+            margin: auto;
+
+            path {
+                transition: fill $colorTransitionDuration linear;
             }
         }
     }

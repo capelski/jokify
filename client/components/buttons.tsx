@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { Joke, SlideDirection } from '../types';
-import { Filter } from './filter';
+import React from 'react';
+import { Joke, SlideDirection, DisplayMode } from '../types';
+import { Options } from './options';
 
 export interface INavigator {
     share?: (...args: any[]) => void;
@@ -8,28 +8,27 @@ export interface INavigator {
 
 interface ButtonsProps {
     animationDirection: SlideDirection;
-    isFilterVisible: boolean;
+    areOptionsVisible: boolean;
+    displayMode: DisplayMode;
     isFirstJoke: boolean;
     joke?: Joke;
     navigator: INavigator;
     nextJoke: () => void;
     onFilterChange: (filter: string) => void;
     previousJoke: () => void;
-    setIsFilterVisible: (isFilterVisible: boolean) => void;
+    setAreOptionsVisible: (areOptionsVisible: boolean) => void;
+    setDisplayMode: (displayMode: DisplayMode) => void;
 }
 
 // tslint:disable-next-line:variable-name
 export const Buttons: React.FC<ButtonsProps> = props => {
-    const inputReference = useRef<HTMLInputElement>(null);
+    const optionsClickHandler = () => {
+        props.setAreOptionsVisible(!props.areOptionsVisible);
+    };
 
-    const searchClickHandler = () => {
-        props.setIsFilterVisible(!props.isFilterVisible);
-        if (!props.isFilterVisible) {
-            // The timeout is needed so the css transition has finished
-            setTimeout(() => {
-                // necessary casting for the server side
-                (inputReference.current as { focus: () => void }).focus();
-            }, 500);
+    const previousClickHandler = () => {
+        if (!props.isFirstJoke) {
+            props.previousJoke();
         }
     };
 
@@ -43,12 +42,6 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                 title: 'Jokify',
                 url: `https://carlescapellas.xyz/jokify/${props.joke?.id}`
             });
-        }
-    };
-
-    const previousClickHandler = () => {
-        if (!props.isFirstJoke) {
-            props.previousJoke();
         }
     };
 
@@ -82,18 +75,18 @@ export const Buttons: React.FC<ButtonsProps> = props => {
 
                 <button
                     type="button"
-                    className={`button search-button${
-                        props.isFilterVisible ? ' filter-visible' : ''
+                    className={`button options-button${
+                        props.areOptionsVisible ? ' options-visible' : ''
                     }`}
-                    onClick={searchClickHandler}
+                    onClick={optionsClickHandler}
                 >
                     <svg
-                        enableBackground="new 0 0 515.558 515.558"
-                        viewBox="0 0 515.558 515.558"
+                        enableBackground="new 0 0 15 15"
+                        viewBox="0 0 15 15"
                         height="32px"
                         width="32px"
                     >
-                        <path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z" />
+                        <path d="m14,9.3l0,-2.57l-1.575,-0.264c-0.117,-0.44 -0.292,-0.848 -0.496,-1.2l0.93,-1.285l-1.81,-1.84l-1.31,0.908c-0.38,-0.205 -0.79,-0.38 -1.196,-0.497l-0.259,-1.552l-2.568,0l-0.263,1.578c-0.437,0.117 -0.816,0.293 -1.196,0.497l-1.282,-0.905l-1.838,1.81l0.934,1.287c-0.2,0.38 -0.376,0.79 -0.493,1.228l-1.578,0.235l0,2.57l1.575,0.264c0.117,0.438 0.292,0.818 0.496,1.198l-0.93,1.315l1.809,1.813l1.312,-0.938c0.38,0.205 0.787,0.38 1.224,0.497l0.26,1.551l2.566,0l0.263,-1.578c0.408,-0.117 0.817,-0.293 1.196,-0.497l1.315,0.935l1.81,-1.812l-0.935,-1.315c0.203,-0.38 0.38,-0.76 0.495,-1.2l1.544,-0.23l0,-0.003zm-7,1.407c-1.488,0 -2.683,-1.2 -2.683,-2.69s1.225,-2.69 2.683,-2.69c1.458,0 2.683,1.198 2.683,2.69c0,1.49 -1.195,2.688 -2.683,2.688l0,0.002z" />
                     </svg>
                 </button>
 
@@ -148,7 +141,11 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     </svg>
                 </button>
             </div>
-            <Filter inputReference={inputReference} onFilterChange={props.onFilterChange} />
+            <Options
+                displayMode={props.displayMode}
+                onFilterChange={props.onFilterChange}
+                setDisplayMode={props.setDisplayMode}
+            />
         </React.Fragment>
     );
 };

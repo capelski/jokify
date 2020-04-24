@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Joke, SlideDirection } from '../types';
+import { Joke, SlideDirection, DisplayMode } from '../types';
 import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
 import { Buttons, INavigator } from './buttons';
 import { Emojis } from './emojis';
@@ -20,17 +20,18 @@ const initialTheme = getRandomTheme();
 
 // tslint:disable-next-line:variable-name
 export const App: React.FC<AppProps> = props => {
-    const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
-    const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
-    const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
     const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
+    const [areOptionsVisible, setAreOptionsVisible] = useState(false);
+    const [displayMode, setDisplayMode] = useState<DisplayMode>('random');
     const [filter, setFilter] = useState('');
-    const [isFilterVisible, setIsFilterVisible] = useState(false);
+    const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
+    const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
+    const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
     const [swipePosition, setSwipePosition] = useState(0);
     const [theme, setTheme] = useState(initialTheme);
 
     const fetchJoke = (id?: Joke['id'], skipThemeChange = false) =>
-        fetchServerJoke(id, isFilterVisible ? filter : undefined).then(response => {
+        fetchServerJoke(id, areOptionsVisible && filter ? filter : undefined).then(response => {
             setJokes([...jokes, response.data]);
             updateCurrentJoke(jokes.length, response.data.id, skipThemeChange);
         });
@@ -84,20 +85,22 @@ export const App: React.FC<AppProps> = props => {
             <Jokes
                 animationDirection={animationDirection}
                 currentIndex={jokeIndex}
-                isFilterVisible={isFilterVisible}
+                areOptionsVisible={areOptionsVisible}
                 jokes={jokes}
                 swipePosition={swipePosition}
             />
             <Buttons
                 animationDirection={animationDirection}
-                isFilterVisible={isFilterVisible}
+                areOptionsVisible={areOptionsVisible}
+                displayMode={displayMode}
                 isFirstJoke={jokeIndex < 1}
                 joke={jokes[jokeIndex]}
                 navigator={props.navigator}
                 nextJoke={nextJoke}
                 onFilterChange={setFilter}
                 previousJoke={previousJoke}
-                setIsFilterVisible={setIsFilterVisible}
+                setAreOptionsVisible={setAreOptionsVisible}
+                setDisplayMode={setDisplayMode}
             />
             <Emojis />
 

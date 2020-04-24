@@ -3,8 +3,10 @@
 $buttonsHeightMobile: $buttonSizeMobile + $spacingMobile * 2 + $spacingMobile;
 $buttonsHeightDesktop: $buttonSizeDesktop + $spacingDesktop * 2 + $spacingDesktop;
 
-$filtersHeightMobile: $filterHeight + $spacingMobile + $filterPadding * 2;
-$filtersHeightDesktop: $filterHeight + $spacingDesktop + $filterPadding * 2;
+$optionsHeightMobile: ($buttonSizeMobile + $optionsPadding * 2) +
+    ($optionsFilterHeight + $optionsPadding * 2) + $spacingMobile;
+$optionsHeightDesktop: ($buttonSizeDesktop + $optionsPadding * 2) +
+    ($optionsFilterHeight + $optionsPadding * 2) + $spacingDesktop;
 
 .jokes {
     position: relative;
@@ -14,16 +16,16 @@ $filtersHeightDesktop: $filterHeight + $spacingDesktop + $filterPadding * 2;
     height: calc(100% - #{$buttonsHeightMobile});
     margin-top: $spacingMobile;
 
-    &.filter-visible {
-        height: calc(100% - #{$buttonsHeightMobile + $filtersHeightMobile});
+    &.options-visible {
+        height: calc(100% - #{$buttonsHeightMobile + $optionsHeightMobile});
     }
 
     @media (min-width: $desktopBreakpointStart) {
         height: calc(100% - #{$buttonsHeightDesktop});
         margin-top: $spacingDesktop;
 
-        &.filter-visible {
-            height: calc(100% - #{$buttonsHeightDesktop + $filtersHeightDesktop});
+        &.options-visible {
+            height: calc(100% - #{$buttonsHeightDesktop + $optionsHeightDesktop});
         }
     }
 

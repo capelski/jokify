@@ -1,0 +1,49 @@
+@import 'variables';
+
+.options {
+    padding-bottom: $spacingMobile;
+
+    @media (min-width: $desktopBreakpointStart) {
+        padding-bottom: $spacingDesktop;
+    }
+
+    .order,
+    .filter {
+        display: flex;
+        justify-content: center;
+    }
+
+    .order {
+        padding: $optionsPadding;
+    }
+
+    .filter {
+        position: relative;
+        width: 300px;
+        max-width: 90vw;
+        margin: auto;
+
+        input {
+            border: 2px solid #cdcdcd;
+            border-bottom: 1px solid #9e9e9e;
+            outline: none;
+            font-size: 20px;
+            height: $optionsFilterHeight;
+            padding: $optionsPadding;
+
+            @media (min-width: $desktopBreakpointStart) {
+                font-size: 24px;
+            }
+        }
+
+        .icon {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+
+            @media (min-width: $desktopBreakpointStart) {
+                right: 5px;
+            }
+        }
+    }
+}
