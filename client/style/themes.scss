@@ -81,6 +81,12 @@
             }
         }
     }
+
+    .search-icon {
+        svg {
+            fill: #477106;
+        }
+    }
 }
 
 .beta-theme {
@@ -145,6 +151,12 @@
                     fill: white;
                 }
             }
+        }
+    }
+
+    .search-icon {
+        svg {
+            fill: #fc863b;
         }
     }
 }
@@ -213,6 +225,12 @@
             }
         }
     }
+
+    .search-icon {
+        svg {
+            fill: #4d36fe;
+        }
+    }
 }
 
 .delta-theme {
@@ -277,6 +295,12 @@
                     fill: white;
                 }
             }
+        }
+    }
+
+    .search-icon {
+        svg {
+            fill: #ff6767;
         }
     }
 }

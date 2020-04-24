@@ -107,7 +107,7 @@ export const Options: React.FC<OptionsProps> = props => {
             </div>
             <div className="filter">
                 <input type="text" value={filter} onChange={filterChangeHandler} />
-                <span className="icon">
+                <span className="search-icon">
                     <svg
                         enableBackground="new 0 0 515.558 515.558"
                         viewBox="0 0 515.558 515.558"
