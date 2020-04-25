@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const fetchServerJoke = (id?: number, filter?: string) => {
+export const fetchServerJoke = (id?: number, text?: string) => {
     const url = id
         ? `/joke/${id}?$modena=jokify-api`
-        : filter
-        ? `/joke?filter=${filter}&$modena=jokify-api`
+        : text
+        ? `/joke/filter?text=${text}&$modena=jokify-api`
         : `/joke/random?$modena=jokify-api`;
 
     return axios.get(url);

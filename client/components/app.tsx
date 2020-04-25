@@ -32,8 +32,10 @@ export const App: React.FC<AppProps> = props => {
 
     const fetchJoke = (id?: Joke['id'], skipThemeChange = false) =>
         fetchServerJoke(id, areOptionsVisible && filter ? filter : undefined).then(response => {
-            setJokes([...jokes, response.data]);
-            updateCurrentJoke(jokes.length, response.data.id, skipThemeChange);
+            if (!jokes.some(joke => joke.id === response.data.id)) {
+                setJokes([...jokes, response.data]);
+                updateCurrentJoke(jokes.length, response.data.id, skipThemeChange);
+            }
         });
 
     const nextJoke = () => {
