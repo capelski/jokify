@@ -1,11 +1,26 @@
 import axios from 'axios';
+import { RequestData, RequestType } from './types';
 
-export const fetchServerJoke = (id?: number, text?: string) => {
-    const url = id
-        ? `/joke/${id}?$modena=jokify-api`
-        : text
-        ? `/joke/filter?text=${text}&$modena=jokify-api`
-        : `/joke/random?$modena=jokify-api`;
+export const fetchServerJoke = (requestData: RequestData) => {
+    let url;
+    switch (requestData.type) {
+        case RequestType.id:
+            url = `/joke/${requestData.id}?$modena=jokify-api`;
+            break;
+        case RequestType.oldest:
+            url = '/joke/oldest?$modena=jokify-api';
+            break;
+        case RequestType.newest:
+            url = '/joke/newest?$modena=jokify-api';
+            break;
+        case RequestType.filter:
+            url = `/joke/filter?$modena=jokify-api&text=${requestData.text}`;
+            break;
+        default:
+        case RequestType.random:
+            url = '/joke/random?$modena=jokify-api';
+            break;
+    }
 
     return axios.get(url);
 };

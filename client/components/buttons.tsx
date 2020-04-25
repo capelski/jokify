@@ -9,7 +9,8 @@ export interface INavigator {
 interface ButtonsProps {
     animationDirection: SlideDirection;
     areOptionsVisible: boolean;
-    isFirstJoke: boolean;
+    getNewestJoke: () => void;
+    getOldestJoke: () => void;
     isRandomModeEnabled: boolean;
     joke?: Joke;
     navigator: INavigator;
@@ -27,9 +28,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
     };
 
     const previousClickHandler = () => {
-        if (!props.isFirstJoke) {
-            props.previousJoke();
-        }
+        props.previousJoke();
     };
 
     const shareClickHandler = () => {
@@ -52,7 +51,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     type="button"
                     className={`button previous-button${
                         props.animationDirection === 'slide-right' ? ' current' : ''
-                    }${props.isFirstJoke ? ' disabled-button' : ''}`}
+                    }`}
                     onClick={previousClickHandler}
                 >
                     <svg
@@ -147,6 +146,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                 </button>
             </div>
             <Options
+                getNewestJoke={props.getNewestJoke}
+                getOldestJoke={props.getOldestJoke}
                 isRandomModeEnabled={props.isRandomModeEnabled}
                 jokeId={props.joke?.id}
                 onFilterChange={props.onFilterChange}
