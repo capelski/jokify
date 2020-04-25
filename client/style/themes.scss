@@ -70,8 +70,7 @@
 
         &.options-button.options-visible,
         &:not(.disabled-button):active,
-        &.random-button.selected,
-        &.chronological-button.selected {
+        &.random-button.selected {
             background-color: #477106;
             svg {
                 path,
@@ -142,8 +141,7 @@
 
         &.options-button.options-visible,
         &:not(.disabled-button):active,
-        &.random-button.selected,
-        &.chronological-button.selected {
+        &.random-button.selected {
             background-color: #fc863b;
             svg {
                 path,
@@ -214,8 +212,7 @@
 
         &.options-button.options-visible,
         &:not(.disabled-button):active,
-        &.random-button.selected,
-        &.chronological-button.selected {
+        &.random-button.selected {
             background-color: #4d36fe;
             svg {
                 path,
@@ -286,8 +283,7 @@
 
         &.options-button.options-visible,
         &:not(.disabled-button):active,
-        &.random-button.selected,
-        &.chronological-button.selected {
+        &.random-button.selected {
             background-color: #ff6767;
             svg {
                 path,

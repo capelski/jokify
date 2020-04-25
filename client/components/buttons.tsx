@@ -1,5 +1,5 @@
 import React from 'react';
-import { Joke, SlideDirection, DisplayMode } from '../types';
+import { Joke, SlideDirection } from '../types';
 import { Options } from './options';
 
 export interface INavigator {
@@ -9,15 +9,15 @@ export interface INavigator {
 interface ButtonsProps {
     animationDirection: SlideDirection;
     areOptionsVisible: boolean;
-    displayMode: DisplayMode;
     isFirstJoke: boolean;
+    isRandomModeEnabled: boolean;
     joke?: Joke;
     navigator: INavigator;
     nextJoke: () => void;
     onFilterChange: (filter: string) => void;
     previousJoke: () => void;
     setAreOptionsVisible: (areOptionsVisible: boolean) => void;
-    setDisplayMode: (displayMode: DisplayMode) => void;
+    setIsRandomModeEnabled: (isRandomModeEnabled: boolean) => void;
 }
 
 // tslint:disable-next-line:variable-name
@@ -142,9 +142,9 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                 </button>
             </div>
             <Options
-                displayMode={props.displayMode}
+                isRandomModeEnabled={props.isRandomModeEnabled}
                 onFilterChange={props.onFilterChange}
-                setDisplayMode={props.setDisplayMode}
+                setIsRandomModeEnabled={props.setIsRandomModeEnabled}
             />
         </React.Fragment>
     );

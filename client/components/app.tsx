@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Joke, SlideDirection, DisplayMode } from '../types';
+import { Joke, SlideDirection } from '../types';
 import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
 import { Buttons, INavigator } from './buttons';
 import { Emojis } from './emojis';
@@ -22,7 +22,7 @@ const initialTheme = getRandomTheme();
 export const App: React.FC<AppProps> = props => {
     const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
     const [areOptionsVisible, setAreOptionsVisible] = useState(false);
-    const [displayMode, setDisplayMode] = useState<DisplayMode>('random');
+    const [isRandomModeEnabled, setIsRandomModeEnabled] = useState(true);
     const [filter, setFilter] = useState('');
     const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
     const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
@@ -92,7 +92,7 @@ export const App: React.FC<AppProps> = props => {
             <Buttons
                 animationDirection={animationDirection}
                 areOptionsVisible={areOptionsVisible}
-                displayMode={displayMode}
+                isRandomModeEnabled={isRandomModeEnabled}
                 isFirstJoke={jokeIndex < 1}
                 joke={jokes[jokeIndex]}
                 navigator={props.navigator}
@@ -100,7 +100,7 @@ export const App: React.FC<AppProps> = props => {
                 onFilterChange={setFilter}
                 previousJoke={previousJoke}
                 setAreOptionsVisible={setAreOptionsVisible}
-                setDisplayMode={setDisplayMode}
+                setIsRandomModeEnabled={setIsRandomModeEnabled}
             />
             <Emojis />
 
