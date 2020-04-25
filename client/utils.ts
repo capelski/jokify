@@ -5,7 +5,7 @@ export const fetchServerJoke = (id?: number, filter?: string) => {
         ? `/joke/${id}?$modena=jokify-api`
         : filter
         ? `/joke?filter=${filter}&$modena=jokify-api`
-        : `/joke?$modena=jokify-api`;
+        : `/joke/random?$modena=jokify-api`;
 
     return axios.get(url);
 };
