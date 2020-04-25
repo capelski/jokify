@@ -148,6 +148,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
             </div>
             <Options
                 isRandomModeEnabled={props.isRandomModeEnabled}
+                jokeId={props.joke?.id}
                 onFilterChange={props.onFilterChange}
                 setIsRandomModeEnabled={props.setIsRandomModeEnabled}
             />

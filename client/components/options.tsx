@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 interface OptionsProps {
     isRandomModeEnabled: boolean;
+    jokeId?: number;
     onFilterChange: (filter: string) => void;
     setIsRandomModeEnabled: (isRandomModeEnabled: boolean) => void;
 }
@@ -65,6 +66,7 @@ export const Options: React.FC<OptionsProps> = props => {
                         <polygon points="28.284,210.043 127.986,110.341 28.284,10.639 0,38.924 71.417,110.341 0,181.758" />
                     </svg>
                 </button>
+                <span className="joke-id">{props.jokeId}</span>
                 <button
                     type="button"
                     className={`button newest-button${
