@@ -26,6 +26,7 @@ export const App: React.FC<AppProps> = props => {
     const [areOptionsVisible, setAreOptionsVisible] = useState(false);
     const [filterText, setFilterText] = useState('');
     const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
+    const [isFiltering, setIsFiltering] = useState(false);
     const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
     const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
     const [limits, setLimits] = useState<Limits>({ newest: -1, oldest: -1 });
@@ -33,8 +34,10 @@ export const App: React.FC<AppProps> = props => {
     const [swipePosition, setSwipePosition] = useState(0);
     const [theme, setTheme] = useState(initialTheme);
 
+    const isLatestJoke = jokeIndex === jokes.length - 1;
+
     const isNextButtonEnabled =
-        navigationMode === 'filtered' ||
+        (navigationMode === 'filtered' && (!isFiltering || !isLatestJoke)) ||
         navigationMode === 'random' ||
         (navigationMode === 'sorted' && jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest);
 
@@ -49,6 +52,7 @@ export const App: React.FC<AppProps> = props => {
 
     const filterSetter = (newFilter: string) => {
         setFilterText(newFilter);
+        setIsFiltering(false);
         resetJokes();
     };
 
@@ -69,6 +73,7 @@ export const App: React.FC<AppProps> = props => {
                     response.data.id,
                     skipThemeChange
                 );
+                setIsFiltering(false);
             }
         });
 
@@ -90,7 +95,7 @@ export const App: React.FC<AppProps> = props => {
     const loadNextJoke = () => {
         setAnimationDirection('slide-left');
 
-        if (jokeIndex < jokes.length - 1) {
+        if (!isLatestJoke) {
             const nextIndex = jokeIndex + 1;
             updateCurrentJoke(nextIndex, jokes[nextIndex].id);
         } else {
@@ -101,6 +106,10 @@ export const App: React.FC<AppProps> = props => {
                     : navigationMode === 'random'
                     ? { type: RequestType.random }
                     : { type: RequestType.id, id: currentJoke.id + 1 };
+
+            if (navigationMode === 'filtered') {
+                setIsFiltering(true);
+            }
 
             fetchJoke(requestData).catch(() => {});
         }
@@ -176,6 +185,7 @@ export const App: React.FC<AppProps> = props => {
                 animationDirection={animationDirection}
                 areOptionsVisible={areOptionsVisible}
                 filterText={filterText}
+                isLatestJoke={isLatestJoke}
                 joke={jokes[jokeIndex]}
                 loadNextJoke={isNextButtonEnabled ? loadNextJoke : undefined}
                 loadPreviousJoke={isPreviousButtonEnabled ? loadPreviousJoke : undefined}

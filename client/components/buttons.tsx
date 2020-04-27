@@ -9,6 +9,7 @@ interface ButtonsProps {
     animationDirection: SlideDirection;
     areOptionsVisible: boolean;
     filterText: string;
+    isLatestJoke: boolean;
     joke?: Joke;
     loadNextJoke?: () => void;
     loadPreviousJoke?: () => void;
@@ -119,7 +120,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     onClick={props.loadNextJoke}
                 >
                     {' '}
-                    {props.filterText ? (
+                    {props.filterText && props.isLatestJoke ? (
                         <svg
                             enableBackground="new 0 0 515.558 515.558"
                             viewBox="0 0 515.558 515.558"
