@@ -7,6 +7,7 @@ import { Emojis } from './emojis';
 import { InteractionsContainer } from './interactions-container';
 import { Jokes } from './jokes';
 import { Loader } from './loader';
+import { Options } from './options';
 
 export interface AppProps {
     focusDOMElement: () => void;
@@ -175,15 +176,19 @@ export const App: React.FC<AppProps> = props => {
                 animationDirection={animationDirection}
                 areOptionsVisible={areOptionsVisible}
                 filterText={filterText}
-                getNewestJoke={isNewestButtonEnabled ? getNewestJoke : undefined}
-                getOldestJoke={isOldestButtonEnabled ? getOldestJoke : undefined}
                 joke={jokes[jokeIndex]}
                 loadNextJoke={isNextButtonEnabled ? loadNextJoke : undefined}
                 loadPreviousJoke={isPreviousButtonEnabled ? loadPreviousJoke : undefined}
-                navigationMode={navigationMode}
                 navigator={props.navigator}
-                onFilterChange={filterSetter}
                 setAreOptionsVisible={setAreOptionsVisible}
+            />
+            <Options
+                filterText={filterText}
+                getNewestJoke={isNewestButtonEnabled ? getNewestJoke : undefined}
+                getOldestJoke={isOldestButtonEnabled ? getOldestJoke : undefined}
+                jokeId={jokes[jokeIndex]?.id}
+                navigationMode={navigationMode}
+                onFilterChange={filterSetter}
                 setNavigationMode={navigationModeSetter}
             />
             <Emojis />
