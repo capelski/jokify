@@ -38,15 +38,19 @@ export const App: React.FC<AppProps> = props => {
     const [theme, setTheme] = useState(initialTheme);
 
     const isNextButtonEnabled =
-        isRandomModeEnabled || (jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest);
+        isRandomModeEnabled || filter || (jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest);
     const isPreviousButtonEnabled =
         (isRandomModeEnabled && jokeIndex > 0) ||
-        (!isRandomModeEnabled && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest);
+        (!isRandomModeEnabled &&
+            !filter &&
+            jokes[jokeIndex] &&
+            jokes[jokeIndex].id > limits.oldest) ||
+        (filter && jokeIndex > 0);
 
     const isNewestButtonEnabled =
-        !isRandomModeEnabled && jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest;
+        !isRandomModeEnabled && !filter && jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest;
     const isOldestButtonEnabled =
-        !isRandomModeEnabled && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest;
+        !isRandomModeEnabled && !filter && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest;
 
     const filterSetter = (newFilter: string) => {
         setFilter(newFilter);
@@ -96,12 +100,11 @@ export const App: React.FC<AppProps> = props => {
             updateCurrentJoke(nextIndex, jokes[nextIndex].id);
         } else {
             const currentJoke = jokes[jokeIndex];
-            const requestData: RequestData =
-                areOptionsVisible && filter
-                    ? { type: RequestType.filter, text: filter }
-                    : isRandomModeEnabled
-                    ? { type: RequestType.random }
-                    : { type: RequestType.id, id: currentJoke.id + 1 };
+            const requestData: RequestData = filter
+                ? { type: RequestType.filter, text: filter }
+                : isRandomModeEnabled
+                ? { type: RequestType.random }
+                : { type: RequestType.id, id: currentJoke.id + 1 };
 
             fetchJoke(requestData).catch(() => {});
         }
@@ -176,6 +179,7 @@ export const App: React.FC<AppProps> = props => {
             <Buttons
                 animationDirection={animationDirection}
                 areOptionsVisible={areOptionsVisible}
+                currentFilter={filter}
                 getNewestJoke={isNewestButtonEnabled ? getNewestJoke : undefined}
                 getOldestJoke={isOldestButtonEnabled ? getOldestJoke : undefined}
                 isRandomModeEnabled={isRandomModeEnabled}

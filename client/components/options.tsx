@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface OptionsProps {
+    currentFilter: string;
     getNewestJoke?: () => void;
     getOldestJoke?: () => void;
     isRandomModeEnabled: boolean;
@@ -11,17 +12,20 @@ interface OptionsProps {
 
 // tslint:disable-next-line:variable-name
 export const Options: React.FC<OptionsProps> = props => {
-    const [filter, setFilter] = useState('');
-
     const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         // necessary casting for the server side
         const filterValue = (event.target as { value: string }).value;
-        setFilter(filterValue);
         props.onFilterChange(filterValue);
     };
 
     const randomClickHandler = () => {
         props.setIsRandomModeEnabled(!props.isRandomModeEnabled);
+    };
+
+    const searchClickHandler = () => {
+        if (props.currentFilter) {
+            props.onFilterChange('');
+        }
     };
 
     return (
@@ -80,16 +84,27 @@ export const Options: React.FC<OptionsProps> = props => {
                 </button>
             </div>
             <div className="filter">
-                <input type="text" value={filter} onChange={filterChangeHandler} />
-                <span className="search-icon">
-                    <svg
-                        enableBackground="new 0 0 515.558 515.558"
-                        viewBox="0 0 515.558 515.558"
-                        height="32px"
-                        width="32px"
-                    >
-                        <path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z" />
-                    </svg>
+                <input type="text" value={props.currentFilter} onChange={filterChangeHandler} />
+                <span className="search-icon" onClick={searchClickHandler}>
+                    {props.currentFilter ? (
+                        <svg
+                            enableBackground="new 0 0 352 512"
+                            viewBox="0 0 352 512"
+                            height="32px"
+                            width="32px"
+                        >
+                            <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
+                        </svg>
+                    ) : (
+                        <svg
+                            enableBackground="new 0 0 515.558 515.558"
+                            viewBox="0 0 515.558 515.558"
+                            height="32px"
+                            width="32px"
+                        >
+                            <path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z" />
+                        </svg>
+                    )}
                 </span>
             </div>
         </div>

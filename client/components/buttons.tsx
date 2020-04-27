@@ -9,6 +9,7 @@ export interface INavigator {
 interface ButtonsProps {
     animationDirection: SlideDirection;
     areOptionsVisible: boolean;
+    currentFilter: string;
     getNewestJoke?: () => void;
     getOldestJoke?: () => void;
     isRandomModeEnabled: boolean;
@@ -142,6 +143,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                 </button>
             </div>
             <Options
+                currentFilter={props.currentFilter}
                 getNewestJoke={props.getNewestJoke}
                 getOldestJoke={props.getOldestJoke}
                 isRandomModeEnabled={props.isRandomModeEnabled}
