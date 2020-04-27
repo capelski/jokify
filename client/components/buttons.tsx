@@ -9,14 +9,14 @@ export interface INavigator {
 interface ButtonsProps {
     animationDirection: SlideDirection;
     areOptionsVisible: boolean;
-    getNewestJoke: () => void;
-    getOldestJoke: () => void;
+    getNewestJoke?: () => void;
+    getOldestJoke?: () => void;
     isRandomModeEnabled: boolean;
     joke?: Joke;
+    loadNextJoke?: () => void;
+    loadPreviousJoke?: () => void;
     navigator: INavigator;
-    nextJoke: () => void;
     onFilterChange: (filter: string) => void;
-    previousJoke: () => void;
     setAreOptionsVisible: (areOptionsVisible: boolean) => void;
     setIsRandomModeEnabled: (isRandomModeEnabled: boolean) => void;
 }
@@ -25,10 +25,6 @@ interface ButtonsProps {
 export const Buttons: React.FC<ButtonsProps> = props => {
     const optionsClickHandler = () => {
         props.setAreOptionsVisible(!props.areOptionsVisible);
-    };
-
-    const previousClickHandler = () => {
-        props.previousJoke();
     };
 
     const shareClickHandler = () => {
@@ -51,8 +47,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     type="button"
                     className={`button previous-button${
                         props.animationDirection === 'slide-right' ? ' current' : ''
-                    }`}
-                    onClick={previousClickHandler}
+                    }${props.loadPreviousJoke ? '' : ' disabled-button'}`}
+                    onClick={props.loadPreviousJoke}
                 >
                     <svg
                         version="1.1"
@@ -124,8 +120,8 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     type="button"
                     className={`button next-button${
                         props.animationDirection === 'slide-left' ? ' current' : ''
-                    }`}
-                    onClick={props.nextJoke}
+                    }${props.loadNextJoke ? '' : ' disabled-button'}`}
+                    onClick={props.loadNextJoke}
                 >
                     <svg
                         version="1.1"

@@ -54,7 +54,7 @@ module.exports = {
         historyApiFallback: true,
         proxy: [
             {
-                context: ['/joke'],
+                context: ['/joke', '/limits'],
                 target: 'http://localhost'
             }
         ]

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 interface OptionsProps {
-    getNewestJoke: () => void;
-    getOldestJoke: () => void;
+    getNewestJoke?: () => void;
+    getOldestJoke?: () => void;
     isRandomModeEnabled: boolean;
     jokeId?: number;
     onFilterChange: (filter: string) => void;
@@ -47,7 +47,7 @@ export const Options: React.FC<OptionsProps> = props => {
                 <button
                     type="button"
                     className={`button oldest-button${
-                        props.isRandomModeEnabled ? ' disabled-button' : ''
+                        props.getOldestJoke ? '' : ' disabled-button'
                     }`}
                     onClick={props.getOldestJoke}
                 >
@@ -64,7 +64,7 @@ export const Options: React.FC<OptionsProps> = props => {
                 <button
                     type="button"
                     className={`button newest-button${
-                        props.isRandomModeEnabled ? ' disabled-button' : ''
+                        props.getNewestJoke ? '' : ' disabled-button'
                     }`}
                     onClick={props.getNewestJoke}
                 >

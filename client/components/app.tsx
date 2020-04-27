@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Joke, SlideDirection, RequestData, RequestType } from '../types';
 import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
@@ -15,6 +16,11 @@ export interface AppProps {
     updateUrl: (jokeId: number) => void;
 }
 
+export interface Limits {
+    newest: number;
+    oldest: number;
+}
+
 // Calling the function inside useState, will cause it to be called in every render cycle
 const initialTheme = getRandomTheme();
 
@@ -27,8 +33,20 @@ export const App: React.FC<AppProps> = props => {
     const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
     const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
     const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
+    const [limits, setLimits] = useState<Limits>({ newest: -1, oldest: -1 });
     const [swipePosition, setSwipePosition] = useState(0);
     const [theme, setTheme] = useState(initialTheme);
+
+    const isNextButtonEnabled =
+        isRandomModeEnabled || (jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest);
+    const isPreviousButtonEnabled =
+        (isRandomModeEnabled && jokeIndex > 0) ||
+        (!isRandomModeEnabled && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest);
+
+    const isNewestButtonEnabled =
+        !isRandomModeEnabled && jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest;
+    const isOldestButtonEnabled =
+        !isRandomModeEnabled && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest;
 
     const filterSetter = (newFilter: string) => {
         setFilter(newFilter);
@@ -70,7 +88,7 @@ export const App: React.FC<AppProps> = props => {
         resetJokes();
     };
 
-    const nextJoke = () => {
+    const loadNextJoke = () => {
         setAnimationDirection('slide-left');
 
         if (jokeIndex < jokes.length - 1) {
@@ -89,7 +107,7 @@ export const App: React.FC<AppProps> = props => {
         }
     };
 
-    const previousJoke = () => {
+    const loadPreviousJoke = () => {
         setAnimationDirection('slide-right');
 
         if (jokeIndex > 0) {
@@ -123,7 +141,14 @@ export const App: React.FC<AppProps> = props => {
             ? { type: RequestType.id, id: props.initialJokeId }
             : { type: RequestType.random };
 
-        stallPromise(fetchJoke(requestData, { skipThemeChange: true }))
+        const loadingPromises = Promise.all([
+            fetchJoke(requestData, { skipThemeChange: true }),
+            axios.get('/limits?$modena=jokify-api').then(response => {
+                setLimits(response.data);
+            })
+        ]);
+
+        stallPromise(loadingPromises)
             .then(() => {
                 setHasFinishedInitialLoad(true);
             })
@@ -136,9 +161,9 @@ export const App: React.FC<AppProps> = props => {
     return (
         <InteractionsContainer
             hasFinishedInitialLoad={hasFinishedInitialLoad}
-            nextJoke={nextJoke}
+            nextJoke={loadNextJoke}
             onSwipe={setSwipePosition}
-            previousJoke={previousJoke}
+            previousJoke={loadPreviousJoke}
             theme={theme}
         >
             <Jokes
@@ -151,14 +176,14 @@ export const App: React.FC<AppProps> = props => {
             <Buttons
                 animationDirection={animationDirection}
                 areOptionsVisible={areOptionsVisible}
-                getNewestJoke={getNewestJoke}
-                getOldestJoke={getOldestJoke}
+                getNewestJoke={isNewestButtonEnabled ? getNewestJoke : undefined}
+                getOldestJoke={isOldestButtonEnabled ? getOldestJoke : undefined}
                 isRandomModeEnabled={isRandomModeEnabled}
                 joke={jokes[jokeIndex]}
+                loadNextJoke={isNextButtonEnabled ? loadNextJoke : undefined}
+                loadPreviousJoke={isPreviousButtonEnabled ? loadPreviousJoke : undefined}
                 navigator={props.navigator}
-                nextJoke={nextJoke}
                 onFilterChange={filterSetter}
-                previousJoke={previousJoke}
                 setAreOptionsVisible={setAreOptionsVisible}
                 setIsRandomModeEnabled={isRandomModeEnabledSetter}
             />
