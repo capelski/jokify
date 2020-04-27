@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavigationMode } from '../types';
 
 interface OptionsProps {
-    currentFilter: string;
+    filterText: string;
     getNewestJoke?: () => void;
     getOldestJoke?: () => void;
-    isRandomModeEnabled: boolean;
     jokeId?: number;
+    navigationMode: NavigationMode;
     onFilterChange: (filter: string) => void;
-    setIsRandomModeEnabled: (isRandomModeEnabled: boolean) => void;
+    setNavigationMode: (navigationMode: NavigationMode) => void;
 }
 
 // tslint:disable-next-line:variable-name
@@ -16,16 +17,25 @@ export const Options: React.FC<OptionsProps> = props => {
         // necessary casting for the server side
         const filterValue = (event.target as { value: string }).value;
         props.onFilterChange(filterValue);
+
+        if (filterValue && props.navigationMode !== 'filtered') {
+            props.setNavigationMode('filtered');
+        } else if (!filterValue && props.navigationMode === 'filtered') {
+            props.setNavigationMode('random');
+        }
     };
 
     const randomClickHandler = () => {
-        props.setIsRandomModeEnabled(!props.isRandomModeEnabled);
+        if (props.navigationMode === 'random') {
+            props.setNavigationMode('sorted');
+        } else if (props.navigationMode === 'sorted') {
+            props.setNavigationMode('random');
+        }
     };
 
-    const searchClickHandler = () => {
-        if (props.currentFilter) {
-            props.onFilterChange('');
-        }
+    const clearSearchHandler = () => {
+        props.onFilterChange('');
+        props.setNavigationMode('random');
     };
 
     return (
@@ -34,7 +44,11 @@ export const Options: React.FC<OptionsProps> = props => {
                 <button
                     type="button"
                     className={`button random-button${
-                        props.isRandomModeEnabled ? ' selected' : ''
+                        props.navigationMode === 'random'
+                            ? ' selected'
+                            : props.navigationMode === 'filtered'
+                            ? ' disabled-button'
+                            : ''
                     }`}
                     onClick={randomClickHandler}
                 >
@@ -84,14 +98,16 @@ export const Options: React.FC<OptionsProps> = props => {
                 </button>
             </div>
             <div className="filter">
-                <input type="text" value={props.currentFilter} onChange={filterChangeHandler} />
-                <span className="search-icon" onClick={searchClickHandler}>
-                    {props.currentFilter ? (
+                <input type="text" value={props.filterText} onChange={filterChangeHandler} />
+                <span className="search-icon">
+                    {props.filterText ? (
                         <svg
                             enableBackground="new 0 0 352 512"
                             viewBox="0 0 352 512"
                             height="32px"
                             width="32px"
+                            className="clear-search"
+                            onClick={clearSearchHandler}
                         >
                             <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
                         </svg>

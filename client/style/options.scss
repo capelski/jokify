@@ -54,10 +54,13 @@
             position: absolute;
             top: 12px;
             right: 20px;
-            cursor: pointer;
 
             @media (min-width: $desktopBreakpointStart) {
                 right: 5px;
+            }
+
+            svg.clear-search {
+                cursor: pointer;
             }
         }
     }

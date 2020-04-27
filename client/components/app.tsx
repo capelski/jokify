@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Joke, SlideDirection, RequestData, RequestType } from '../types';
+import { Joke, SlideDirection, RequestData, RequestType, Limits, NavigationMode } from '../types';
 import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
 import { Buttons, INavigator } from './buttons';
 import { Emojis } from './emojis';
@@ -16,11 +16,6 @@ export interface AppProps {
     updateUrl: (jokeId: number) => void;
 }
 
-export interface Limits {
-    newest: number;
-    oldest: number;
-}
-
 // Calling the function inside useState, will cause it to be called in every render cycle
 const initialTheme = getRandomTheme();
 
@@ -28,32 +23,31 @@ const initialTheme = getRandomTheme();
 export const App: React.FC<AppProps> = props => {
     const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
     const [areOptionsVisible, setAreOptionsVisible] = useState(false);
-    const [isRandomModeEnabled, setIsRandomModeEnabled] = useState(true);
-    const [filter, setFilter] = useState('');
+    const [filterText, setFilterText] = useState('');
     const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
     const [jokeIndex, setJokeIndex] = useState(props.initialJoke ? 0 : -1);
     const [jokes, setJokes] = useState<Joke[]>(props.initialJoke ? [props.initialJoke] : []);
     const [limits, setLimits] = useState<Limits>({ newest: -1, oldest: -1 });
+    const [navigationMode, setNavigationMode] = useState<NavigationMode>('random');
     const [swipePosition, setSwipePosition] = useState(0);
     const [theme, setTheme] = useState(initialTheme);
 
     const isNextButtonEnabled =
-        isRandomModeEnabled || filter || (jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest);
+        navigationMode === 'filtered' ||
+        navigationMode === 'random' ||
+        (navigationMode === 'sorted' && jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest);
+
     const isPreviousButtonEnabled =
-        (isRandomModeEnabled && jokeIndex > 0) ||
-        (!isRandomModeEnabled &&
-            !filter &&
-            jokes[jokeIndex] &&
-            jokes[jokeIndex].id > limits.oldest) ||
-        (filter && jokeIndex > 0);
+        ((navigationMode === 'filtered' || navigationMode === 'random') && jokeIndex > 0) ||
+        (navigationMode === 'sorted' && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest);
 
     const isNewestButtonEnabled =
-        !isRandomModeEnabled && !filter && jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest;
+        navigationMode === 'sorted' && jokes[jokeIndex] && jokes[jokeIndex].id < limits.newest;
     const isOldestButtonEnabled =
-        !isRandomModeEnabled && !filter && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest;
+        navigationMode === 'sorted' && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest;
 
     const filterSetter = (newFilter: string) => {
-        setFilter(newFilter);
+        setFilterText(newFilter);
         resetJokes();
     };
 
@@ -87,8 +81,8 @@ export const App: React.FC<AppProps> = props => {
         fetchJoke({ type: RequestType.oldest }, { clearJokes: true }).catch(() => {});
     };
 
-    const isRandomModeEnabledSetter = (newIsRandomModeEnabled: boolean) => {
-        setIsRandomModeEnabled(newIsRandomModeEnabled);
+    const navigationModeSetter = (newNavigationMode: NavigationMode) => {
+        setNavigationMode(newNavigationMode);
         resetJokes();
     };
 
@@ -100,11 +94,12 @@ export const App: React.FC<AppProps> = props => {
             updateCurrentJoke(nextIndex, jokes[nextIndex].id);
         } else {
             const currentJoke = jokes[jokeIndex];
-            const requestData: RequestData = filter
-                ? { type: RequestType.filter, text: filter }
-                : isRandomModeEnabled
-                ? { type: RequestType.random }
-                : { type: RequestType.id, id: currentJoke.id + 1 };
+            const requestData: RequestData =
+                navigationMode === 'filtered'
+                    ? { type: RequestType.filter, text: filterText }
+                    : navigationMode === 'random'
+                    ? { type: RequestType.random }
+                    : { type: RequestType.id, id: currentJoke.id + 1 };
 
             fetchJoke(requestData).catch(() => {});
         }
@@ -116,7 +111,7 @@ export const App: React.FC<AppProps> = props => {
         if (jokeIndex > 0) {
             const nextIndex = jokeIndex - 1;
             updateCurrentJoke(nextIndex, jokes[nextIndex].id);
-        } else if (!isRandomModeEnabled) {
+        } else if (navigationMode === 'sorted') {
             const currentJoke = jokes[jokeIndex];
             fetchJoke(
                 { type: RequestType.id, id: currentJoke.id - 1 },
@@ -126,7 +121,7 @@ export const App: React.FC<AppProps> = props => {
     };
 
     const resetJokes = () => {
-        setJokes(jokes.splice(jokeIndex, 1));
+        setJokes(jokes.slice(jokeIndex, jokeIndex + 1));
         setJokeIndex(0);
     };
 
@@ -179,17 +174,17 @@ export const App: React.FC<AppProps> = props => {
             <Buttons
                 animationDirection={animationDirection}
                 areOptionsVisible={areOptionsVisible}
-                currentFilter={filter}
+                filterText={filterText}
                 getNewestJoke={isNewestButtonEnabled ? getNewestJoke : undefined}
                 getOldestJoke={isOldestButtonEnabled ? getOldestJoke : undefined}
-                isRandomModeEnabled={isRandomModeEnabled}
                 joke={jokes[jokeIndex]}
                 loadNextJoke={isNextButtonEnabled ? loadNextJoke : undefined}
                 loadPreviousJoke={isPreviousButtonEnabled ? loadPreviousJoke : undefined}
+                navigationMode={navigationMode}
                 navigator={props.navigator}
                 onFilterChange={filterSetter}
                 setAreOptionsVisible={setAreOptionsVisible}
-                setIsRandomModeEnabled={isRandomModeEnabledSetter}
+                setNavigationMode={navigationModeSetter}
             />
             <Emojis />
 

@@ -3,7 +3,12 @@ export interface Joke {
     text: string[];
 }
 
-export type SlideDirection = 'slide-left' | 'slide-right';
+export interface Limits {
+    newest: number;
+    oldest: number;
+}
+
+export type NavigationMode = 'filtered' | 'random' | 'sorted';
 
 export enum RequestType {
     random,
@@ -21,3 +26,5 @@ export type RequestData =
     | { type: RequestType.newest }
     | { type: RequestType.filter; text: string }
     | { type: RequestType.id; id: number };
+
+export type SlideDirection = 'slide-left' | 'slide-right';
