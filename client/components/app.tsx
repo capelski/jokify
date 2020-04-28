@@ -104,7 +104,7 @@ export const App: React.FC<AppProps> = props => {
                 navigationMode === 'filtered'
                     ? { type: RequestType.filter, text: filterText }
                     : navigationMode === 'random'
-                    ? { type: RequestType.random }
+                    ? { type: RequestType.random, limits }
                     : { type: RequestType.id, id: currentJoke.id + 1 };
 
             if (navigationMode === 'filtered') {
@@ -145,18 +145,15 @@ export const App: React.FC<AppProps> = props => {
 
     // To be executed only for the first render of the application
     useEffect(() => {
-        const requestData: RequestData = props.initialJokeId
-            ? { type: RequestType.id, id: props.initialJokeId }
-            : { type: RequestType.random };
-
-        const loadingPromises = Promise.all([
-            fetchJoke(requestData, { skipThemeChange: true }),
+        stallPromise(
             axios.get('/limits?$modena=jokify-api').then(response => {
                 setLimits(response.data);
+                const requestData: RequestData = props.initialJokeId
+                    ? { type: RequestType.id, id: props.initialJokeId }
+                    : { type: RequestType.random, limits: response.data };
+                return fetchJoke(requestData, { skipThemeChange: true });
             })
-        ]);
-
-        stallPromise(loadingPromises)
+        )
             .then(() => {
                 setHasFinishedInitialLoad(true);
             })

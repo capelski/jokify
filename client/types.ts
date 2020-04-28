@@ -20,6 +20,7 @@ export enum RequestType {
 
 export type RequestData =
     | {
+          limits: Limits;
           type: RequestType.random;
       }
     | { type: RequestType.oldest }
