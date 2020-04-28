@@ -4,7 +4,7 @@ import { readFile } from 'fs';
 import { join } from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { App, AppProps } from '../client/components/App';
+import { App, AppProps } from '../client/components/app';
 
 const staticPath = join(__dirname, '..');
 const indexPath = join(staticPath, 'index.html');
@@ -16,9 +16,9 @@ export default () => {
     app.use('/:id', (req, res) => {
         const { id } = req.params;
 
-        // TODO Extract url to configuration
+        // TODO For this relative url to work, jokify-api must be exposed in the same domain
         return axios
-            .get(`https://carlescapellas.xyz/joke/${id}?$modena=jokify-api`)
+            .get(`/jokify-api/joke/${id}`)
             .then(response => {
                 readFile(indexPath, 'utf8', (error, fileContents) => {
                     if (error) {

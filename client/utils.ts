@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { RequestData, RequestType } from './types';
 
+declare var localStorage: {
+    getItem: (itemId: string) => string;
+    removeItem: (itemId: string) => void;
+    setItem: (itemId: string, itemValue: string) => void;
+};
+
 export const fetchServerJoke = (requestData: RequestData) => {
     let url;
     switch (requestData.type) {
