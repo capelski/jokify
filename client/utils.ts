@@ -48,9 +48,6 @@ const getNonServedRandomJokeId = (min: number, max: number) => {
         randomId = randomId === max ? min : randomId + 1;
     }
 
-    servedJokesId.push(randomId);
-    persistServedJokesId(servedJokesId);
-
     return randomId;
 };
 
@@ -72,7 +69,7 @@ export const getRandomTheme = () => {
 
 const localStorageItemId = 'served-jokes-id';
 
-const persistServedJokesId = (servedJokesId: number[]) => {
+export const persistServedJokesId = (servedJokesId: number[]) => {
     try {
         localStorage.setItem(localStorageItemId, servedJokesId.join());
     } catch {
@@ -80,11 +77,11 @@ const persistServedJokesId = (servedJokesId: number[]) => {
     }
 };
 
-const retrieveServedJokesId = (): number[] =>
+export const retrieveServedJokesId = (): number[] =>
     (localStorage.getItem(localStorageItemId) || '')
         .split(',')
         .map(char => parseInt(char, 10))
-        .filter(number => number !== NaN);
+        .filter(number => !isNaN(number));
 
 export const stallPromise = (promise: Promise<any>, minimumTime = 1000) => {
     const minimumTimePromise = new Promise(resolve => setTimeout(resolve, minimumTime));

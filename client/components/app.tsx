@@ -1,7 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Joke, SlideDirection, RequestData, RequestType, Limits, NavigationMode } from '../types';
-import { fetchServerJoke, getRandomTheme, stallPromise } from '../utils';
+import {
+    fetchServerJoke,
+    getRandomTheme,
+    persistServedJokesId,
+    retrieveServedJokesId,
+    stallPromise
+} from '../utils';
 import { Buttons, INavigator } from './buttons';
 import { Emojis } from './emojis';
 import { InteractionsContainer } from './interactions-container';
@@ -61,20 +67,28 @@ export const App: React.FC<AppProps> = props => {
         { skipThemeChange = false, jokePosition = 'end', clearJokes = false } = {}
     ) =>
         fetchServerJoke(requestData).then(response => {
+            const fetchedJoke = response.data as Joke;
+
             if (clearJokes) {
-                setJokes([response.data]);
-                updateCurrentJoke(0, response.data.id, skipThemeChange);
-            } else if (!jokes.some(joke => joke.id === response.data.id)) {
+                setJokes([fetchedJoke]);
+                updateCurrentJoke(0, fetchedJoke.id, skipThemeChange);
+            } else if (!jokes.some(joke => joke.id === fetchedJoke.id)) {
                 setJokes(
-                    jokePosition === 'start' ? [response.data, ...jokes] : [...jokes, response.data]
+                    jokePosition === 'start' ? [fetchedJoke, ...jokes] : [...jokes, fetchedJoke]
                 );
                 updateCurrentJoke(
                     jokePosition === 'start' ? 0 : jokes.length,
-                    response.data.id,
+                    fetchedJoke.id,
                     skipThemeChange
                 );
                 setIsFiltering(false);
             }
+
+            const servedJokesId = retrieveServedJokesId();
+            if (servedJokesId.indexOf(fetchedJoke.id) === -1) {
+                servedJokesId.push(fetchedJoke.id);
+            }
+            persistServedJokesId(servedJokesId);
         });
 
     const getNewestJoke = () => {
