@@ -10,8 +10,14 @@ module.exports = merge(baseConfig, {
     mode: 'production',
     plugins: [
         new PrerenderSPAPlugin({
-            staticDir: path.resolve(__dirname, '..', 'docs'),
-            routes
+            routes,
+            postProcess: renderedRoute => {
+                const urlParts = renderedRoute.route.split('/');
+                const jokeId = urlParts[urlParts.length - 1];
+                renderedRoute.outputPath = path.join(__dirname, '..', 'docs', jokeId, 'index.html');
+                return renderedRoute;
+            },
+            staticDir: path.resolve(__dirname, '..', 'docs')
         })
     ]
 });
