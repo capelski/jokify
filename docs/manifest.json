@@ -1,0 +1,16 @@
+{
+    "short_name": "Jokify",
+    "name": "Jokify. Chistes random",
+    "icons": [
+        {
+            "src": "/jokify/favicon.ico",
+            "sizes": "72x72 96x96 128x128 256x256 512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/jokify",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/jokify",
+    "theme_color": "#FFFFFF"
+}
