@@ -31,7 +31,7 @@ export const Buttons: React.FC<ButtonsProps> = props => {
                     .substring(0, 50)
                     .concat('...'),
                 title: 'Jokify',
-                url: `https://carlescapellas.xyz/jokify/${props.joke?.id}`
+                url: `https://capelski.github.io/jokify/${props.joke?.id}`
             });
         }
     };

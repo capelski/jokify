@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { getLimits } from '../jokes-repository';
 import { Joke, SlideDirection, RequestData, RequestType, Limits, NavigationMode } from '../types';
 import {
-    fetchServerJoke,
+    fetchJsonJoke,
     getRandomTheme,
     persistServedJokesId,
     retrieveServedJokesId,
@@ -66,9 +66,7 @@ export const App: React.FC<AppProps> = props => {
         requestData: RequestData,
         { skipThemeChange = false, jokePosition = 'end', clearJokes = false } = {}
     ) =>
-        fetchServerJoke(requestData).then(response => {
-            const fetchedJoke = response.data as Joke;
-
+        fetchJsonJoke(requestData, limits).then(fetchedJoke => {
             if (clearJokes) {
                 setJokes([fetchedJoke]);
                 updateCurrentJoke(0, fetchedJoke.id, skipThemeChange);
@@ -160,11 +158,11 @@ export const App: React.FC<AppProps> = props => {
     // To be executed only for the first render of the application
     useEffect(() => {
         stallPromise(
-            axios.get('/limits?$modena=jokify-api').then(response => {
-                setLimits(response.data);
+            getLimits().then(limits => {
+                setLimits(limits);
                 const requestData: RequestData = props.initialJokeId
                     ? { type: RequestType.id, id: props.initialJokeId }
-                    : { type: RequestType.random, limits: response.data };
+                    : { type: RequestType.random, limits };
                 return fetchJoke(requestData, { skipThemeChange: true });
             })
         )
@@ -217,10 +215,10 @@ export const App: React.FC<AppProps> = props => {
             <Loader />
 
             {/* Preload the background images so there is no flickering on the first theme load */}
-            <div style={{ backgroundImage: 'url("/images/alpha-bg.png?$modena=jokify")' }} />
-            <div style={{ backgroundImage: 'url("/images/beta-bg.png?$modena=jokify")' }} />
-            <div style={{ backgroundImage: 'url("/images/gamma-bg.png?$modena=jokify")' }} />
-            <div style={{ backgroundImage: 'url("/images/delta-bg.png?$modena=jokify")' }} />
+            <div style={{ backgroundImage: 'url("/jokify/images/alpha-bg.png")' }} />
+            <div style={{ backgroundImage: 'url("/jokify/images/beta-bg.png")' }} />
+            <div style={{ backgroundImage: 'url("/jokify/images/gamma-bg.png")' }} />
+            <div style={{ backgroundImage: 'url("/jokify/images/delta-bg.png")' }} />
         </InteractionsContainer>
     );
 };

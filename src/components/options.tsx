@@ -14,13 +14,11 @@ interface OptionsProps {
 // tslint:disable-next-line:variable-name
 export const Options: React.FC<OptionsProps> = props => {
     const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // necessary casting for the server side
-        const filterValue = (event.target as { value: string }).value;
-        props.onFilterChange(filterValue);
+        props.onFilterChange(event.target.value);
 
-        if (filterValue && props.navigationMode !== 'filtered') {
+        if (event.target.value && props.navigationMode !== 'filtered') {
             props.setNavigationMode('filtered');
-        } else if (!filterValue && props.navigationMode === 'filtered') {
+        } else if (!event.target.value && props.navigationMode === 'filtered') {
             props.setNavigationMode('random');
         }
     };

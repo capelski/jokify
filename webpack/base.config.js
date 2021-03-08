@@ -1,16 +1,17 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
 module.exports = {
-    entry: './client/index.tsx',
+    entry: './src/index.tsx',
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader',
                 query: {
-                    configFileName: './tsconfig-client.json'
+                    configFileName: './tsconfig.json'
                 }
             },
             {
@@ -28,16 +29,17 @@ module.exports = {
         ]
     },
     output: {
-        filename: '[name].js?$modena=jokify',
-        publicPath: '/'
+        filename: '[name].js',
+        path: path.resolve(__dirname, '..', 'docs'),
+        publicPath: '/jokify'
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css?$modena=jokify'
+            filename: '[name].[contenthash].css'
         }),
         new HtmlWebpackPlugin({
             filename: './index.html',
-            template: './client/index.html'
+            template: './src/index.html'
         }),
         new CopyWebpackPlugin([
             {
@@ -47,16 +49,5 @@ module.exports = {
     ],
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.scss']
-    },
-    // TODO To be applied only on development mode
-    devServer: {
-        contentBase: './dist',
-        historyApiFallback: true,
-        proxy: [
-            {
-                context: ['/joke', '/limits'],
-                target: 'http://localhost'
-            }
-        ]
     }
 };

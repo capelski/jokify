@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { RequestData, RequestType } from './types';
+import { getJokeById, getMatchingJoke } from './jokes-repository';
+import { Limits, RequestData, RequestType } from './types';
 
 declare var localStorage: {
     getItem: (itemId: string) => string;
@@ -7,32 +7,22 @@ declare var localStorage: {
     setItem: (itemId: string, itemValue: string) => void;
 };
 
-export const fetchServerJoke = (requestData: RequestData) => {
-    let url;
-    switch (requestData.type) {
-        case RequestType.id:
-            url = `/joke/${requestData.id}?$modena=jokify-api`;
-            break;
-        case RequestType.oldest:
-            url = '/joke/oldest?$modena=jokify-api';
-            break;
-        case RequestType.newest:
-            url = '/joke/newest?$modena=jokify-api';
-            break;
-        case RequestType.filter:
-            url = `/joke/filtered?$modena=jokify-api&text=${requestData.text}`;
-            break;
-        default:
-        case RequestType.random:
-            const nonServedId = getNonServedRandomJokeId(
-                requestData.limits.oldest,
-                requestData.limits.newest
-            );
-            url = `/joke/${nonServedId}?$modena=jokify-api`;
-            break;
+export const fetchJsonJoke = (requestData: RequestData, limits: Limits) => {
+    if (requestData.type === RequestType.id) {
+        return getJokeById(requestData.id);
+    } else if (requestData.type === RequestType.oldest) {
+        return getJokeById(limits.oldest);
+    } else if (requestData.type === RequestType.newest) {
+        return getJokeById(limits.newest);
+    } else if (requestData.type === RequestType.filter) {
+        return getMatchingJoke(requestData.text, 0);
+    } else {
+        const nonServedId = getNonServedRandomJokeId(
+            requestData.limits.oldest,
+            requestData.limits.newest
+        );
+        return getJokeById(nonServedId);
     }
-
-    return axios.get(url);
 };
 
 const getNonServedRandomJokeId = (min: number, max: number) => {
