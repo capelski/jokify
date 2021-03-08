@@ -65,9 +65,8 @@ export const App: React.FC<AppProps> = props => {
     const fetchJoke = (
         requestData: RequestData,
         { skipThemeChange = false, jokePosition = 'end', clearJokes = false } = {}
-    ) => {
-        console.log('Loading', requestData);
-        return fetchJsonJoke(requestData, limits).then(fetchedJoke => {
+    ) =>
+        fetchJsonJoke(requestData, limits).then(fetchedJoke => {
             if (clearJokes) {
                 setJokes([fetchedJoke]);
                 updateCurrentJoke(0, fetchedJoke.id, skipThemeChange);
@@ -89,7 +88,6 @@ export const App: React.FC<AppProps> = props => {
             }
             persistServedJokesId(servedJokesId);
         });
-    };
 
     const getNewestJoke = () => {
         setAnimationDirection('slide-left');
