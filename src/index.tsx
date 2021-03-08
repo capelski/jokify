@@ -8,6 +8,8 @@ import './style/main.scss';
 // If initial url contains a joke id, we want to load that joke
 const pathnameParts = window.location.pathname.split('/');
 const initialJokeId = parseInt(pathnameParts[pathnameParts.length - 1], 10);
+console.log('pathnameParts', pathnameParts);
+console.log('initialJokeId', initialJokeId);
 
 const focusDOMElement = () => {
     document.querySelector<HTMLDivElement>('.app')!.focus();
