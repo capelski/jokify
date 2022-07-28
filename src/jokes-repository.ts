@@ -21,12 +21,11 @@ export const getMatchingJoke = (filter: string, offset: number) => {
     );
     const matchingJoke = matchingJokes[offset];
 
-    return matchingJoke
-        ? Promise.resolve(matchingJoke)
-        : Promise.reject({
-              message:
-                  offset > 0 ? `No hay más bromas con "${filter}"` : `No hay bromas con "${filter}"`
-          });
+    return Promise.resolve(matchingJoke || 
+        {
+            id: -1,
+            text: [`No hay ${offset > 0 ? 'más ' : ''}bromas con "${filter}"`]
+        });
 };
 
 const parseSearchText = (text: string) =>

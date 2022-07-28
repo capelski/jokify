@@ -152,7 +152,9 @@ export const App: React.FC<AppProps> = props => {
         if (!skipThemeChange) {
             setTheme(getRandomTheme());
         }
-        props.updateUrl(jokeId);
+        if (jokeId !== -1) {
+            props.updateUrl(jokeId);
+        }
     };
 
     // To be executed only for the first render of the application
