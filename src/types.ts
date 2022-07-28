@@ -25,7 +25,7 @@ export type RequestData =
       }
     | { type: RequestType.oldest }
     | { type: RequestType.newest }
-    | { type: RequestType.filter; text: string }
+    | { type: RequestType.filter; text: string; offset: number }
     | { type: RequestType.id; id: number };
 
 export type SlideDirection = 'slide-left' | 'slide-right';

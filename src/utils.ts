@@ -15,7 +15,7 @@ export const fetchJsonJoke = (requestData: RequestData, limits: Limits) => {
     } else if (requestData.type === RequestType.newest) {
         return getJokeById(limits.newest);
     } else if (requestData.type === RequestType.filter) {
-        return getMatchingJoke(requestData.text, 0);
+        return getMatchingJoke(requestData.text, requestData.offset);
     } else {
         const nonServedId = getNonServedRandomJokeId(
             requestData.limits.oldest,

@@ -30,6 +30,7 @@ const initialTheme = getRandomTheme();
 export const App: React.FC<AppProps> = props => {
     const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
     const [areOptionsVisible, setAreOptionsVisible] = useState(false);
+    const [filterOffset, setFilterOffset] = useState(0);
     const [filterText, setFilterText] = useState('');
     const [hasFinishedInitialLoad, setHasFinishedInitialLoad] = useState(false);
     const [isFiltering, setIsFiltering] = useState(false);
@@ -57,6 +58,7 @@ export const App: React.FC<AppProps> = props => {
         navigationMode === 'sorted' && jokes[jokeIndex] && jokes[jokeIndex].id > limits.oldest;
 
     const filterSetter = (newFilter: string) => {
+        setFilterOffset(0);
         setFilterText(newFilter);
         setIsFiltering(false);
         resetJokes();
@@ -70,7 +72,7 @@ export const App: React.FC<AppProps> = props => {
             if (clearJokes) {
                 setJokes([fetchedJoke]);
                 updateCurrentJoke(0, fetchedJoke.id, skipThemeChange);
-            } else if (!jokes.some(joke => joke.id === fetchedJoke.id)) {
+            } else {
                 setJokes(
                     jokePosition === 'start' ? [fetchedJoke, ...jokes] : [...jokes, fetchedJoke]
                 );
@@ -79,7 +81,10 @@ export const App: React.FC<AppProps> = props => {
                     fetchedJoke.id,
                     skipThemeChange
                 );
-                setIsFiltering(false);
+                if (navigationMode === 'filtered' && fetchedJoke.id !== -1) {
+                    setFilterOffset(filterOffset + 1);
+                    setIsFiltering(false);
+                }
             }
 
             const servedJokesId = retrieveServedJokesId();
@@ -114,7 +119,7 @@ export const App: React.FC<AppProps> = props => {
             const currentJoke = jokes[jokeIndex];
             const requestData: RequestData =
                 navigationMode === 'filtered'
-                    ? { type: RequestType.filter, text: filterText }
+                    ? { type: RequestType.filter, text: filterText, offset: filterOffset }
                     : navigationMode === 'random'
                     ? { type: RequestType.random, limits }
                     : { type: RequestType.id, id: currentJoke.id + 1 };
