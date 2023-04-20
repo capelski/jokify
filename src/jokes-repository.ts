@@ -16,16 +16,17 @@ export const getLimits = () => {
 
 export const getMatchingJoke = (filter: string, offset: number) => {
     const parsedFilter = parseSearchText(filter);
-    const matchingJokes = jokes.filter((joke) =>
-        joke.text.some((paragraph) => parseSearchText(paragraph).indexOf(parsedFilter) > -1)
+    const matchingJokes = jokes.filter(joke =>
+        joke.text.some(paragraph => parseSearchText(paragraph).indexOf(parsedFilter) > -1)
     );
     const matchingJoke = matchingJokes[offset];
 
-    return Promise.resolve(matchingJoke || 
-        {
+    return Promise.resolve(
+        matchingJoke || {
             id: -1,
             text: [`No hay ${offset > 0 ? 'más ' : ''}bromas con "${filter}"`]
-        });
+        }
+    );
 };
 
 const parseSearchText = (text: string) =>
