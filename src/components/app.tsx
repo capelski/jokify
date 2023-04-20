@@ -166,6 +166,7 @@ export const App: React.FC<AppProps> = props => {
     useEffect(() => {
         stallPromise(
             getLimits().then(limits => {
+                console.log('Limits', limits);
                 setLimits(limits);
                 const requestData: RequestData = props.initialJokeId
                     ? { type: RequestType.id, id: props.initialJokeId }
