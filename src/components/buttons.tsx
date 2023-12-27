@@ -17,7 +17,6 @@ interface ButtonsProps {
     setAreOptionsVisible: (areOptionsVisible: boolean) => void;
 }
 
-// tslint:disable-next-line:variable-name
 export const Buttons: React.FC<ButtonsProps> = props => {
     const optionsClickHandler = () => {
         props.setAreOptionsVisible(!props.areOptionsVisible);

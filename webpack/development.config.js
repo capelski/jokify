@@ -1,17 +1,16 @@
 const path = require('path');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const baseConfig = require('./base.config');
 
 module.exports = merge(baseConfig, {
     mode: 'development',
     devServer: {
-        after: app => {
-            app.get(/^\/jokify\/[0-9]+$/, function(req, res) {
+        setupMiddlewares: function (middlewares, devServer) {
+            devServer.app.get(/^\/jokify\/[0-9]+$/, function(_req, res) {
                 res.sendFile(path.resolve(__dirname, '..', 'docs', 'index.html'));
             });
+            return middlewares;
         },
-        publicPath: '/jokify',
-        open: true,
-        openPage: 'jokify'
+        open: '/jokify'
     }
 });

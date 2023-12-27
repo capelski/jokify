@@ -7,7 +7,7 @@ $accelerationConstant: -9.81 * 6;
 
 .symbol {
     position: absolute;
-    left: calc(50% - #{$symbolSize / 2});
+    left: calc(50% - #{math.div($symbolSize, 2)});
     bottom: -$symbolSize * 2;
     font-size: $symbolSize;
 }
@@ -46,13 +46,13 @@ $accelerationConstant: -9.81 * 6;
 
 @mixin parabola-core($parabolaName, $xSpeed, $ySpeed, $rotation, $parabolaTime) {
     $framesNumber: $framesPerSecond * $parabolaTime;
-    $frameWeight: 100 / $framesNumber;
-    $frameRotation: $rotation / $framesNumber;
+    $frameWeight: math.div(100, $framesNumber);
+    $frameRotation: math.div($rotation, $framesNumber);
 
     @keyframes #{$parabolaName} {
-        @for $i from 0 through $framesNumber {
+        @for $i from 0 through math.round($framesNumber) {
             $percent: round2Decimals($i * $frameWeight);
-            $time: $percent / 100 * $parabolaTime;
+            $time: math.div($percent, 100 * $parabolaTime);
             #{$percent + '%'} {
                 $x: round2Decimals($xSpeed * $time);
                 $y: ($ySpeed * $time) + ($accelerationConstant * $time * $time);
@@ -91,7 +91,7 @@ $accelerationConstant: -9.81 * 6;
     $b: $ySpeed;
     $c: -$finalY;
 
-    $parabolaTime: (-$b - sqrt($b * $b - 4 * $a * $c)) / (2 * $a);
+    $parabolaTime: math.div((-$b - sqrt($b * $b - 4 * $a * $c)), (2 * $a));
     // @debug $a, $b, $c, $parabolaTime;
 
     @include parabola-core(

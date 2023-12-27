@@ -9,7 +9,6 @@ export interface ControllerProps {
     theme: string;
 }
 
-// tslint:disable-next-line:variable-name
 export const InteractionsContainer: React.FC<ControllerProps> = props => {
     const onKeyDown = (event: React.KeyboardEvent) => {
         if (event.keyCode === 37) {

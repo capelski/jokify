@@ -6,12 +6,12 @@ const path = require('path');
 module.exports = {
     entry: './src/index.tsx',
     module: {
-        rules: [
+        rules: [            
             {
                 test: /\.tsx?$/,
-                loader: 'awesome-typescript-loader',
-                query: {
-                    configFileName: './tsconfig.json'
+                loader: 'ts-loader',
+                options: {
+                    configFile: path.resolve(__dirname, '..', 'tsconfig.json')
                 }
             },
             {
@@ -41,11 +41,12 @@ module.exports = {
             filename: './index.html',
             template: './src/index.html'
         }),
-        new CopyWebpackPlugin([
+        new CopyWebpackPlugin({
+            patterns: [
             {
                 from: 'assets'
             }
-        ])
+        ]})
     ],
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.scss']

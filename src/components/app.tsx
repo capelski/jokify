@@ -26,7 +26,6 @@ export interface AppProps {
 // Calling the function inside useState, will cause it to be called in every render cycle
 const initialTheme = getRandomTheme();
 
-// tslint:disable-next-line:variable-name
 export const App: React.FC<AppProps> = props => {
     const [animationDirection, setAnimationDirection] = useState<SlideDirection>('slide-left');
     const [areOptionsVisible, setAreOptionsVisible] = useState(false);

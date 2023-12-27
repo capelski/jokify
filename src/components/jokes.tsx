@@ -9,7 +9,6 @@ interface JokesProps {
     swipePosition: number;
 }
 
-// tslint:disable-next-line:variable-name
 export const Jokes: React.FC<JokesProps> = props => (
     <React.Fragment>
         <div

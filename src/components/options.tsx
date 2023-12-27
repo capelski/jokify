@@ -11,7 +11,6 @@ interface OptionsProps {
     setNavigationMode: (navigationMode: NavigationMode) => void;
 }
 
-// tslint:disable-next-line:variable-name
 export const Options: React.FC<OptionsProps> = props => {
     const filterChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.onFilterChange(event.target.value);
