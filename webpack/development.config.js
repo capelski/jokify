@@ -11,6 +11,6 @@ module.exports = merge(baseConfig, {
             });
             return middlewares;
         },
-        open: '/jokify'
+        open: '/jokify/'
     }
 });
