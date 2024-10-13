@@ -4,4 +4,5 @@
     <string name="title_activity_main">jokify</string>
     <string name="package_name">com.jokify.app</string>
     <string name="custom_url_scheme">com.jokify.app</string>
+    <string name="admob_app_id">ca-app-pub-3020023783009364~8559602240</string>
 </resources>
