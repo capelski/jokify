@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
 import { App } from './components/app';
 import { INavigator } from './components/buttons';
-
 import './style/main.scss';
 
 // If initial url contains a joke id, we want to load that joke
@@ -18,6 +18,7 @@ const updateUrl = (jokeId: number) => {
 };
 
 const appPlaceholder = document.getElementById('app-placeholder');
+Modal.setAppElement(appPlaceholder!);
 ReactDOM.render(
     <App
         focusDOMElement={focusDOMElement}

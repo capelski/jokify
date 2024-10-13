@@ -1,5 +1,13 @@
-import React from 'react';
+import { AdMob, BannerAdPluginEvents, BannerAdPosition, BannerAdSize, InterstitialAdPluginEvents } from '@capacitor-community/admob';
+import React, { useEffect, useState } from 'react';
+import ReactModal from 'react-modal';
 import { Joke, SlideDirection } from '../types';
+
+const adMobIsTesting = true;
+// Setup a test device: https://support.google.com/admob/answer/9691433?hl=en-GB#ID
+const adMobTestingDevices: string[] =  adMobIsTesting 
+    ? ['25ceba13-17c3-451e-8232-60e4b1974f13']
+    : [];
 
 export interface INavigator {
     share?: (...args: any[]) => void;
@@ -18,6 +26,9 @@ interface ButtonsProps {
 }
 
 export const Buttons: React.FC<ButtonsProps> = props => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [logs, setLogs] = useState<string[]>([]);
+
     const optionsClickHandler = () => {
         props.setAreOptionsVisible(!props.areOptionsVisible);
     };
@@ -35,8 +46,138 @@ export const Buttons: React.FC<ButtonsProps> = props => {
         }
     };
 
+    useEffect(() => {
+        async function initializeAdMob() {
+            const nextLogs: string[] = logs;
+            try {
+                nextLogs.push('AdMob.initialize...');
+                setLogs(nextLogs);
+
+                await AdMob.initialize({
+                    initializeForTesting: adMobIsTesting,
+                    testingDevices: adMobTestingDevices
+                });
+            
+                nextLogs.push('AdMob.trackingAuthorizationStatus...')
+                setLogs(nextLogs);
+
+                const trackingInfo = await AdMob.trackingAuthorizationStatus()
+            
+                nextLogs.push(`trackingInfo: ${JSON.stringify(trackingInfo, undefined, 2)}`)
+                setLogs(nextLogs);
+            
+                if (trackingInfo.status === 'notDetermined') {
+                    nextLogs.push('AdMob.trackingAuthorizationStatus...')
+                    setLogs(nextLogs);
+
+                    await AdMob.requestTrackingAuthorization();
+                }
+            } catch (error) {
+                nextLogs.push(error instanceof Error && error.stack || `Error: ${JSON.stringify(error, undefined, 2)}`);
+                setLogs(nextLogs);
+            }
+        }
+
+        initializeAdMob();
+    }, []);
+
+    function addAdMobListener(eventName: BannerAdPluginEvents | InterstitialAdPluginEvents, existingLogs: string[]) {
+        AdMob.addListener(eventName as any, function() {
+            existingLogs.push(`${eventName}: ${[...arguments].map(arg => JSON.stringify(arg, undefined, 2))}`)
+            setLogs(existingLogs);
+        });
+    }
+
+    const showBanner = async () => {
+        const nextLogs: string[] = logs;
+        try {
+            nextLogs.push('AdMob.showBanner...')
+            setLogs(nextLogs);
+
+            for (const event of Object.values(BannerAdPluginEvents)) {
+                addAdMobListener(event, nextLogs);
+            }
+
+            await AdMob.showBanner({
+                adId: 'ca-app-pub-3020023783009364/7355156198',
+                adSize: BannerAdSize.BANNER,
+                position: BannerAdPosition.TOP_CENTER,
+                margin: 0,
+                isTesting: adMobIsTesting,
+            });
+
+            nextLogs.push('showBanner done')
+            setLogs(nextLogs);
+        } catch (error) {
+            nextLogs.push(`showBanner ${error instanceof Error && error.stack || `Error: ${JSON.stringify(error, undefined, 2)}`}`);
+            setLogs(nextLogs);
+        }
+    }
+      
+    const showInterstitial = async () => {
+        const nextLogs: string[] = logs;
+
+        try {
+            nextLogs.push('AdMob.prepareInterstitial...')
+            setLogs(nextLogs);
+
+            const adLoadInfo = await AdMob.prepareInterstitial({
+                adId: 'ca-app-pub-3020023783009364/6231331117',
+                isTesting: adMobIsTesting,
+            });
+
+            nextLogs.push(`adLoadInfo: ${JSON.stringify(adLoadInfo, undefined, 2)}`)
+            setLogs(nextLogs);
+
+            for (const event of Object.values(InterstitialAdPluginEvents)) {
+                addAdMobListener(event, nextLogs);
+            }
+
+            nextLogs.push('AdMob.showInterstitial...')
+            setLogs(nextLogs);
+
+            await AdMob.showInterstitial();
+
+            nextLogs.push('showInterstitial done')
+            setLogs(nextLogs);
+        } catch (error) {
+            nextLogs.push(`showInterstitial ${error instanceof Error && error.stack || `Error: ${JSON.stringify(error, undefined, 2)}`}`);
+            setLogs(nextLogs);
+        }
+    }
+
     return (
         <React.Fragment>
+            <ReactModal isOpen={isModalOpen} style={{content: {inset: 0}}}>
+                <div
+                    onClick={(event) => {
+                        event.stopPropagation();
+                    }}
+                    style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, padding: 8 }}
+                >
+                    <div style={{ textAlign: 'right' }}>
+                        <span onClick={() => { setIsModalOpen(false); }} style={{ cursor: 'pointer' }}>
+                            ❌
+                        </span>
+                    </div>
+                    <div
+                        style={{
+                            alignItems: 'center',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            flexGrow: 1,
+                            justifyContent: 'center',
+                        }}
+                    >
+                        {logs.map((log, index) => <p key={index}>{log}</p>)}
+                    </div>
+                </div>
+            </ReactModal>
+            <div>
+                <button onClick={() => {setIsModalOpen(true)}}>Dbg</button>
+                <button onClick={showBanner}>Bnr</button>
+                <button onClick={showInterstitial}>Intl</button>
+            </div>
             <div className="buttons">
                 <button
                     type="button"
