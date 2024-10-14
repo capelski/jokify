@@ -1,4 +1,4 @@
-package com.jokify.app;
+package capelski.bromuro;
 
 import com.getcapacitor.BridgeActivity;
 

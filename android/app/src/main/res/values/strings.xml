@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">jokify</string>
-    <string name="title_activity_main">jokify</string>
-    <string name="package_name">com.jokify.app</string>
-    <string name="custom_url_scheme">com.jokify.app</string>
+    <string name="app_name">Bromuro</string>
+    <string name="title_activity_main">Bromuro</string>
+    <string name="package_name">capelski.bromuro</string>
+    <string name="custom_url_scheme">capelski.bromuro</string>
     <string name="admob_app_id">ca-app-pub-3020023783009364~8559602240</string>
 </resources>
