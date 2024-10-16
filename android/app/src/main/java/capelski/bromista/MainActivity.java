@@ -1,4 +1,4 @@
-package com.jokify.app;
+package capelski.bromista;
 
 import com.getcapacitor.BridgeActivity;
 

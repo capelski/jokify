@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.jokify.app',
-  appName: 'jokify',
+  appId: 'capelski.bromista',
+  appName: 'Bromista',
   webDir: 'www'
 };
 
