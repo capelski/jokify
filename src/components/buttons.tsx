@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import { Joke, SlideDirection } from '../types';
 
-const adMobIsTesting = true;
-// Setup a test device: https://support.google.com/admob/answer/9691433?hl=en-GB#ID
-const adMobTestingDevices: string[] =  adMobIsTesting 
-    ? ['25ceba13-17c3-451e-8232-60e4b1974f13']
-    : [];
+const adMobIsTesting = false;
 
 export interface INavigator {
     share?: (...args: any[]) => void;
@@ -55,7 +51,6 @@ export const Buttons: React.FC<ButtonsProps> = props => {
 
                 await AdMob.initialize({
                     initializeForTesting: adMobIsTesting,
-                    testingDevices: adMobTestingDevices
                 });
             
                 nextLogs.push('AdMob.trackingAuthorizationStatus...')
